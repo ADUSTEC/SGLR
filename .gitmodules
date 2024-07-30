@@ -1,0 +1,15 @@
+[submodule "SimpleGLRenderer/vendor/spdlog"]
+	path = SimpleGLRenderer/vendor/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "SimpleGLRenderer/vendor/SDL"]
+	path = SimpleGLRenderer/vendor/SDL
+	url = https://github.com/libsdl-org/SDL
+[submodule "SimpleGLRenderer/vendor/imgui"]
+	path = SimpleGLRenderer/vendor/imgui
+	url = https://github.com/ocornut/imgui
+[submodule "SimpleGLRenderer/vendor/glew"]
+	path = SimpleGLRenderer/vendor/glew
+	url = https://github.com/nigels-com/glew
+[submodule "SimpleGLRenderer/vendor/glm"]
+	path = SimpleGLRenderer/vendor/glm
+	url = https://github.com/icaven/glm
