@@ -7,9 +7,9 @@
 [submodule "SimpleGLRenderer/vendor/imgui"]
 	path = SimpleGLRenderer/vendor/imgui
 	url = https://github.com/ocornut/imgui
-[submodule "SimpleGLRenderer/vendor/glew"]
-	path = SimpleGLRenderer/vendor/glew
-	url = https://github.com/nigels-com/glew
 [submodule "SimpleGLRenderer/vendor/glm"]
 	path = SimpleGLRenderer/vendor/glm
 	url = https://github.com/icaven/glm
+[submodule "SimpleGLRenderer/vendor/tinyxml2"]
+	path = SimpleGLRenderer/vendor/tinyxml2
+	url = https://github.com/leethomason/tinyxml2.git
