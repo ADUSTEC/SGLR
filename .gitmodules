@@ -13,3 +13,6 @@
 [submodule "SimpleGLRenderer/vendor/tinyxml2"]
 	path = SimpleGLRenderer/vendor/tinyxml2
 	url = https://github.com/ADUSTEC/tinyxml2
+[submodule "SimpleGLRenderer/vendor/assimp"]
+	path = SimpleGLRenderer/vendor/assimp
+	url = https://github.com/ADUSTEC/assimp

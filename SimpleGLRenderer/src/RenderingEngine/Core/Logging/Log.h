@@ -2,6 +2,8 @@
 
 #include "LogManager.h"
 
+
+// Debug only logging macros
 #ifdef _DEBUG
 
 #define BREAK __debugbreak(); // Windows only
@@ -26,6 +28,6 @@
 #define LOG_TRACE(...)           (void)0
 #define LOG_ASSERT(x, msg)		 (void)0
 
-#define LOG_RELLOG(...)          ::SGLR::Log::GetLogger()->trace(__VA_ARGS__)
+#define LOG_RELLOG(...)          ::SGLR::Log::GetLogger()->trace(__VA_ARGS__) // incase any info would want to be displayed whilst in release
 
 #endif

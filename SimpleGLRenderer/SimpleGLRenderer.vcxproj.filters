@@ -4,6 +4,15 @@
     <Filter Include="src">
       <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\RenderingEngine">
+      <UniqueIdentifier>{50F7EAF1-BC58-C8FF-45C6-0EB2B126FFBE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\RenderingEngine\Core">
+      <UniqueIdentifier>{A82D739C-9452-C21C-BD9D-A7ACA921C13A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\RenderingEngine\Core\Logging">
+      <UniqueIdentifier>{3E36C9F5-2A87-B437-53EB-A2F93F9B47A1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
     </Filter>
@@ -15,6 +24,20 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\RenderingEngine\Core\Logging\Log.h">
+      <Filter>src\RenderingEngine\Core\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RenderingEngine\Core\Logging\LogManager.h">
+      <Filter>src\RenderingEngine\Core\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RenderingEngine\RenderEngine.h">
+      <Filter>src\RenderingEngine</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\RenderingEngine\Core\Logging\LogManager.cpp">
+      <Filter>src\RenderingEngine\Core\Logging</Filter>
+    </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>

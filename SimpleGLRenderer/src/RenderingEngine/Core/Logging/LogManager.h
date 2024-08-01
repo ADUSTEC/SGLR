@@ -3,6 +3,7 @@
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
 
+// A pretty simple logging class
 namespace SGLR {
 
 	class Log

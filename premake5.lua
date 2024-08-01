@@ -44,6 +44,11 @@ project "SimpleGLRenderer"
 		"%{prj.name}/vendor/SDL/include",		-- SDL
 		"%{prj.name}/vendor/glew/include",		-- GLEW
 
+		"%{prj.name}/vendor/assimp/include",	-- ASSIMP
+		"%{prj.name}/vendor/assimp/BUILD/include",
+		
+		
+
 		-- IMGUI
 		"%{prj.name}/vendor/imgui/imconfig.h",
 		"%{prj.name}/vendor/imgui/imgui.h",		
@@ -59,9 +64,11 @@ project "SimpleGLRenderer"
 
 
 	libdirs {
-		"%{prj.name}/vendor/glew/lib/Release/x64",	-- glew
-		"%{prj.name}/vendor/SDL/BUILD/Release",		-- SDL
-		"%{prj.name}/vendor/tinyxml2/BUILD/Release"	-- tinyxml2
+		"%{prj.name}/vendor/glew/lib/Release/x64",		-- glew
+		"%{prj.name}/vendor/SDL/BUILD/Release",		    -- SDL
+		"%{prj.name}/vendor/assimp/BUILD/lib/Release",	-- assip
+		"%{prj.name}/vendor/tinyxml2/BUILD/Release"		-- tinyxml2
+		
 	}
 	
 	links {
@@ -69,14 +76,16 @@ project "SimpleGLRenderer"
 		"SDL3.lib",
 		"SDL3_test.lib",
 		"glew32.lib",
-		"tinyxml2.lib"
+		"tinyxml2.lib",
+		"assimp-vc143-mt.lib"
 	}
 
 	postbuildcommands  {
 		-- copy assets folder to build folder
 		"{COPYFILE} vendor/SDL/BUILD/Release/SDL3.dll %{cfg.targetdir}/",
-		"{COPYDIR}  assets %{cfg.targetdir}/",
-		"{COPYFILE} vendor/glew/bin/Release/x64/glew32.dll %{cfg.targetdir}/"
+		"{COPYFILE} vendor/glew/bin/Release/x64/glew32.dll %{cfg.targetdir}/",
+		"{COPYFILE} vendor/assimp/BUILD/bin/Release/assimp-vc143-mt.dll %{cfg.targetdir}/",
+		"{COPYDIR}  assets %{cfg.targetdir}/"
 	}
 
 	filter "system:windows"
