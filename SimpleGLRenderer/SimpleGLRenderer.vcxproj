@@ -104,6 +104,7 @@ copy /B /Y vendor\glew\bin\Release\x64\glew32.dll ..\bin\Release-windows-x86_64\
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\RenderingEngine\Core\logging\LogManager.cpp" />
     <ClCompile Include="vendor\imgui\backends\imgui_impl_opengl3.cpp" />
     <ClCompile Include="vendor\imgui\backends\imgui_impl_sdl3.cpp" />
     <ClCompile Include="vendor\imgui\imgui.cpp" />
@@ -111,6 +112,12 @@ copy /B /Y vendor\glew\bin\Release\x64\glew32.dll ..\bin\Release-windows-x86_64\
     <ClCompile Include="vendor\imgui\imgui_draw.cpp" />
     <ClCompile Include="vendor\imgui\imgui_tables.cpp" />
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\RenderingEngine\Core\logging\Log.h" />
+    <ClInclude Include="src\RenderingEngine\Core\logging\LogManager.h" />
+    <ClInclude Include="src\RenderingEngine\RenderEngine.h" />
+    <ClInclude Include="src\RenderingEngine\Tools\logging\Log.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
