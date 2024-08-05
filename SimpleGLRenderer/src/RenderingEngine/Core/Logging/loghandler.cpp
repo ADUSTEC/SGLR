@@ -1,5 +1,5 @@
-#include "LogManager.h"
-#include "Log.h"
+#include "loghandler.h"
+#include "log.h"
 #include <spdlog/sinks/stdout_color_sinks.h>
 
 namespace SGLR {

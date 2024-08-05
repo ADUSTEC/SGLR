@@ -105,12 +105,30 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\RenderingEngine\Core\Logging\Log.h" />
-    <ClInclude Include="src\RenderingEngine\Core\Logging\LogManager.h" />
-    <ClInclude Include="src\RenderingEngine\RenderEngine.h" />
+    <ClInclude Include="src\RenderingEngine\Core\Gui\gui.h" />
+    <ClInclude Include="src\RenderingEngine\Core\Gui\guihandler.h" />
+    <ClInclude Include="src\RenderingEngine\Core\Input\keyboard.h" />
+    <ClInclude Include="src\RenderingEngine\Core\Input\mouse.h" />
+    <ClInclude Include="src\RenderingEngine\Core\Logging\log.h" />
+    <ClInclude Include="src\RenderingEngine\Core\Logging\loghandler.h" />
+    <ClInclude Include="src\RenderingEngine\Core\Window\window.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\framebuffer.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\indexbuffer.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\vertarr.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\vertbuffer.h" />
+    <ClInclude Include="src\RenderingEngine\Tools\clock.h" />
+    <ClInclude Include="src\RenderingEngine\renderengine.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\RenderingEngine\Core\Logging\LogManager.cpp" />
+    <ClCompile Include="src\RenderingEngine\Core\Gui\guihandler.cpp" />
+    <ClCompile Include="src\RenderingEngine\Core\Input\keyboard.cpp" />
+    <ClCompile Include="src\RenderingEngine\Core\Input\mouse.cpp" />
+    <ClCompile Include="src\RenderingEngine\Core\Logging\loghandler.cpp" />
+    <ClCompile Include="src\RenderingEngine\Core\Window\window.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\framebuffer.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\indexbuffer.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\vertarr.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\vertbuffer.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="vendor\imgui\backends\imgui_impl_opengl3.cpp" />
     <ClCompile Include="vendor\imgui\backends\imgui_impl_sdl3.cpp" />

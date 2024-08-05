@@ -1,20 +1,38 @@
-#include <iostream>
-#include <string>
-#include <GL/glew.h>
-#include "RenderingEngine/RenderEngine.h"
-#include <assimp/Importer.hpp>
+#include "RenderingEngine/renderengine.h"
+
+class renderApp : public SGLR::Application
+{
+	public:
+		renderApp() {}
+		~renderApp() {}
+
+		void onInit() override
+		{}
+
+		void onRender(float deltaTime) override
+		{
+			LOG_TRACE("RENDERTIME: {}", deltaTime);
+		}
+
+		void onUpdate(float deltaTime) override
+		{
+			LOG_TRACE("UPDATETIME: {}", deltaTime);
+		}
+
+		void onTick(float deltaTime) override
+		{
+			LOG_TRACE("TICKTIME: {}", deltaTime);
+		}
+
+	private:
+};
 
 int main(int argc, char** argv)
 {
 	SGLR::Log::Init(); // Initialize logger
 	
-	// testing
-	LOG_TRACE("This is a log message");
-	LOG_INFO("This is an info message");
-	LOG_DEBUG("This is a debug message");
-	LOG_ERROR("This is an error message");
-
-	system("PAUSE");
-
+	renderApp app;
+	app.start();
+	
 	SGLR::Log::Shutdown(); // Destroy
 }

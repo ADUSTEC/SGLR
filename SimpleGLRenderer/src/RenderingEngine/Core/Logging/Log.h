@@ -1,6 +1,6 @@
 #pragma once
 
-#include "LogManager.h"
+#include "loghandler.h"
 
 
 // Debug only logging macros

@@ -10,8 +10,23 @@
     <Filter Include="src\RenderingEngine\Core">
       <UniqueIdentifier>{A82D739C-9452-C21C-BD9D-A7ACA921C13A}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\RenderingEngine\Core\Gui">
+      <UniqueIdentifier>{FCC43CD8-E87F-2C84-9137-A5CE7DD17614}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\RenderingEngine\Core\Input">
+      <UniqueIdentifier>{A77BA2DA-93A1-6C41-7CE7-F10C68AC910D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\RenderingEngine\Core\Logging">
       <UniqueIdentifier>{3E36C9F5-2A87-B437-53EB-A2F93F9B47A1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\RenderingEngine\Core\Window">
+      <UniqueIdentifier>{8F4D3E4F-FB30-4D8F-0434-7BCB709613E0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\RenderingEngine\Graphics">
+      <UniqueIdentifier>{90F97149-7CB4-61F5-256C-DA3F1106AC85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\RenderingEngine\Tools">
+      <UniqueIdentifier>{D0770C2C-3C3A-40B6-85EA-CE42F1EB1894}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
@@ -24,19 +39,73 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\RenderingEngine\Core\Logging\Log.h">
+    <ClInclude Include="src\RenderingEngine\Core\Gui\gui.h">
+      <Filter>src\RenderingEngine\Core\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RenderingEngine\Core\Gui\guihandler.h">
+      <Filter>src\RenderingEngine\Core\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RenderingEngine\Core\Input\keyboard.h">
+      <Filter>src\RenderingEngine\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RenderingEngine\Core\Input\mouse.h">
+      <Filter>src\RenderingEngine\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RenderingEngine\Core\Logging\log.h">
       <Filter>src\RenderingEngine\Core\Logging</Filter>
     </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Core\Logging\LogManager.h">
+    <ClInclude Include="src\RenderingEngine\Core\Logging\loghandler.h">
       <Filter>src\RenderingEngine\Core\Logging</Filter>
     </ClInclude>
-    <ClInclude Include="src\RenderingEngine\RenderEngine.h">
+    <ClInclude Include="src\RenderingEngine\Core\Window\window.h">
+      <Filter>src\RenderingEngine\Core\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RenderingEngine\Graphics\framebuffer.h">
+      <Filter>src\RenderingEngine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RenderingEngine\Graphics\indexbuffer.h">
+      <Filter>src\RenderingEngine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RenderingEngine\Graphics\vertarr.h">
+      <Filter>src\RenderingEngine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RenderingEngine\Graphics\vertbuffer.h">
+      <Filter>src\RenderingEngine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RenderingEngine\Tools\clock.h">
+      <Filter>src\RenderingEngine\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RenderingEngine\renderengine.h">
       <Filter>src\RenderingEngine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\RenderingEngine\Core\Logging\LogManager.cpp">
+    <ClCompile Include="src\RenderingEngine\Core\Gui\guihandler.cpp">
+      <Filter>src\RenderingEngine\Core\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderingEngine\Core\Input\keyboard.cpp">
+      <Filter>src\RenderingEngine\Core\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderingEngine\Core\Input\mouse.cpp">
+      <Filter>src\RenderingEngine\Core\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderingEngine\Core\Logging\loghandler.cpp">
       <Filter>src\RenderingEngine\Core\Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderingEngine\Core\Window\window.cpp">
+      <Filter>src\RenderingEngine\Core\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderingEngine\Graphics\framebuffer.cpp">
+      <Filter>src\RenderingEngine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderingEngine\Graphics\indexbuffer.cpp">
+      <Filter>src\RenderingEngine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderingEngine\Graphics\vertarr.cpp">
+      <Filter>src\RenderingEngine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderingEngine\Graphics\vertbuffer.cpp">
+      <Filter>src\RenderingEngine\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
