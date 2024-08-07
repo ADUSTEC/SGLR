@@ -18,14 +18,10 @@ class renderApp : public SGLR::Application
 		}
 
 		void onUpdate(float deltaTime) override
-		{
-			//LOG_TRACE("UPDATETIME: {}", deltaTime);
-		}
+		{}
 
 		void onTick(float deltaTime) override
-		{
-			//LOG_TRACE("TICKTIME: {}", deltaTime);
-		}
+		{}
 
 	private:
 };

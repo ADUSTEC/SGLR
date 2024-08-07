@@ -105,7 +105,6 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\RenderingEngine\Core\Gui\gui.h" />
     <ClInclude Include="src\RenderingEngine\Core\Gui\guihandler.h" />
     <ClInclude Include="src\RenderingEngine\Core\Input\keyboard.h" />
     <ClInclude Include="src\RenderingEngine\Core\Input\mouse.h" />

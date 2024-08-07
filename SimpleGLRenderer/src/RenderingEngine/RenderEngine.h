@@ -1,6 +1,7 @@
 #include "Core/Logging/log.h"
 #include "Tools/clock.h"
 #include "Core/Window/window.h"
+#include "Core/Gui/guihandler.h"
 
 #include <iostream>
 #include <string>
@@ -62,8 +63,6 @@ namespace SGLR {
 						continue;
 					}
 
-					
-
 					if (m_clock.elapsed() - updateTimer > updateTick)
 					{
 						deltaUpdateTime = m_deltaUpdate.elapsed();
@@ -86,12 +85,13 @@ namespace SGLR {
 						m_deltaTick.restart();
 					}
 
-					onRender(deltaRenderTime);
-					ImGui::Render();
+					 
 					glClearColor(0.6f, 0.3f, 0.1f, 1.0f);
-					glClear(GL_COLOR_BUFFER_BIT);
-					ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+					onRender(deltaRenderTime);
+					
+					gui::render();
 					m_window.get()->swap();
+
 					deltaRenderTime = m_deltaRender.elapsed();
 					m_deltaRender.restart();
 				}

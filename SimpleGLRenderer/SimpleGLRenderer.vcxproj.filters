@@ -39,9 +39,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\RenderingEngine\Core\Gui\gui.h">
-      <Filter>src\RenderingEngine\Core\Gui</Filter>
-    </ClInclude>
     <ClInclude Include="src\RenderingEngine\Core\Gui\guihandler.h">
       <Filter>src\RenderingEngine\Core\Gui</Filter>
     </ClInclude>

@@ -1,8 +1,8 @@
 #include "window.h"
 
 #include "../imgui.h"
-#include "../imgui_impl_sdl3.h"
-#include "../imgui_impl_opengl3.h"
+
+#include "../Gui/guihandler.h"
 
 namespace SGLR
 {
@@ -10,15 +10,12 @@ namespace SGLR
 		: m_title(title), m_size(size)
 	{
 		SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMEPAD);
-		IMGUI_CHECKVERSION();
 		glewInit();
 	}
 
 	sglrwindow::~sglrwindow()
 	{
-		ImGui_ImplOpenGL3_Shutdown(); 
-		ImGui_ImplSDL3_Shutdown();  
-		ImGui::DestroyContext(); 
+		gui::destroy();
 
 		SDL_GL_DestroyContext(SDL_GL_GetCurrentContext());
 		SDL_DestroyWindow(m_window);
@@ -38,10 +35,7 @@ namespace SGLR
 		SDL_ShowWindow(m_window);
 		glViewport(0, 0, m_size.x, m_size.y);
 
-		IMGUI_CHECKVERSION();
-		ImGui::CreateContext(); 
-		ImGui_ImplSDL3_InitForOpenGL(m_window, gl_context);
-		ImGui_ImplOpenGL3_Init("#version 130"); 
+		gui::init(m_window, gl_context);
 	}
 
 	void sglrwindow::update()
@@ -49,14 +43,15 @@ namespace SGLR
 		SDL_Event event;
 		while (SDL_PollEvent(&event))
 		{
-			ImGui_ImplSDL3_ProcessEvent(&event);
+			gui::processEvents(event);
 			if (event.type == SDL_EVENT_QUIT)
 				exit(0);
 			if (event.type == SDL_EVENT_WINDOW_CLOSE_REQUESTED && event.window.windowID == SDL_GetWindowID(m_window))
 				exit(0);
 		}
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplSDL3_NewFrame();
-		ImGui::NewFrame();
+
+		gui::update();
+
+		glClear(GL_COLOR_BUFFER_BIT);
 	}
 }
