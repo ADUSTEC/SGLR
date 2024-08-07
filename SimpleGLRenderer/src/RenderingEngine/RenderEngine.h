@@ -1,7 +1,12 @@
 #include "Core/Logging/log.h"
 #include "Tools/clock.h"
+#include "Core/Window/window.h"
 
 #include <iostream>
+#include <string>
+#include <vec2.hpp>
+#include "../imgui_impl_sdl3.h"
+#include "../imgui_impl_opengl3.h"
 
 // Application will be used by main by creating a custom class that inherits from Application
 namespace SGLR {
@@ -18,9 +23,11 @@ namespace SGLR {
 		protected:
 			Application() 
 				: m_fps(0), m_ups(0), deltaUpdateTime(0), deltaRenderTime(0), deltaTickTime(0)
-			{}
+			{
+				m_window = std::unique_ptr<sglrwindow>(new sglrwindow("SGLR", glm::vec2(1600, 900)));
+			}
 
-			virtual ~Application() {}
+			virtual ~Application() { }
 
 			virtual void onInit() = 0; // called one time when the start function is called
 
@@ -42,9 +49,21 @@ namespace SGLR {
 				unsigned int frames = 0;
 				unsigned int updates = 0;
 
+				
+				m_window.get()->createWindow();
+
 				// while the application is running; handle the update, tick and render functions.
 				while (true)
 				{
+					m_window.get()->update();
+					if (m_window.get()->minimized())
+					{
+						SDL_Delay(10);
+						continue;
+					}
+
+					
+
 					if (m_clock.elapsed() - updateTimer > updateTick)
 					{
 						deltaUpdateTime = m_deltaUpdate.elapsed();
@@ -68,10 +87,18 @@ namespace SGLR {
 					}
 
 					onRender(deltaRenderTime);
+					ImGui::Render();
+					glClearColor(0.6f, 0.3f, 0.1f, 1.0f);
+					glClear(GL_COLOR_BUFFER_BIT);
+					ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+					m_window.get()->swap();
 					deltaRenderTime = m_deltaRender.elapsed();
 					m_deltaRender.restart();
 				}
 			}
+
+			// window
+			std::unique_ptr<sglrwindow> m_window;
 
 			// individual deltatime variables
 			float deltaUpdateTime = 0;

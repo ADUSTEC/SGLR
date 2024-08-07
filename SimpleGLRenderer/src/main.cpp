@@ -11,17 +11,20 @@ class renderApp : public SGLR::Application
 
 		void onRender(float deltaTime) override
 		{
-			LOG_TRACE("RENDERTIME: {}", deltaTime);
+			ImGui::Begin("test");
+			ImGui::Text("TEST - DELTATIME: %f", deltaTime);
+			ImGui::End();
+			//LOG_TRACE("RENDERTIME: {}", deltaTime);
 		}
 
 		void onUpdate(float deltaTime) override
 		{
-			LOG_TRACE("UPDATETIME: {}", deltaTime);
+			//LOG_TRACE("UPDATETIME: {}", deltaTime);
 		}
 
 		void onTick(float deltaTime) override
 		{
-			LOG_TRACE("TICKTIME: {}", deltaTime);
+			//LOG_TRACE("TICKTIME: {}", deltaTime);
 		}
 
 	private:
@@ -35,4 +38,6 @@ int main(int argc, char** argv)
 	app.start();
 	
 	SGLR::Log::Shutdown(); // Destroy
+
+	return 0;
 }
