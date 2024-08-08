@@ -87,9 +87,11 @@ namespace SGLR {
 
 					 
 					glClearColor(0.6f, 0.3f, 0.1f, 1.0f);
+
+					gui::makeDockSpace();
 					onRender(deltaRenderTime);
-					
 					gui::render();
+					
 					m_window.get()->swap();
 
 					deltaRenderTime = m_deltaRender.elapsed();

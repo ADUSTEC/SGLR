@@ -17,8 +17,8 @@ namespace SGLR
 
 			void static init(SDL_Window* window, SDL_GLContext gl_context);
 			void static update();
+			void static makeDockSpace();
 			void static render();
-
 			void static destroy();
 	};
 }

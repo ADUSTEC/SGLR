@@ -75,6 +75,7 @@
     <ClInclude Include="src\RenderingEngine\renderengine.h">
       <Filter>src\RenderingEngine</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\RenderingEngine\Core\Gui\guihandler.cpp">
@@ -128,5 +129,11 @@
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp">
       <Filter>vendor\imgui</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SimpleGLRenderer.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\sglr.ico" />
   </ItemGroup>
 </Project>

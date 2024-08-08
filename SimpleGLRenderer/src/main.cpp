@@ -11,8 +11,12 @@ class renderApp : public SGLR::Application
 
 		void onRender(float deltaTime) override
 		{
-			ImGui::Begin("test");
-			ImGui::Text("TEST - DELTATIME: %f", deltaTime);
+			ImGui::Begin("Outliner");
+			ImGui::Begin("Material Editor");
+			ImGui::End();
+			ImGui::End();
+
+			ImGui::Begin("Viewport");
 			ImGui::End();
 			//LOG_TRACE("RENDERTIME: {}", deltaTime);
 		}
