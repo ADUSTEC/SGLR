@@ -1,4 +1,5 @@
 #include "window.h"
+#include "../Logging/log.h"
 
 #include "../imgui.h"
 
@@ -8,10 +9,7 @@ namespace SGLR
 {
 	sglrwindow::sglrwindow(std::string title, glm::vec2 size)
 		: m_title(title), m_size(size)
-	{
-		SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMEPAD);
-		glewInit();
-	}
+	{}
 
 	sglrwindow::~sglrwindow()
 	{
@@ -24,6 +22,13 @@ namespace SGLR
 
 	void sglrwindow::createWindow()
 	{
+		SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMEPAD);
+
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, 0);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 6);
+
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 		SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 		SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
@@ -34,6 +39,13 @@ namespace SGLR
 		SDL_GL_MakeCurrent(m_window, gl_context);
 		SDL_ShowWindow(m_window);
 		glViewport(0, 0, m_size.x, m_size.y);
+
+		GLint GlewInitResult = glewInit();
+		if (GLEW_OK != GlewInitResult)
+		{
+			LOG_ERROR("GLEW ERROR: {}", (const char*)glewGetErrorString(GlewInitResult));
+			exit(EXIT_FAILURE);
+		}
 
 		gui::init(m_window, gl_context);
 	}

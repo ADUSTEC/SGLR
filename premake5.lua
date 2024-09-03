@@ -43,6 +43,7 @@ project "SimpleGLRenderer"
 		"%{prj.name}/vendor/glm/glm",			-- GLM
 		"%{prj.name}/vendor/SDL/include",		-- SDL
 		"%{prj.name}/vendor/glew/include",		-- GLEW
+		"%{prj.name}/vendor/mio/include",		-- MIO
 
 		"%{prj.name}/vendor/assimp/include",	-- ASSIMP
 		"%{prj.name}/vendor/assimp/BUILD/include",

@@ -16,3 +16,7 @@
 [submodule "SimpleGLRenderer/vendor/assimp"]
 	path = SimpleGLRenderer/vendor/assimp
 	url = https://github.com/ADUSTEC/assimp
+[submodule "SimpleGLRenderer/vendor/mio"]
+	path = SimpleGLRenderer/vendor/mio
+	url = https://github.com/ADUSTEC/mio
+

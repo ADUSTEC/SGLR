@@ -2,9 +2,9 @@
 #include "Tools/clock.h"
 #include "Core/Window/window.h"
 #include "Core/Gui/guihandler.h"
+#include "Tools/readfile.h"
 
 #include <iostream>
-#include <string>
 #include <vec2.hpp>
 #include "../imgui_impl_sdl3.h"
 #include "../imgui_impl_opengl3.h"
@@ -17,6 +17,7 @@ namespace SGLR {
 			// simply starts the application once called
 			void start()
 			{
+				m_window.get()->createWindow(); // create window, must be done before initialization
 				onInit(); // call before run
 				m_run(); // start app
 			} 
@@ -50,9 +51,6 @@ namespace SGLR {
 				unsigned int frames = 0;
 				unsigned int updates = 0;
 
-				
-				m_window.get()->createWindow();
-
 				// while the application is running; handle the update, tick and render functions.
 				while (true)
 				{
@@ -85,11 +83,19 @@ namespace SGLR {
 						m_deltaTick.restart();
 					}
 
-					 
-					glClearColor(0.6f, 0.3f, 0.1f, 1.0f);
-
 					gui::makeDockSpace();
+
+					ImGui::Begin("Outliner");
+					ImGui::Begin("Material Editor");
+					ImGui::End();
+					ImGui::End();
+
+					ImGui::Begin("Viewport");
+
 					onRender(deltaRenderTime);
+					
+					ImGui::End();
+
 					gui::render();
 					
 					m_window.get()->swap();
