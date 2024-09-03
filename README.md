@@ -1,4 +1,4 @@
-# SimpleGLRenderer
+# SimpleGLRenderer (in very unfinished state)
 (windows only)
 A basic OpenGL 3D Renderer written in C++
 
