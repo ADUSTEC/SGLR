@@ -52,6 +52,10 @@ namespace SGLR
 
 	void sglrwindow::update()
 	{
+		int width;
+		int height;
+		SDL_GetWindowSize(m_window, &width, &height);
+
 		SDL_Event event;
 		while (SDL_PollEvent(&event))
 		{
@@ -60,6 +64,9 @@ namespace SGLR
 				exit(0);
 			if (event.type == SDL_EVENT_WINDOW_CLOSE_REQUESTED && event.window.windowID == SDL_GetWindowID(m_window))
 				exit(0);
+			if (event.type == SDL_EVENT_WINDOW_RESIZED)
+				m_size.x = width;
+				m_size.y = height;
 		}
 
 		gui::update();

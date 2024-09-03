@@ -112,7 +112,7 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     <ClInclude Include="src\RenderingEngine\Core\Logging\loghandler.h" />
     <ClInclude Include="src\RenderingEngine\Core\Window\window.h" />
     <ClInclude Include="src\RenderingEngine\Graphics\framebuffer.h" />
-    <ClInclude Include="src\RenderingEngine\Graphics\indexbuffer.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\indbuffer.h" />
     <ClInclude Include="src\RenderingEngine\Graphics\vertarr.h" />
     <ClInclude Include="src\RenderingEngine\Graphics\vertbuffer.h" />
     <ClInclude Include="src\RenderingEngine\Tools\clock.h" />
@@ -126,7 +126,7 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     <ClCompile Include="src\RenderingEngine\Core\Logging\loghandler.cpp" />
     <ClCompile Include="src\RenderingEngine\Core\Window\window.cpp" />
     <ClCompile Include="src\RenderingEngine\Graphics\framebuffer.cpp" />
-    <ClCompile Include="src\RenderingEngine\Graphics\indexbuffer.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\indbuffer.cpp" />
     <ClCompile Include="src\RenderingEngine\Graphics\vertarr.cpp" />
     <ClCompile Include="src\RenderingEngine\Graphics\vertbuffer.cpp" />
     <ClCompile Include="src\main.cpp" />

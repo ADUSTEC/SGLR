@@ -1,8 +1,9 @@
 #include "Core/Logging/log.h"
-#include "Tools/clock.h"
 #include "Core/Window/window.h"
 #include "Core/Gui/guihandler.h"
+#include "Tools/clock.h"
 #include "Tools/readfile.h"
+#include "Graphics/framebuffer.h"
 
 #include <iostream>
 #include <vec2.hpp>
@@ -48,8 +49,10 @@ namespace SGLR {
 				float timer = 0.0f;
 				float updateTimer = 0.0f;
 				float updateTick = 1.0f / 240.0f;
-				unsigned int frames = 0;
-				unsigned int updates = 0;
+				UINT frames = 0;
+				UINT updates = 0;
+
+				framebuffer viewport(m_window.get()->returnSize());
 
 				// while the application is running; handle the update, tick and render functions.
 				while (true)
@@ -92,8 +95,24 @@ namespace SGLR {
 
 					ImGui::Begin("Viewport");
 
-					onRender(deltaRenderTime);
+					viewport.bind(); // bind the frame buffer
+
+					onRender(deltaRenderTime); // call render function
 					
+					viewport.rescale(glm::vec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y));
+					glViewport(0, 0, ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y);
+
+					// display anything rendered to the viewport
+					ImGui::Image
+					(
+						(ImTextureID)viewport.returnFrame(),
+						ImGui::GetContentRegionAvail(),
+						ImVec2(0, 1),
+						ImVec2(1, 0)
+					);
+
+					viewport.unbind(); // unbind the frame buffer
+
 					ImGui::End();
 
 					gui::render();

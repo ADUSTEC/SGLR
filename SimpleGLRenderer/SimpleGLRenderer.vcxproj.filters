@@ -60,7 +60,7 @@
     <ClInclude Include="src\RenderingEngine\Graphics\framebuffer.h">
       <Filter>src\RenderingEngine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Graphics\indexbuffer.h">
+    <ClInclude Include="src\RenderingEngine\Graphics\indbuffer.h">
       <Filter>src\RenderingEngine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\RenderingEngine\Graphics\vertarr.h">
@@ -96,7 +96,7 @@
     <ClCompile Include="src\RenderingEngine\Graphics\framebuffer.cpp">
       <Filter>src\RenderingEngine\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="src\RenderingEngine\Graphics\indexbuffer.cpp">
+    <ClCompile Include="src\RenderingEngine\Graphics\indbuffer.cpp">
       <Filter>src\RenderingEngine\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="src\RenderingEngine\Graphics\vertarr.cpp">

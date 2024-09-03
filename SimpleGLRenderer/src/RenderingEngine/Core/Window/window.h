@@ -31,6 +31,11 @@ namespace SGLR
 			{
 				return m_window;
 			}
+
+			glm::vec2 returnSize()
+			{
+				return m_size;
+			}
 			
 
 		private:
