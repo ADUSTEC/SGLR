@@ -39,6 +39,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="src\RenderingEngine\Core\Gui\guihandler.h">
       <Filter>src\RenderingEngine\Core\Gui</Filter>
     </ClInclude>
@@ -63,7 +64,7 @@
     <ClInclude Include="src\RenderingEngine\Graphics\indbuffer.h">
       <Filter>src\RenderingEngine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Graphics\vertarr.h">
+    <ClInclude Include="src\RenderingEngine\Graphics\vertarray.h">
       <Filter>src\RenderingEngine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\RenderingEngine\Graphics\vertbuffer.h">
@@ -72,10 +73,12 @@
     <ClInclude Include="src\RenderingEngine\Tools\clock.h">
       <Filter>src\RenderingEngine\Tools</Filter>
     </ClInclude>
+    <ClInclude Include="src\RenderingEngine\Tools\readfile.h">
+      <Filter>src\RenderingEngine\Tools</Filter>
+    </ClInclude>
     <ClInclude Include="src\RenderingEngine\renderengine.h">
       <Filter>src\RenderingEngine</Filter>
     </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Tools\readfile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\RenderingEngine\Core\Gui\guihandler.cpp">
@@ -99,7 +102,7 @@
     <ClCompile Include="src\RenderingEngine\Graphics\indbuffer.cpp">
       <Filter>src\RenderingEngine\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="src\RenderingEngine\Graphics\vertarr.cpp">
+    <ClCompile Include="src\RenderingEngine\Graphics\vertarray.cpp">
       <Filter>src\RenderingEngine\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="src\RenderingEngine\Graphics\vertbuffer.cpp">
@@ -129,5 +132,11 @@
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp">
       <Filter>vendor\imgui</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\sglr.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SimpleGLRenderer.rc" />
   </ItemGroup>
 </Project>

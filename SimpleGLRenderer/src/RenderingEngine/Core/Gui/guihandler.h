@@ -4,6 +4,7 @@
 #include "../imgui.h"
 #include "../imgui_impl_sdl3.h"
 #include "../imgui_impl_opengl3.h"
+#include "../../Tools/readfile.h"
 
 namespace SGLR
 {
@@ -20,5 +21,11 @@ namespace SGLR
 			void static makeDockSpace();
 			void static render();
 			void static destroy();
+
+			// Styling
+			void static setupStyle();
+
+		private:
+			ImFont* font = nullptr;
 	};
 }

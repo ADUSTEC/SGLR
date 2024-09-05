@@ -48,6 +48,9 @@ namespace SGLR
 		}
 
 		gui::init(m_window, gl_context);
+
+		glEnable(GL_BLEND); 
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
 	}
 
 	void sglrwindow::update()

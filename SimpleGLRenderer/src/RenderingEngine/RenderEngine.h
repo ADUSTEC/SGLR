@@ -19,6 +19,7 @@ namespace SGLR {
 			void start()
 			{
 				m_window.get()->createWindow(); // create window, must be done before initialization
+				gui::setupStyle(); // runs style function
 				onInit(); // call before run
 				m_run(); // start app
 			} 
@@ -53,6 +54,8 @@ namespace SGLR {
 				UINT updates = 0;
 
 				framebuffer viewport(m_window.get()->returnSize());
+
+				glClearColor(0.03229527175426483f, 0.04749304801225662f, 0.0784313753247261f, 1.0f);
 
 				// while the application is running; handle the update, tick and render functions.
 				while (true)
@@ -89,30 +92,100 @@ namespace SGLR {
 					gui::makeDockSpace();
 
 					ImGui::Begin("Outliner");
-					ImGui::Begin("Material Editor");
+					{
+						// Centering using https://github.com/ocornut/imgui/discussions/3862 - unexpectedly worked perfect without any changes somehow
+						ImGuiStyle& style = ImGui::GetStyle();
+						float width = 0.0f;
+						width += ImGui::CalcTextSize("Hello").x;
+						width += style.ItemSpacing.x;
+						width += 150.0f;
+						width += style.ItemSpacing.x;
+						width += ImGui::CalcTextSize("World!").x;
+
+						float avail = ImGui::GetContentRegionAvail().x;
+						float off = (avail - width) * 0.5f;
+						if (off > 0.0f)
+							ImGui::SetCursorPosX(ImGui::GetCursorPosX() + off);
+						/////////////////////////////////////////////////////////////////////////////
+
+						if (ImGui::Button("Add Primitive"))
+							ImGui::OpenPopup("primitive_popup");
+
+						ImGui::SameLine();
+
+						if (ImGui::Button("Import Mesh"))
+							ImGui::OpenPopup("mesh_popup");
+
+						if (ImGui::BeginPopup("primitive_popup", ImGuiWindowFlags_MenuBar))
+						{
+							if (ImGui::BeginMenuBar())
+							{
+								ImGui::TextDisabled("Primitives");
+								ImGui::EndMenuBar();
+							}
+
+
+							if (ImGui::Selectable("Cube"))		ImGui::CloseCurrentPopup();
+							if (ImGui::Selectable("Plane"))		ImGui::CloseCurrentPopup();
+							if (ImGui::Selectable("Cylinder"))	ImGui::CloseCurrentPopup();
+							if (ImGui::Selectable("Cone"))		ImGui::CloseCurrentPopup();
+							if (ImGui::Selectable("Sphere"))	ImGui::CloseCurrentPopup();
+							if (ImGui::Selectable("Capsule"))	ImGui::CloseCurrentPopup();
+							if (ImGui::Selectable("Torus"))		ImGui::CloseCurrentPopup();
+
+							ImGui::EndPopup();
+						}
+						if (ImGui::BeginPopup("mesh_popup", ImGuiWindowFlags_MenuBar))
+						{
+							if (ImGui::BeginMenuBar())
+							{
+								ImGui::TextDisabled("Import");
+								ImGui::EndMenuBar();
+							}
+
+							if (ImGui::Selectable("FBX"))		ImGui::CloseCurrentPopup();
+							if (ImGui::Selectable("GLTF"))		ImGui::CloseCurrentPopup();
+
+							ImGui::EndPopup();
+						}
+
+						ImGui::Separator();
+
+						ImGui::BeginChild("OutLinerList");
+
+						ImGui::NewLine();
+						ImGui::Indent();
+						ImGui::TextDisabled("Lorem Ipsum");
+					}
+
+					ImGui::EndChild();
 					ImGui::End();
+					
+					ImGui::Begin("Material Editor");
 					ImGui::End();
 
 					ImGui::Begin("Viewport");
+					{
+						ImGui::BeginChild("RenderView");
 
-					viewport.bind(); // bind the frame buffer
+						viewport.bind(); // bind the frame buffer
+						onRender(deltaRenderTime); // call render function
 
-					onRender(deltaRenderTime); // call render function
-					
-					viewport.rescale(glm::vec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y));
-					glViewport(0, 0, ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y);
+						viewport.rescale(glm::vec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y));
+						glViewport(0, 0, ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y);
 
-					// display anything rendered to the viewport
-					ImGui::Image
-					(
-						(ImTextureID)viewport.returnFrame(),
-						ImGui::GetContentRegionAvail(),
-						ImVec2(0, 1),
-						ImVec2(1, 0)
-					);
+						// display anything rendered to the viewport
+						ImGui::Image
+						(
+							(ImTextureID)viewport.returnFrame(),
+							ImGui::GetContentRegionAvail(),
+							ImVec2(0, 1),
+							ImVec2(1, 0)
+						);
 
-					viewport.unbind(); // unbind the frame buffer
-
+						viewport.unbind(); // unbind the frame buffer
+					}
+					ImGui::EndChild(); 
 					ImGui::End();
 
 					gui::render();

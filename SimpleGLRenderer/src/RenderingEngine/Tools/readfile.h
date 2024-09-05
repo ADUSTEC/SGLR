@@ -8,10 +8,12 @@ namespace SGLR {
 
     class file {
         public:
-            static std::string read(std::string filename)
+            static const char* read(const char* filename)
             {
-                mio::mmap_source mmap_file(filename.c_str());
-                return std::string(mmap_file.data(), mmap_file.size());
+                mio::mmap_source mmap_file(filename);
+                std::string* fileContent = new std::string(mmap_file.data(), mmap_file.size());
+                return fileContent->c_str();
+                delete fileContent;
             }
         };
 }

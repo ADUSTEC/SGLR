@@ -11,13 +11,16 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 project "SimpleGLRenderer"
 	location "SimpleGLRenderer"
-	kind "ConsoleApp"
 	language "C++"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files {
+		-- Base folder
+		"%{prj.name}/resource.h",
+		"%{prj.name}/SimpleGLRenderer.rc",
+		"sglr.ico",
 		-- Source folder
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
@@ -95,9 +98,14 @@ project "SimpleGLRenderer"
 
 	filter "configurations:Debug"
 		symbols "On"
+		kind "ConsoleApp"
+		debugdir "%{prj.name}/assets/"
 
 	filter "configurations:Release"
 		optimize "On"
+		debugdir "%{prj.name}/assets/"
+		kind "WindowedApp"
+		entrypoint "mainCRTStartup"
 
 	defines {
 		-- if any needed, add here.

@@ -64,6 +64,9 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>vendor\spdlog\include;vendor\tinyxml2;vendor\glm\glm;vendor\SDL\include;vendor\glew\include;vendor\mio\include;vendor\assimp\include;vendor\assimp\BUILD\include;vendor\imgui\imconfig.h;vendor\imgui\imgui.h;vendor\imgui\imgui_internal.h;vendor\imgui\imstb_rectpack.h;vendor\imgui\imstb_textedit.h;vendor\imgui\imstb_truetype.h;vendor\imgui\backends\imgui_impl_opengl3.h;vendor\imgui\backends\imgui_impl_sdl3.h;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -90,12 +93,16 @@ xcopy /Q /E /Y /I assets ..\bin\Debug-windows-x86_64\SimpleGLRenderer</Command>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>vendor\spdlog\include;vendor\tinyxml2;vendor\glm\glm;vendor\SDL\include;vendor\glew\include;vendor\mio\include;vendor\assimp\include;vendor\assimp\BUILD\include;vendor\imgui\imconfig.h;vendor\imgui\imgui.h;vendor\imgui\imgui_internal.h;vendor\imgui\imstb_rectpack.h;vendor\imgui\imstb_textedit.h;vendor\imgui\imstb_truetype.h;vendor\imgui\backends\imgui_impl_opengl3.h;vendor\imgui\backends\imgui_impl_sdl3.h;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>opengl32.lib;SDL3.lib;SDL3_test.lib;glew32.lib;tinyxml2.lib;assimp-vc143-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>vendor\glew\lib\Release\x64;vendor\SDL\BUILD\Release;vendor\assimp\BUILD\lib\Release;vendor\tinyxml2\BUILD\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
     <PostBuildEvent>
       <Command>copy /B /Y vendor\SDL\BUILD\Release\SDL3.dll ..\bin\Release-windows-x86_64\SimpleGLRenderer
@@ -105,6 +112,8 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\shader.h" />
     <ClInclude Include="src\RenderingEngine\Core\Gui\guihandler.h" />
     <ClInclude Include="src\RenderingEngine\Core\Input\keyboard.h" />
     <ClInclude Include="src\RenderingEngine\Core\Input\mouse.h" />
@@ -113,13 +122,14 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     <ClInclude Include="src\RenderingEngine\Core\Window\window.h" />
     <ClInclude Include="src\RenderingEngine\Graphics\framebuffer.h" />
     <ClInclude Include="src\RenderingEngine\Graphics\indbuffer.h" />
-    <ClInclude Include="src\RenderingEngine\Graphics\vertarr.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\vertarray.h" />
     <ClInclude Include="src\RenderingEngine\Graphics\vertbuffer.h" />
     <ClInclude Include="src\RenderingEngine\Tools\clock.h" />
-    <ClInclude Include="src\RenderingEngine\renderengine.h" />
     <ClInclude Include="src\RenderingEngine\Tools\readfile.h" />
+    <ClInclude Include="src\RenderingEngine\renderengine.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\RenderingEngine\Graphics\shader.cpp" />
     <ClCompile Include="src\RenderingEngine\Core\Gui\guihandler.cpp" />
     <ClCompile Include="src\RenderingEngine\Core\Input\keyboard.cpp" />
     <ClCompile Include="src\RenderingEngine\Core\Input\mouse.cpp" />
@@ -127,7 +137,7 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     <ClCompile Include="src\RenderingEngine\Core\Window\window.cpp" />
     <ClCompile Include="src\RenderingEngine\Graphics\framebuffer.cpp" />
     <ClCompile Include="src\RenderingEngine\Graphics\indbuffer.cpp" />
-    <ClCompile Include="src\RenderingEngine\Graphics\vertarr.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\vertarray.cpp" />
     <ClCompile Include="src\RenderingEngine\Graphics\vertbuffer.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="vendor\imgui\backends\imgui_impl_opengl3.cpp" />
@@ -137,6 +147,12 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     <ClCompile Include="vendor\imgui\imgui_draw.cpp" />
     <ClCompile Include="vendor\imgui\imgui_tables.cpp" />
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\sglr.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SimpleGLRenderer.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
