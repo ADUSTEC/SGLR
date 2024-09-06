@@ -68,6 +68,9 @@ class renderApp : public SGLR::Application
 
 			vao->bind();
 			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+			vao->unbind();
+
+			shaders->disable();
 
 		}
 
