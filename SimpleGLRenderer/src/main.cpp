@@ -1,13 +1,9 @@
 #include "RenderingEngine/renderengine.h"
 
 
-
 class renderApp : public SGLR::Application
 {
 	private:
-		const char* vertexShaderSource = SGLR::file::read("shaders/basic_v.glsl");
-
-		const char* fragmentShaderSource = SGLR::file::read("shaders/basic_f.glsl");
 
 		GLfloat vertices[12] = 
 		{
@@ -23,67 +19,55 @@ class renderApp : public SGLR::Application
 			1, 2, 3
 		};
 
-		GLuint vertexShader;
+		SGLR::shader* shaders = nullptr;
 
-		GLuint fragmentShader;
-
-		GLuint shaderProgram;
-
-
-		GLuint vbo;
-		GLuint ebo;
-		GLuint vao;
+		SGLR::vertexarray* vao;
+		SGLR::vertexbuffer* vbo;
+		SGLR::indexbuffer* ibo;
 
 	public:
 		renderApp() {}
-		~renderApp() {}
+		~renderApp() 
+		{
+			vao->destroy();
+			vbo->destroy();
+			ibo->destroy();
+			shaders->destroy();
+
+			delete shaders;
+			delete vao;
+			delete vbo;
+			delete ibo;
+		}
 
 		void onInit() override
 		{
+			shaders = new SGLR::shader("shaders/basic_v.glsl", "shaders/basic_f.glsl");
 
-			vertexShader = glCreateShader(GL_VERTEX_SHADER);
-			glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-			glCompileShader(vertexShader);
+			vao = new SGLR::vertexarray();
 
-			fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-			glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-			glCompileShader(fragmentShader);
+			vao->bind();
 
-			shaderProgram = glCreateProgram();
+			vbo = new SGLR::vertexbuffer(vertices, sizeof(vertices));
 
-			glAttachShader(shaderProgram, vertexShader);
-			glAttachShader(shaderProgram, fragmentShader);
-			glLinkProgram(shaderProgram);
+			ibo = new SGLR::indexbuffer(indices, sizeof(indices));
+			ibo->bind();
 
-			glGenBuffers(1, &vbo);
-			glGenBuffers(1, &ebo);
+			vao->link(*vbo, 0, 3, GL_FLOAT, 3, 0);
 
-			glGenVertexArrays(1, &vao);
-
-			glBindVertexArray(vao);
-
-			glBindBuffer(GL_ARRAY_BUFFER, vbo);
-			glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-			glEnableVertexAttribArray(0);
+			vao->unbind();
+			vbo->unbind();
+			ibo->unbind();
 
 		}
 
 		void onRender(float deltaTime) override
 		{
 			
-			glUseProgram(shaderProgram);
-			glBindVertexArray(vao);
+			shaders->enable();
 
+			vao->bind();
 			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-			glBindVertexArray(0);
-
-			glDeleteShader(vertexShader);
-			glDeleteShader(fragmentShader);
 
 		}
 

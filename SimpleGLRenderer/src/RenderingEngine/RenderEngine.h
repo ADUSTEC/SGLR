@@ -3,7 +3,11 @@
 #include "Core/Gui/guihandler.h"
 #include "Tools/clock.h"
 #include "Tools/readfile.h"
-#include "Graphics/framebuffer.h"
+#include "RenderingEngine/Graphics/shader.h"
+#include "RenderingEngine/Graphics/vertexbuffer.h"
+#include "RenderingEngine/Graphics/vertexarray.h"
+#include "RenderingEngine/Graphics/indexbuffer.h"
+#include "RenderingEngine/Graphics/framebuffer.h"
 
 #include <iostream>
 #include <vec2.hpp>
@@ -155,7 +159,7 @@ namespace SGLR {
 
 						ImGui::NewLine();
 						ImGui::Indent();
-						ImGui::TextDisabled("Lorem Ipsum");
+						ImGui::TextDisabled("Outliner has no functionality right now :(");
 					}
 
 					ImGui::EndChild();

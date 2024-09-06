@@ -121,9 +121,9 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     <ClInclude Include="src\RenderingEngine\Core\Logging\loghandler.h" />
     <ClInclude Include="src\RenderingEngine\Core\Window\window.h" />
     <ClInclude Include="src\RenderingEngine\Graphics\framebuffer.h" />
-    <ClInclude Include="src\RenderingEngine\Graphics\indbuffer.h" />
-    <ClInclude Include="src\RenderingEngine\Graphics\vertarray.h" />
-    <ClInclude Include="src\RenderingEngine\Graphics\vertbuffer.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\indexbuffer.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\vertexarray.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\vertexbuffer.h" />
     <ClInclude Include="src\RenderingEngine\Tools\clock.h" />
     <ClInclude Include="src\RenderingEngine\Tools\readfile.h" />
     <ClInclude Include="src\RenderingEngine\renderengine.h" />
@@ -136,9 +136,9 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     <ClCompile Include="src\RenderingEngine\Core\Logging\loghandler.cpp" />
     <ClCompile Include="src\RenderingEngine\Core\Window\window.cpp" />
     <ClCompile Include="src\RenderingEngine\Graphics\framebuffer.cpp" />
-    <ClCompile Include="src\RenderingEngine\Graphics\indbuffer.cpp" />
-    <ClCompile Include="src\RenderingEngine\Graphics\vertarray.cpp" />
-    <ClCompile Include="src\RenderingEngine\Graphics\vertbuffer.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\indexbuffer.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\vertexarray.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\vertexbuffer.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="vendor\imgui\backends\imgui_impl_opengl3.cpp" />
     <ClCompile Include="vendor\imgui\backends\imgui_impl_sdl3.cpp" />
