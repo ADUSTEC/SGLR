@@ -37,10 +37,7 @@ project "SimpleGLRenderer"
 		"%{prj.name}/vendor/imgui/imgui_demo.cpp",
 
 		"%{prj.name}/vendor/imgui/backends/imgui_impl_sdl3.cpp",
-		"%{prj.name}/vendor/imgui/backends/imgui_impl_opengl3.cpp",
-		
-		-- stbimage
-		"%{prj.name}/vendor/stbimage/stb_image.cpp"
+		"%{prj.name}/vendor/imgui/backends/imgui_impl_opengl3.cpp"
 	}
 
 	includedirs {
