@@ -1,3 +1,4 @@
+#pragma once
 #include "Core/Logging/log.h"
 #include "Core/Window/window.h"
 #include "Core/Gui/guihandler.h"
@@ -8,6 +9,7 @@
 #include "RenderingEngine/Graphics/vertexarray.h"
 #include "RenderingEngine/Graphics/indexbuffer.h"
 #include "RenderingEngine/Graphics/framebuffer.h"
+#include "RenderingEngine/Graphics/Renderer/texture.h"
 
 #include <iostream>
 #include <vec2.hpp>
@@ -22,7 +24,7 @@ namespace SGLR {
 			// simply starts the application once called
 			void start()
 			{
-				m_window.get()->createWindow(); // create window, must be done before initialization
+				m_window->createWindow(); // create window, must be done before initialization
 				gui::setupStyle(); // runs style function
 				onInit(); // call before run
 				m_run(); // start app
@@ -44,10 +46,14 @@ namespace SGLR {
 			virtual void onUpdate(float deltaTime) = 0; // called for each update
 			
 			// return func
-			const UINT getFPS() const { return m_fps; }
-			const UINT getUPS() const { return m_ups; }
+			const UINT getFPS() { return m_fps; }
+			const UINT getUPS() { return m_ups; }
+
+			const glm::vec2 getViewportSize() { return m_viewportSize; }
 
 		private:
+			glm::vec2 m_viewportSize;
+
 			// runs once the start function is called
 			void m_run() 
 			{
@@ -56,16 +62,18 @@ namespace SGLR {
 				float updateTick = 1.0f / 240.0f;
 				UINT frames = 0;
 				UINT updates = 0;
-
-				framebuffer viewport(m_window.get()->returnSize());
-
+				
 				glClearColor(0.03229527175426483f, 0.04749304801225662f, 0.0784313753247261f, 1.0f);
 
 				// while the application is running; handle the update, tick and render functions.
 				while (true)
 				{
-					m_window.get()->update();
-					if (m_window.get()->minimized())
+					framebuffer viewport(m_window->returnSize());
+					m_window->update();
+
+					glClear(GL_COLOR_BUFFER_BIT);
+
+					if (m_window->minimized())
 					{
 						SDL_Delay(10);
 						continue;
@@ -147,6 +155,7 @@ namespace SGLR {
 								ImGui::EndMenuBar();
 							}
 
+							if (ImGui::Selectable("OBJ"))		ImGui::CloseCurrentPopup();
 							if (ImGui::Selectable("FBX"))		ImGui::CloseCurrentPopup();
 							if (ImGui::Selectable("GLTF"))		ImGui::CloseCurrentPopup();
 
@@ -171,12 +180,19 @@ namespace SGLR {
 					ImGui::Begin("Viewport");
 					{
 						ImGui::BeginChild("RenderView");
+						m_viewportSize = glm::vec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y);
 
 						viewport.bind(); // bind the frame buffer
-						onRender(deltaRenderTime); // call render function
-
 						viewport.rescale(glm::vec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y));
-						glViewport(0, 0, ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y);
+
+						glViewport(0, 0, (GLsizei)ImGui::GetContentRegionAvail().x, (GLsizei)ImGui::GetContentRegionAvail().y);
+
+						// clearing the depth buffer must be done here otherwise nothing will render for some odd reason
+						// I assume its something related to how imgui renders the gui but im not entirely sure
+						glClear(GL_DEPTH_BUFFER_BIT); 
+						onRender(deltaRenderTime); // do rendering
+
+						viewport.unbind(); // unbind the frame buffer
 
 						// display anything rendered to the viewport
 						ImGui::Image
@@ -187,14 +203,15 @@ namespace SGLR {
 							ImVec2(1, 0)
 						);
 
-						viewport.unbind(); // unbind the frame buffer
+						viewport.destroy();
+
 					}
 					ImGui::EndChild(); 
 					ImGui::End();
 
 					gui::render();
 					
-					m_window.get()->swap();
+					m_window->swap();
 
 					deltaRenderTime = m_deltaRender.elapsed();
 					m_deltaRender.restart();

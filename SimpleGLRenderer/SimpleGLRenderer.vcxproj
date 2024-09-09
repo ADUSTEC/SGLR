@@ -58,14 +58,14 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;vendor\tinyxml2;vendor\glm\glm;vendor\SDL\include;vendor\glew\include;vendor\mio\include;vendor\assimp\include;vendor\assimp\BUILD\include;vendor\imgui\imconfig.h;vendor\imgui\imgui.h;vendor\imgui\imgui_internal.h;vendor\imgui\imstb_rectpack.h;vendor\imgui\imstb_textedit.h;vendor\imgui\imstb_truetype.h;vendor\imgui\backends\imgui_impl_opengl3.h;vendor\imgui\backends\imgui_impl_sdl3.h;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>vendor\spdlog\include;vendor\tinyxml2;vendor\glm\glm;vendor\SDL\include;vendor\glew\include;vendor\mio\include;vendor\stbimage;vendor\assimp\include;vendor\assimp\BUILD\include;vendor\imgui\imconfig.h;vendor\imgui\imgui.h;vendor\imgui\imgui_internal.h;vendor\imgui\imstb_rectpack.h;vendor\imgui\imstb_textedit.h;vendor\imgui\imstb_truetype.h;vendor\imgui\backends\imgui_impl_opengl3.h;vendor\imgui\backends\imgui_impl_sdl3.h;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;vendor\tinyxml2;vendor\glm\glm;vendor\SDL\include;vendor\glew\include;vendor\mio\include;vendor\assimp\include;vendor\assimp\BUILD\include;vendor\imgui\imconfig.h;vendor\imgui\imgui.h;vendor\imgui\imgui_internal.h;vendor\imgui\imstb_rectpack.h;vendor\imgui\imstb_textedit.h;vendor\imgui\imstb_truetype.h;vendor\imgui\backends\imgui_impl_opengl3.h;vendor\imgui\backends\imgui_impl_sdl3.h;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>vendor\spdlog\include;vendor\tinyxml2;vendor\glm\glm;vendor\SDL\include;vendor\glew\include;vendor\mio\include;vendor\stbimage;vendor\assimp\include;vendor\assimp\BUILD\include;vendor\imgui\imconfig.h;vendor\imgui\imgui.h;vendor\imgui\imgui_internal.h;vendor\imgui\imstb_rectpack.h;vendor\imgui\imstb_textedit.h;vendor\imgui\imstb_truetype.h;vendor\imgui\backends\imgui_impl_opengl3.h;vendor\imgui\backends\imgui_impl_sdl3.h;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -84,7 +84,7 @@ xcopy /Q /E /Y /I assets ..\bin\Debug-windows-x86_64\SimpleGLRenderer</Command>
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;vendor\tinyxml2;vendor\glm\glm;vendor\SDL\include;vendor\glew\include;vendor\mio\include;vendor\assimp\include;vendor\assimp\BUILD\include;vendor\imgui\imconfig.h;vendor\imgui\imgui.h;vendor\imgui\imgui_internal.h;vendor\imgui\imstb_rectpack.h;vendor\imgui\imstb_textedit.h;vendor\imgui\imstb_truetype.h;vendor\imgui\backends\imgui_impl_opengl3.h;vendor\imgui\backends\imgui_impl_sdl3.h;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>vendor\spdlog\include;vendor\tinyxml2;vendor\glm\glm;vendor\SDL\include;vendor\glew\include;vendor\mio\include;vendor\stbimage;vendor\assimp\include;vendor\assimp\BUILD\include;vendor\imgui\imconfig.h;vendor\imgui\imgui.h;vendor\imgui\imgui_internal.h;vendor\imgui\imstb_rectpack.h;vendor\imgui\imstb_textedit.h;vendor\imgui\imstb_truetype.h;vendor\imgui\backends\imgui_impl_opengl3.h;vendor\imgui\backends\imgui_impl_sdl3.h;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -94,7 +94,7 @@ xcopy /Q /E /Y /I assets ..\bin\Debug-windows-x86_64\SimpleGLRenderer</Command>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;vendor\tinyxml2;vendor\glm\glm;vendor\SDL\include;vendor\glew\include;vendor\mio\include;vendor\assimp\include;vendor\assimp\BUILD\include;vendor\imgui\imconfig.h;vendor\imgui\imgui.h;vendor\imgui\imgui_internal.h;vendor\imgui\imstb_rectpack.h;vendor\imgui\imstb_textedit.h;vendor\imgui\imstb_truetype.h;vendor\imgui\backends\imgui_impl_opengl3.h;vendor\imgui\backends\imgui_impl_sdl3.h;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>vendor\spdlog\include;vendor\tinyxml2;vendor\glm\glm;vendor\SDL\include;vendor\glew\include;vendor\mio\include;vendor\stbimage;vendor\assimp\include;vendor\assimp\BUILD\include;vendor\imgui\imconfig.h;vendor\imgui\imgui.h;vendor\imgui\imgui_internal.h;vendor\imgui\imstb_rectpack.h;vendor\imgui\imstb_textedit.h;vendor\imgui\imstb_truetype.h;vendor\imgui\backends\imgui_impl_opengl3.h;vendor\imgui\backends\imgui_impl_sdl3.h;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -112,8 +112,8 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\Render3D.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="src\RenderingEngine\Graphics\shader.h" />
     <ClInclude Include="src\RenderingEngine\Core\Gui\guihandler.h" />
     <ClInclude Include="src\RenderingEngine\Core\Input\keyboard.h" />
     <ClInclude Include="src\RenderingEngine\Core\Input\mouse.h" />
@@ -122,14 +122,16 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     <ClInclude Include="src\RenderingEngine\Core\Window\window.h" />
     <ClInclude Include="src\RenderingEngine\Graphics\framebuffer.h" />
     <ClInclude Include="src\RenderingEngine\Graphics\indexbuffer.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\shader.h" />
     <ClInclude Include="src\RenderingEngine\Graphics\vertexarray.h" />
     <ClInclude Include="src\RenderingEngine\Graphics\vertexbuffer.h" />
     <ClInclude Include="src\RenderingEngine\Tools\clock.h" />
     <ClInclude Include="src\RenderingEngine\Tools\readfile.h" />
     <ClInclude Include="src\RenderingEngine\renderengine.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\texture.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\RenderingEngine\Graphics\shader.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\Render3D.cpp" />
     <ClCompile Include="src\RenderingEngine\Core\Gui\guihandler.cpp" />
     <ClCompile Include="src\RenderingEngine\Core\Input\keyboard.cpp" />
     <ClCompile Include="src\RenderingEngine\Core\Input\mouse.cpp" />
@@ -137,9 +139,11 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     <ClCompile Include="src\RenderingEngine\Core\Window\window.cpp" />
     <ClCompile Include="src\RenderingEngine\Graphics\framebuffer.cpp" />
     <ClCompile Include="src\RenderingEngine\Graphics\indexbuffer.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\shader.cpp" />
     <ClCompile Include="src\RenderingEngine\Graphics\vertexarray.cpp" />
     <ClCompile Include="src\RenderingEngine\Graphics\vertexbuffer.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\texture.cpp" />
     <ClCompile Include="vendor\imgui\backends\imgui_impl_opengl3.cpp" />
     <ClCompile Include="vendor\imgui\backends\imgui_impl_sdl3.cpp" />
     <ClCompile Include="vendor\imgui\imgui.cpp" />

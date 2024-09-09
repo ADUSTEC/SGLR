@@ -64,4 +64,9 @@ namespace SGLR
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
 
+	void framebuffer::destroy() const
+	{
+		glDeleteFramebuffers(1, &fbo);
+	}
+
 }

@@ -37,6 +37,9 @@
     <Filter Include="vendor\imgui\backends">
       <UniqueIdentifier>{27CEAEAF-933A-6AAA-5C2E-0208C8598C12}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stbimage">
+      <UniqueIdentifier>{EE3E4868-5ACA-B52C-63DB-3821CFE5112D}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -61,13 +64,16 @@
     <ClInclude Include="src\RenderingEngine\Graphics\framebuffer.h">
       <Filter>src\RenderingEngine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Graphics\indbuffer.h">
+    <ClInclude Include="src\RenderingEngine\Graphics\indexbuffer.h">
       <Filter>src\RenderingEngine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Graphics\vertarray.h">
+    <ClInclude Include="src\RenderingEngine\Graphics\shader.h">
       <Filter>src\RenderingEngine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Graphics\vertbuffer.h">
+    <ClInclude Include="src\RenderingEngine\Graphics\vertexarray.h">
+      <Filter>src\RenderingEngine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RenderingEngine\Graphics\vertexbuffer.h">
       <Filter>src\RenderingEngine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\RenderingEngine\Tools\clock.h">
@@ -99,13 +105,16 @@
     <ClCompile Include="src\RenderingEngine\Graphics\framebuffer.cpp">
       <Filter>src\RenderingEngine\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="src\RenderingEngine\Graphics\indbuffer.cpp">
+    <ClCompile Include="src\RenderingEngine\Graphics\indexbuffer.cpp">
       <Filter>src\RenderingEngine\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="src\RenderingEngine\Graphics\vertarray.cpp">
+    <ClCompile Include="src\RenderingEngine\Graphics\shader.cpp">
       <Filter>src\RenderingEngine\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="src\RenderingEngine\Graphics\vertbuffer.cpp">
+    <ClCompile Include="src\RenderingEngine\Graphics\vertexarray.cpp">
+      <Filter>src\RenderingEngine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderingEngine\Graphics\vertexbuffer.cpp">
       <Filter>src\RenderingEngine\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
@@ -131,6 +140,9 @@
     </ClCompile>
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp">
       <Filter>vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\stbimage\stb_image.cpp">
+      <Filter>vendor\stbimage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

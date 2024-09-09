@@ -12,6 +12,7 @@ namespace SGLR
 		~framebuffer();
 		void bind() const;
 		void unbind() const;
+		void destroy() const;
 		GLuint returnFrame();
 		void rescale(glm::vec2 size);
 	private:

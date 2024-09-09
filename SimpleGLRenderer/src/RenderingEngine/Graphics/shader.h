@@ -3,6 +3,7 @@
 #include "../Core/Logging/log.h"
 #include "../Tools/readfile.h"
 #include <glm.hpp>
+#include <ext.hpp>
 #include <GL/glew.h>
 
 namespace SGLR 
@@ -34,13 +35,12 @@ namespace SGLR
 		void setUniformMat4(const GLchar* name, const glm::mat4& matrix);
 
 		GLuint const program() { return m_program; }
+		GLint getUniformLocation(const GLchar* name) { return glGetUniformLocation(m_shaderID, name); }
 	private:
 		GLuint m_shaderID;
 		const char* m_vertexp, * m_fragmentp;
-
 		GLuint m_program;
-	private:
-		GLint getUniformLocation(const GLchar* name) { return glGetUniformLocation(m_shaderID, name); }
+
 		GLuint load();
 	};
 

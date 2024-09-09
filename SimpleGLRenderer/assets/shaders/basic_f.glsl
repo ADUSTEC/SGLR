@@ -1,7 +1,14 @@
-#version 440 core
+#version 400 core
 out vec4 FragColor;
+
+in vec3 o_rgb;
+in vec2 o_uv;
+
+uniform sampler2D tex0;
 
 void main()
 {
-	FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);
+	//FragColor = vec4(o_rgb, 1.0);
+
+	FragColor = vec4(texture(tex0, o_uv));
 }

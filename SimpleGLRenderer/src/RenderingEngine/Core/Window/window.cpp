@@ -49,8 +49,9 @@ namespace SGLR
 
 		gui::init(m_window, gl_context);
 
-		glEnable(GL_BLEND); 
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_DEPTH_TEST);
 	}
 
 	void sglrwindow::update()
@@ -73,7 +74,5 @@ namespace SGLR
 		}
 
 		gui::update();
-
-		glClear(GL_COLOR_BUFFER_BIT);
 	}
 }

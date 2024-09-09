@@ -6,7 +6,7 @@
 // Debug only logging macros
 #ifdef _DEBUG
 
-#define BREAK __debugbreak(); // Windows only
+#define LOG_BREAK __debugbreak(); // Windows only
 
 #define LOG_FATAL(...)           ::SGLR::Log::GetLogger()->critical(__VA_ARGS__)
 #define LOG_ERROR(...)           ::SGLR::Log::GetLogger()->error(__VA_ARGS__)

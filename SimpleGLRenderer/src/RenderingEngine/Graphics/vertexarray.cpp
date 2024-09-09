@@ -30,12 +30,12 @@ namespace SGLR
 		// (etc..)    : (i.e. if only an xy (vec2) value is stored - stride = 2, if xyz & uv (vec3 value + a vec2 value) values are stored - stride = 6)
 		//
 		// pointer    : Offset in the index based on the component size & datatype size of the previously defined vertex attributes. 
-		// (etc..)	  :	(if first attribute has the size set to 3, then the second attribute will start at an offset of 3 * the size of its datatype)
+		// (etc..)    :	(if first attribute has the size set to 3, then the second attribute will start at an offset of 3 * the size of its datatype)
 		// (etc..)    : (i.e. attribute1(size = 3, offset = 0) -> attribute2(size = 2, offset = 3) -> attribute3(size = 1, offset = 5))
 		// 
 		/////////////// easy to understand explaination of how glVertexAttribPointer() parameters are used ////////////////
 		
-		glVertexAttribPointer(lindex, compnum, datatype, GL_FALSE, vattoffset * sizeof(GL_FLOAT), (void*)(offset * sizeof(GL_FLOAT)));
+		glVertexAttribPointer(lindex, compnum, datatype, GL_FALSE, vattoffset * sizeof(datatype), (void*)(offset * sizeof(datatype)));
 		glEnableVertexAttribArray(lindex); // enable attribute at defined index
 
 		vbuffer.unbind(); // unbind vbo
