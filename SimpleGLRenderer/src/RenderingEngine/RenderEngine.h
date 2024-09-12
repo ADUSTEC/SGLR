@@ -1,4 +1,6 @@
 #pragma once
+#include "Core/Input/keyboard.h"
+#include "Core/Input/mouse.h"
 #include "Core/Logging/log.h"
 #include "Core/Window/window.h"
 #include "Core/Gui/guihandler.h"
@@ -10,6 +12,7 @@
 #include "RenderingEngine/Graphics/indexbuffer.h"
 #include "RenderingEngine/Graphics/framebuffer.h"
 #include "RenderingEngine/Graphics/Renderer/texture.h"
+#include "RenderingEngine/Graphics/Renderer/camera.h"
 
 #include <iostream>
 #include <vec2.hpp>
@@ -24,7 +27,7 @@ namespace SGLR {
 			// simply starts the application once called
 			void start()
 			{
-				m_window->createWindow(); // create window, must be done before initialization
+				window->createWindow(); // create window, must be done before initialization
 				gui::setupStyle(); // runs style function
 				onInit(); // call before run
 				m_run(); // start app
@@ -34,7 +37,7 @@ namespace SGLR {
 			Application() 
 				: m_fps(0), m_ups(0), deltaUpdateTime(0), deltaRenderTime(0), deltaTickTime(0)
 			{
-				m_window = std::unique_ptr<sglrwindow>(new sglrwindow("SGLR", glm::vec2(1600, 900)));
+				window = std::unique_ptr<sglrwindow>(new sglrwindow("SGLR", glm::vec2(1600, 900)));
 			}
 
 			virtual ~Application() { }
@@ -44,12 +47,17 @@ namespace SGLR {
 			virtual void onRender(float deltaTime) = 0; // called every frame
 			virtual void onTick(float deltaTime) = 0; // called for each tick
 			virtual void onUpdate(float deltaTime) = 0; // called for each update
+
+			virtual void editWindow() = 0; // ran inside of the edit window
 			
 			// return func
 			const UINT getFPS() { return m_fps; }
 			const UINT getUPS() { return m_ups; }
 
 			const glm::vec2 getViewportSize() { return m_viewportSize; }
+
+			// window
+			std::unique_ptr<sglrwindow> window;
 
 		private:
 			glm::vec2 m_viewportSize;
@@ -65,15 +73,20 @@ namespace SGLR {
 				
 				glClearColor(0.03229527175426483f, 0.04749304801225662f, 0.0784313753247261f, 1.0f);
 
+				keyboard::init();
+				mouse::init();
+
 				// while the application is running; handle the update, tick and render functions.
 				while (true)
 				{
-					framebuffer viewport(m_window->returnSize());
-					m_window->update();
+					framebuffer viewport(window->returnSize());
+					window->update();
+					keyboard::update();
+					mouse::update();
 
 					glClear(GL_COLOR_BUFFER_BIT);
 
-					if (m_window->minimized())
+					if (window->minimized())
 					{
 						SDL_Delay(10);
 						continue;
@@ -173,6 +186,10 @@ namespace SGLR {
 
 					ImGui::EndChild();
 					ImGui::End();
+
+					ImGui::Begin("Edit");
+					editWindow();
+					ImGui::End();
 					
 					ImGui::Begin("Material Editor");
 					ImGui::End();
@@ -211,15 +228,13 @@ namespace SGLR {
 
 					gui::render();
 					
-					m_window->swap();
+					window->swap();
 
 					deltaRenderTime = m_deltaRender.elapsed();
 					m_deltaRender.restart();
 				}
 			}
 
-			// window
-			std::unique_ptr<sglrwindow> m_window;
 
 			// individual deltatime variables
 			float deltaUpdateTime = 0;

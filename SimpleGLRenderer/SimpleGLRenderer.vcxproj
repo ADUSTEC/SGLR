@@ -112,7 +112,9 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\Render3D.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\mesh.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\camera.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\renderer.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\RenderingEngine\Core\Gui\guihandler.h" />
     <ClInclude Include="src\RenderingEngine\Core\Input\keyboard.h" />
@@ -131,7 +133,9 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     <ClInclude Include="src\RenderingEngine\Graphics\Renderer\texture.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\Render3D.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\mesh.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\camera.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\renderer.cpp" />
     <ClCompile Include="src\RenderingEngine\Core\Gui\guihandler.cpp" />
     <ClCompile Include="src\RenderingEngine\Core\Input\keyboard.cpp" />
     <ClCompile Include="src\RenderingEngine\Core\Input\mouse.cpp" />

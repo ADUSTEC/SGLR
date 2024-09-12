@@ -6,34 +6,51 @@ class renderApp : public SGLR::Application
 	private:
 
 		// model importing will be added soon so this is a placeholder
-		GLfloat vertices[8 * 8] =
-		{
-			// positions			// colours			// uv coords
-			-0.5f, -0.5f,  0.5f,	1.0f, 0.0f, 1.0f,	0.0f, 0.0f, // purple
-			-0.5f, -0.5f, -0.5f,	1.0f, 1.0f, 0.0f,	0.0f, 0.0f, // yellow
-			 0.5f, -0.5f, -0.5f,	0.0f, 1.0f, 1.0f,	1.0f, 0.0f, // cyan
-			 0.5f, -0.5f,  0.5f,	1.0f, 1.0f, 1.0f,	1.0f, 0.0f, // white
 
-			-0.5f,  0.5f,  0.5f,	1.0f, 0.0f, 0.0f,	0.0f, 1.0f, // red
-			-0.5f,  0.5f, -0.5f,	0.0f, 1.0f, 0.0f,	0.0f, 1.0f, // green
-			 0.5f,  0.5f, -0.5f,	0.0f, 0.0f, 1.0f,	1.0f, 1.0f, // blue
-			 0.5f,  0.5f,  0.5f,	0.0f, 0.0f, 0.0f,	1.0f, 1.0f  // black
+		GLfloat vertices[24 * 11] =
+		{
+			//pos                // rgb			    // uv	    // normals
+			-1.0,  1.0,  1.0,	1.0f, 0.0f, 0.0f,	0.0, 1.0,	-1.0, -0.0, -0.0,
+			-1.0, -1.0, -1.0,	0.0f, 1.0f, 0.0f,	1.0, 0.0,	-1.0, -0.0, -0.0,
+			-1.0, -1.0,  1.0,	0.0f, 0.0f, 1.0f,	0.0, 0.0,	-1.0, -0.0, -0.0,
+			-1.0,  1.0, -1.0,	0.0f, 0.0f, 0.0f,	0.0, 1.0,	-0.0, -0.0, -1.0,
+			 1.0, -1.0, -1.0,	0.0f, 1.0f, 1.0f,	1.0, 0.0,	-0.0, -0.0, -1.0,
+			-1.0, -1.0, -1.0,	1.0f, 1.0f, 0.0f,	0.0, 0.0,	-0.0, -0.0, -1.0,
+			 1.0,  1.0, -1.0,	1.0f, 0.0f, 1.0f,	1.0, 1.0,	 1.0, -0.0, -0.0,
+			 1.0, -1.0,  1.0,	1.0f, 1.0f, 1.0f,	0.0, 0.0,	 1.0, -0.0, -0.0,
+			 1.0, -1.0, -1.0,	0.0f, 0.0f, 1.0f,	1.0, 0.0,	 1.0, -0.0, -0.0,
+			 1.0,  1.0,  1.0,	1.0f, 0.0f, 1.0f,	1.0, 1.0,	-0.0, -0.0,  1.0,
+			-1.0, -1.0,  1.0,	1.0f, 0.0f, 1.0f,	0.0, 0.0,	-0.0, -0.0,  1.0,
+			 1.0, -1.0,  1.0,	1.0f, 1.0f, 0.0f,	1.0, 0.0,	-0.0, -0.0,  1.0,
+			 1.0, -1.0, -1.0,	1.0f, 1.0f, 0.0f,	1.0, 1.0,	-0.0, -1.0, -0.0,
+			-1.0, -1.0,  1.0,	1.0f, 1.0f, 0.0f,	0.0, 0.0,	-0.0, -1.0, -0.0,
+			-1.0, -1.0, -1.0,	1.0f, 0.0f, 0.0f,	0.0, 1.0,	-0.0, -1.0, -0.0,
+			-1.0,  1.0, -1.0,	1.0f, 0.0f, 0.0f,	0.0, 1.0,	-0.0,  1.0, -0.0,
+			 1.0,  1.0,  1.0,	1.0f, 0.0f, 1.0f,	1.0, 0.0,	-0.0,  1.0, -0.0,
+			 1.0,  1.0, -1.0,	0.0f, 0.0f, 1.0f,	1.0, 1.0,	-0.0,  1.0, -0.0,
+			-1.0,  1.0, -1.0,	0.0f, 1.0f, 1.0f,	1.0, 1.0,	-1.0, -0.0, -0.0,
+			 1.0,  1.0, -1.0,	0.0f, 1.0f, 1.0f,	1.0, 1.0,	-0.0, -0.0, -1.0,
+			 1.0,  1.0,  1.0,	0.0f, 1.0f, 1.0f,	0.0, 1.0,	 1.0, -0.0, -0.0,
+			-1.0,  1.0,  1.0,	0.0f, 1.0f, 1.0f,	0.0, 1.0,	-0.0, -0.0,  1.0,
+			 1.0, -1.0,  1.0,	1.0f, 1.0f, 1.0f,	1.0, 0.0,	-0.0, -1.0, -0.0,
+			-1.0,  1.0,  1.0,	1.0f, 1.0f, 1.0f,	0.0, 0.0,	-0.0,  1.0, -0.0
+		
 		};
 
-		GLuint indices[12 * 3]
+		GLuint indices[12 * 3] =
 		{
-			0, 1, 2,
-			0, 2, 3,
-			0, 4, 7,
-			0, 7, 3,
-			3, 7, 6,
-			3, 6, 2,
-			2, 6, 5,
-			2, 5, 1,
-			1, 5, 4,
-			1, 4, 0,
-			4, 5, 6,
-			4, 6, 7
+			0,  1,  2, 
+			3,  4,  5, 
+			6,  7,  8, 
+			9,  10, 11, 
+			12, 13, 14, 
+			15, 16, 17, 
+			0,  18, 1, 
+			3,  19, 4, 
+			6,  20, 7, 
+			9,  21, 10, 
+			12, 22, 13, 
+			15, 23, 16
 		};
 
 		std::unique_ptr<SGLR::shader> shaders;
@@ -45,6 +62,9 @@ class renderApp : public SGLR::Application
 		std::unique_ptr<SGLR::texture> texture;
 
 		float rotation = 0;
+		float rotationSpeed = 0.0f;
+
+		std::unique_ptr<SGLR::camera> camera;
 
 
 	public:
@@ -71,18 +91,28 @@ class renderApp : public SGLR::Application
 
 			ibo->bind();
 
-			vao->link(*vbo, 0, 3, GL_FLOAT, 8, 0);
-			vao->link(*vbo, 1, 3, GL_FLOAT, 8, 3);
-			vao->link(*vbo, 2, 2, GL_FLOAT, 8, 6);
+			vao->link(*vbo, 0, 3, GL_FLOAT, 11, 0);
+			vao->link(*vbo, 1, 3, GL_FLOAT, 11, 3);
+			vao->link(*vbo, 2, 2, GL_FLOAT, 11, 6);
+			vao->link(*vbo, 3, 3, GL_FLOAT, 11, 8);
 
 			vao->unbind();
 			vbo->unbind();
 			ibo->unbind();
 
-			texture = std::make_unique<SGLR::texture>("textures/t_testingtexturelogostylized.png");
+			texture = std::make_unique<SGLR::texture>("textures/brick/t_brickDiffuse.jpg");
 
 			shaders->enable();
 			shaders->setUniformInt("tex0", 0);
+
+			camera = std::make_unique<SGLR::camera>(window.get(), shaders.get());
+
+			// setup camera
+			camera->cameraSettings(glm::vec3(0.0f, 0.0f, 5.0f), 45.0f, 100.0f);
+			camera->frustumSettings("u_projection", "u_view", glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), 0.1f, 100.0f);
+			camera->movementSettings(5.0f, 2.0f, 0.5f);
+
+			camera->setActivationKey(INPUT_KEY_LALT);
 			
 		}
 
@@ -93,18 +123,15 @@ class renderApp : public SGLR::Application
 			texture->bind();
 
 			glm::mat4 model = glm::mat4(1.0f);
-			glm::mat4 view = glm::mat4(1.0f);
-			glm::mat4 proj = glm::mat4(1.0f);
 
-			rotation += 0.1f;
+			rotation += rotationSpeed;
 
 			model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
-			view = glm::translate(view, glm::vec3(0.0f, 0.0f, -5.0f));
-			proj = glm::perspective(glm::radians(45.0f), getViewportSize().x / getViewportSize().y, 0.01f, 100.0f);
+
+			camera->updateAspect(glm::vec2(getViewportSize().x, getViewportSize().y));
+			camera->updateMatrix();
 
 			shaders->setUniformMat4("u_model", model);
-			shaders->setUniformMat4("u_view", view);
-			shaders->setUniformMat4("u_proj", proj);
 
 			vao->bind();
 			
@@ -118,10 +145,17 @@ class renderApp : public SGLR::Application
 		}
 
 		void onUpdate(float deltaTime) override
-		{}
+		{
+			camera->updateMovement(deltaTime);
+		}
 
 		void onTick(float deltaTime) override
 		{}
+
+		void editWindow() override
+		{
+			ImGui::SliderFloat("cube rotation speed", &rotationSpeed, 0.0f, 1.0f);
+		}
 
 };
 
