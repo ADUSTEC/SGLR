@@ -2,11 +2,11 @@
 
 namespace SGLR
 {
-	class Render3D
+	class render3d
 	{
 	public:
-		Render3D();
-		~Render3D();
+		render3d();
+		~render3d();
 
 		
 	};

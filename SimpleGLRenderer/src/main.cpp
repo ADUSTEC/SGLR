@@ -59,12 +59,19 @@ class renderApp : public SGLR::Application
 		std::unique_ptr<SGLR::vertexbuffer> vbo;
 		std::unique_ptr<SGLR::indexbuffer> ibo;
 
-		std::unique_ptr<SGLR::texture> texture;
+		std::unique_ptr<SGLR::texture> diffusetexture;
+		std::unique_ptr<SGLR::texture> speculartexture;
 
 		float rotation = 0;
 		float rotationSpeed = 0.0f;
 
 		std::unique_ptr<SGLR::camera> camera;
+
+		glm::vec3 lightposition = glm::vec3(3.0f, 4.0f, 2.0f);
+		glm::vec3 lightcolor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+		glm::vec3 angle = glm::vec3(0.0f, 1.0f, 0.0f);
+
+		int lightmode = 1;
 
 
 	public:
@@ -75,7 +82,8 @@ class renderApp : public SGLR::Application
 			vbo->destroy();
 			ibo->destroy();
 			shaders->destroy();
-			texture->destroy();
+			diffusetexture->destroy();
+			speculartexture->destroy();
 		}
 
 		void onInit() override
@@ -100,10 +108,11 @@ class renderApp : public SGLR::Application
 			vbo->unbind();
 			ibo->unbind();
 
-			texture = std::make_unique<SGLR::texture>("textures/brick/t_brickDiffuse.jpg");
+			diffusetexture = std::make_unique<SGLR::texture>("textures/brick/t_brickDiffuse.jpg", 0);
+			diffusetexture->textureIndex(shaders.get(), "u_material.diffuse", 0);
 
-			shaders->enable();
-			shaders->setUniformInt("tex0", 0);
+			speculartexture = std::make_unique<SGLR::texture>("textures/brick/t_brickRoughness.jpg", 1);
+			speculartexture->textureIndex(shaders.get(), "u_material.specular", 1);
 
 			camera = std::make_unique<SGLR::camera>(window.get(), shaders.get());
 
@@ -120,7 +129,9 @@ class renderApp : public SGLR::Application
 		{
 			
 			shaders->enable();
-			texture->bind();
+
+			diffusetexture->bind();
+			speculartexture->bind();
 
 			glm::mat4 model = glm::mat4(1.0f);
 
@@ -132,14 +143,48 @@ class renderApp : public SGLR::Application
 			camera->updateMatrix();
 
 			shaders->setUniformMat4("u_model", model);
+			shaders->setUniformVec3("u_campos", camera->getPosition());
+			
+			shaders->setUniformFloat("u_material.shininess", 2.0f);
+			
+			shaders->setUniformVec3("u_light.position", lightposition); 
+			shaders->setUniformVec3("u_light.ambient", glm::vec3(0.1f, 0.1f, 0.1f));
+			shaders->setUniformVec3("u_light.diffuse", glm::vec3(lightcolor));
+			shaders->setUniformVec3("u_light.specular", glm::vec3(0.5f, 0.5f, 0.5f));
+			
+			shaders->setUniformInt("u_light.lightmode", lightmode);
+			
+			if (lightmode == 1)
+			{
+				shaders->setUniformFloat("u_pointlight.constant", 1.0f);
+				shaders->setUniformFloat("u_pointlight.quadratic", 0.032f);
+				shaders->setUniformFloat("u_pointlight.linear", 0.09f);
+
+				shaders->setUniformFloat("u_pointlight.intensity", 1);
+			}
+			else if (lightmode == 2)
+			{
+				shaders->setUniformFloat("u_spotlight.constant", 1.0f);
+				shaders->setUniformFloat("u_spotlight.quadratic", 0.032f);
+				shaders->setUniformFloat("u_spotlight.linear", 0.09f);
+				
+				shaders->setUniformVec3("u_spotlight.angle", angle);
+				shaders->setUniformFloat("u_spotlight.innercone", glm::cos(glm::radians(12.5f)));
+				shaders->setUniformFloat("u_spotlight.outercone", glm::cos(glm::radians(20.5f)));
+				shaders->setUniformFloat("u_spotlight.intensity", 5);
+			}
+			else if (lightmode == 3)
+			{
+				shaders->setUniformVec3("u_sunlight.angle", angle);
+			}
 
 			vao->bind();
 			
 			glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 
 			vao->unbind();
-
-			texture->unbind();
+			speculartexture->unbind();
+			diffusetexture->bind();
 			shaders->disable();
 
 		}
@@ -154,7 +199,38 @@ class renderApp : public SGLR::Application
 
 		void editWindow() override
 		{
-			ImGui::SliderFloat("cube rotation speed", &rotationSpeed, 0.0f, 1.0f);
+			ImGui::SliderFloat("rotate cube", &rotationSpeed, 0.0f, 1.0f);
+
+			ImGui::SeparatorText("Light Type");
+			switch (lightmode)
+			{
+				case 1:
+					ImGui::Text("Point Light");
+					break;
+				case 2:
+					ImGui::Text("Spot Light");
+					break;
+				case 3:
+					ImGui::Text("Sun Light");
+					break;
+				default:
+					ImGui::Text("DEFAULT (point)");
+					break;
+			}
+			ImGui::DragInt("type", &lightmode, 1, 1, 3);
+
+			ImGui::SeparatorText("Light Position");
+			ImGui::SliderFloat3("XYZ", glm::value_ptr(lightposition), 0.0f, 10.0f);
+
+			ImGui::SeparatorText("Light Angle");
+			ImGui::SliderFloat3("RPY", glm::value_ptr(angle), -1.0f, 1.0f);
+
+			ImGui::ColorPicker3("Light Color", glm::value_ptr(lightcolor));
+		}
+
+		void materialWindow() override
+		{
+			
 		}
 
 };

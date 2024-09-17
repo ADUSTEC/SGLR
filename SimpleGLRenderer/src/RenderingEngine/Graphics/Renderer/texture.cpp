@@ -5,14 +5,22 @@
 
 namespace SGLR
 {
-	
-	texture::texture(const char* file, int filtermode)
+
+	texture::texture(const char* file, int index, int filtermode)
 	{
 		stbi_set_flip_vertically_on_load(true);
+
 		m_bytes = stbi_load(file, &m_imgw, &m_imgh, &m_imgcolch, 0);
-		
+		if (m_bytes == nullptr)
+		{
+			LOG_WARN("TEXTURE ERROR: FAILED TO LOAD FILE FROM LOCATION {}", file);
+			m_bytes = stbi_load("textures/sglr/t_missingtexture.png", &m_imgw, &m_imgh, &m_imgcolch, 0);
+		}
+
+
 		glGenTextures(1, &m_textureid);
-		glActiveTexture(GL_TEXTURE0);
+		glActiveTexture(GL_TEXTURE + index);
+		m_unit = index;
 		glBindTexture(GL_TEXTURE_2D, m_textureid);
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filtermode);
@@ -49,6 +57,7 @@ namespace SGLR
 
 	void const texture::bind()
 	{
+		glActiveTexture(GL_TEXTURE0 + m_unit);
 		glBindTexture(GL_TEXTURE_2D, m_textureid);
 	}
 	void const texture::unbind()
@@ -58,6 +67,13 @@ namespace SGLR
 	void const texture::destroy()
 	{
 		glDeleteTextures(1, &m_textureid);
+	}
+
+	void const texture::textureIndex(shader* shader, const char* name, int unit)
+	{
+		shader->enable();
+		shader->setUniformInt(name, unit);
+		shader->disable();
 	}
 
 }

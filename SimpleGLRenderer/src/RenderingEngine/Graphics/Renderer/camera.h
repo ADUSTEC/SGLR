@@ -50,8 +50,20 @@ namespace SGLR
 		void updateMatrix();
 		void updateMovement(float deltatime);
 		
-		// setter
-		void setActivationKey(INPUTCODES inputcode = INPUT_KEY_LALT) { m_activationkey = inputcode; }
+		// set
+		void setActivationKey(KEYINPUTCODES inputcode = INPUT_KEY_LALT) { m_activationkey = inputcode; }
+
+		// getters
+		glm::mat4 getProjection() { return m_projection; }
+		glm::mat4 getView() { return m_view; }
+
+		glm::vec3 getPosition() { return m_position; }
+
+		glm::vec3 getForwardVector() { return m_forwardvector; }
+		glm::vec3 getUpVector() { return m_upvector; }
+		glm::vec3 getRightVector() { return m_rightvector; }
+
+		glm::vec2 getAspect() { return m_aspect; }
 
 	private:
 		sglrwindow* m_window{};
@@ -80,7 +92,7 @@ namespace SGLR
 		float m_speedmultmax = 2.0f;
 		float m_speedmultmin = 0.5f;
 
-		INPUTCODES m_activationkey = INPUT_KEY_LALT;
+		KEYINPUTCODES m_activationkey = INPUT_KEY_LALT;
 
 		bool m_isinitialclick = false;
 	};

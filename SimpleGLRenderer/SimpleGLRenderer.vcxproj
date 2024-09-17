@@ -112,9 +112,11 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\billboardrenderer.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\light.h" />
     <ClInclude Include="src\RenderingEngine\Graphics\Renderer\mesh.h" />
     <ClInclude Include="src\RenderingEngine\Graphics\Renderer\camera.h" />
-    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\renderer.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\renderer3d.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\RenderingEngine\Core\Gui\guihandler.h" />
     <ClInclude Include="src\RenderingEngine\Core\Input\keyboard.h" />
@@ -133,9 +135,11 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     <ClInclude Include="src\RenderingEngine\Graphics\Renderer\texture.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\billboardrenderer.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\light.cpp" />
     <ClCompile Include="src\RenderingEngine\Graphics\Renderer\mesh.cpp" />
     <ClCompile Include="src\RenderingEngine\Graphics\Renderer\camera.cpp" />
-    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\renderer.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\renderer3d.cpp" />
     <ClCompile Include="src\RenderingEngine\Core\Gui\guihandler.cpp" />
     <ClCompile Include="src\RenderingEngine\Core\Input\keyboard.cpp" />
     <ClCompile Include="src\RenderingEngine\Core\Input\mouse.cpp" />
@@ -161,6 +165,9 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SimpleGLRenderer.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\textures\sglr\t_missingtexture.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -85,10 +85,12 @@
     <ClInclude Include="src\RenderingEngine\renderengine.h">
       <Filter>src\RenderingEngine</Filter>
     </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\renderer.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\renderer3d.h" />
     <ClInclude Include="src\RenderingEngine\Graphics\Renderer\texture.h" />
     <ClInclude Include="src\RenderingEngine\Graphics\Renderer\camera.h" />
     <ClInclude Include="src\RenderingEngine\Graphics\Renderer\mesh.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\light.h" />
+    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\billboardrenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\RenderingEngine\Core\Gui\guihandler.cpp">
@@ -145,15 +147,20 @@
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp">
       <Filter>vendor\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\renderer.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\renderer3d.cpp" />
     <ClCompile Include="src\RenderingEngine\Graphics\Renderer\texture.cpp" />
     <ClCompile Include="src\RenderingEngine\Graphics\Renderer\camera.cpp" />
     <ClCompile Include="src\RenderingEngine\Graphics\Renderer\mesh.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\light.cpp" />
+    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\billboardrenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\sglr.ico" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SimpleGLRenderer.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\textures\sglr\t_missingtexture.png" />
   </ItemGroup>
 </Project>

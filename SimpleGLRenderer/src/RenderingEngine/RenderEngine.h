@@ -18,6 +18,7 @@
 #include <vec2.hpp>
 #include "../imgui_impl_sdl3.h"
 #include "../imgui_impl_opengl3.h"
+#include "../../vendor/imgui/imgui_internal.h"
 
 // Application will be used by main by creating a custom class that inherits from Application
 namespace SGLR {
@@ -49,6 +50,8 @@ namespace SGLR {
 			virtual void onUpdate(float deltaTime) = 0; // called for each update
 
 			virtual void editWindow() = 0; // ran inside of the edit window
+			virtual void materialWindow() = 0; // ran inside of the edit window
+
 			
 			// return func
 			const UINT getFPS() { return m_fps; }
@@ -75,6 +78,10 @@ namespace SGLR {
 
 				keyboard::init();
 				mouse::init();
+
+				//std::unique_ptr<texture> outlinerIcon = std::make_unique<texture>("textures/sglr/t_outlinericon.png", GL_TEXTURE0);
+				//std::unique_ptr<texture> materialIcon = std::make_unique<texture>("textures/sglr/t_materialicon.png", GL_TEXTURE0);
+				//std::unique_ptr<texture> editIcon	  = std::make_unique<texture>("textures/sglr/t_editicon.png",     GL_TEXTURE0);
 
 				// while the application is running; handle the update, tick and render functions.
 				while (true)
@@ -118,6 +125,7 @@ namespace SGLR {
 
 					ImGui::Begin("Outliner");
 					{
+
 						// Centering using https://github.com/ocornut/imgui/discussions/3862 - unexpectedly worked perfect without any changes somehow
 						ImGuiStyle& style = ImGui::GetStyle();
 						float width = 0.0f;
@@ -192,6 +200,7 @@ namespace SGLR {
 					ImGui::End();
 					
 					ImGui::Begin("Material Editor");
+					materialWindow();
 					ImGui::End();
 
 					ImGui::Begin("Viewport");

@@ -40,7 +40,7 @@ namespace SGLR {
         };
 }
 
-enum
+enum MOUSEINPUTCODES
 {
     INPUT_MOUSE_FIRST = 1,
     INPUT_MOUSE_LEFT = INPUT_MOUSE_FIRST,

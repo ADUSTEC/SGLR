@@ -25,7 +25,7 @@ namespace SGLR {
         };
 }
 
-enum INPUTCODES // scancode list
+enum KEYINPUTCODES // scancode list
 {
     INPUT_KEY_FIRST = 4,
     INPUT_KEY_A = INPUT_KEY_FIRST,
