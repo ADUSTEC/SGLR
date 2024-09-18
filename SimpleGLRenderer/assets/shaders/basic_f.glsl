@@ -24,6 +24,7 @@ struct material
 	// neccesary values
 	sampler2D diffuse;
 	sampler2D specular;
+	sampler2D normal;
 	float shininess;
 };
 

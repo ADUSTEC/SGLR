@@ -61,6 +61,7 @@ class renderApp : public SGLR::Application
 
 		std::unique_ptr<SGLR::texture> diffusetexture;
 		std::unique_ptr<SGLR::texture> speculartexture;
+		std::unique_ptr<SGLR::texture> normaltexture;
 
 		float rotation = 0;
 		float rotationSpeed = 0.0f;
@@ -84,6 +85,7 @@ class renderApp : public SGLR::Application
 			shaders->destroy();
 			diffusetexture->destroy();
 			speculartexture->destroy();
+			normaltexture->destroy();
 		}
 
 		void onInit() override
@@ -114,6 +116,9 @@ class renderApp : public SGLR::Application
 			speculartexture = std::make_unique<SGLR::texture>("textures/brick/t_brickRoughness.jpg", 1);
 			speculartexture->textureIndex(shaders.get(), "u_material.specular", 1);
 
+			normaltexture = std::make_unique<SGLR::texture>("textures/brick/t_brickNormal.jpg", 2);
+			normaltexture->textureIndex(shaders.get(), "u_material.normal", 2);
+
 			camera = std::make_unique<SGLR::camera>(window.get(), shaders.get());
 
 			// setup camera
@@ -132,6 +137,7 @@ class renderApp : public SGLR::Application
 
 			diffusetexture->bind();
 			speculartexture->bind();
+			normaltexture->bind();
 
 			glm::mat4 model = glm::mat4(1.0f);
 
@@ -183,6 +189,7 @@ class renderApp : public SGLR::Application
 			glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 
 			vao->unbind();
+			normaltexture->unbind();
 			speculartexture->unbind();
 			diffusetexture->bind();
 			shaders->disable();
