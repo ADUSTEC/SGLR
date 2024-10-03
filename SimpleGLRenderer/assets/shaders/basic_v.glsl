@@ -1,4 +1,4 @@
-#version 420 core
+#version 430 core
 
 layout (location = 0) in vec3 a_pos; // prefix a for attribute
 layout (location = 1) in vec3 a_rgb;
@@ -11,21 +11,22 @@ uniform mat4 u_model;
 
 out DATA
 {
-   vec3 rgb;
-   vec2 uv;
-   vec3 normal;
+	vec3 pos;
+	vec3 rgb;
+	vec2 uv;
+	vec3 normal;
 
-   mat4 projection;
-   mat4 view;
-   mat4 model;
+	mat4 projection;
+	mat4 view;
+	mat4 model;
 
-   vec3 cpos;
+	vec3 fpos;
 
-} o_data;
-
+} o_data; 
 
 void main()
 {
+   o_data.pos = a_pos;
    o_data.rgb = a_rgb;
    o_data.uv = a_uv;
    o_data.normal = a_normals;
@@ -34,7 +35,7 @@ void main()
    o_data.view = u_view;
    o_data.model = u_model;
 
-   o_data.cpos = vec3(u_model * vec4(a_pos, 1.0f));
+   o_data.fpos = vec3(vec4(a_pos, 1.0f) * u_model);
 
-   gl_Position = u_projection * u_view * vec4(o_data.cpos, 1.0f);
+   gl_Position = u_projection * u_view * vec4(o_data.fpos, 1.0f);
 }

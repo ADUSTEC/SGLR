@@ -1,32 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sglr">
+      <UniqueIdentifier>{F020E269-DC83-710E-8509-AAC4714B3D91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sglr\Core">
+      <UniqueIdentifier>{485B85BF-B471-8355-FDE8-0E77693E54DD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sglr\Core\Gui">
+      <UniqueIdentifier>{9CC2EC6D-082F-A868-D122-40C63D4ECAD0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sglr\Core\Input">
+      <UniqueIdentifier>{4761489C-B398-9033-BCA2-F4562859B72C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sglr\Core\Logging">
+      <UniqueIdentifier>{DE037FB8-4AC6-B242-9376-41CFFF778B20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sglr\Core\Window">
+      <UniqueIdentifier>{2FE7A045-1B0C-F0C5-4457-D55530DBEEE3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sglr\Graphics">
+      <UniqueIdentifier>{30F721DF-9C63-DDD9-6557-7537D182FF41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sglr\Graphics\Renderer">
+      <UniqueIdentifier>{D650CEDE-C276-9845-ABBC-1D119781BD11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sglr\Tools">
+      <UniqueIdentifier>{705964B1-5C3D-2507-C59D-1F5AB1A00F89}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src">
       <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\RenderingEngine">
-      <UniqueIdentifier>{50F7EAF1-BC58-C8FF-45C6-0EB2B126FFBE}</UniqueIdentifier>
+    <Filter Include="src\sglr">
+      <UniqueIdentifier>{140337CF-00D0-91DA-29E9-7F821515C768}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\RenderingEngine\Core">
-      <UniqueIdentifier>{A82D739C-9452-C21C-BD9D-A7ACA921C13A}</UniqueIdentifier>
+    <Filter Include="src\sglr\Core">
+      <UniqueIdentifier>{EC33311B-58F4-AC51-212F-F6CE8DAEF12D}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\RenderingEngine\Core\Gui">
-      <UniqueIdentifier>{FCC43CD8-E87F-2C84-9137-A5CE7DD17614}</UniqueIdentifier>
+    <Filter Include="src\sglr\Core\Gui">
+      <UniqueIdentifier>{404D5CF7-AC63-5A8D-F5DA-E5AE61302B15}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\RenderingEngine\Core\Input">
-      <UniqueIdentifier>{A77BA2DA-93A1-6C41-7CE7-F10C68AC910D}</UniqueIdentifier>
+    <Filter Include="src\sglr\Core\Input">
+      <UniqueIdentifier>{EB24C53F-5786-A24D-E0F3-E8FF4C54D90C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\RenderingEngine\Core\Logging">
-      <UniqueIdentifier>{3E36C9F5-2A87-B437-53EB-A2F93F9B47A1}</UniqueIdentifier>
+    <Filter Include="src\sglr\Core\Logging">
+      <UniqueIdentifier>{82403B2E-EEAC-F628-B7A0-8E8623CC1891}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\RenderingEngine\Core\Window">
-      <UniqueIdentifier>{8F4D3E4F-FB30-4D8F-0434-7BCB709613E0}</UniqueIdentifier>
+    <Filter Include="src\sglr\Core\Window">
+      <UniqueIdentifier>{531FB658-3FAE-3F22-E8CC-531DD43A50C8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\RenderingEngine\Graphics">
-      <UniqueIdentifier>{90F97149-7CB4-61F5-256C-DA3F1106AC85}</UniqueIdentifier>
+    <Filter Include="src\sglr\Graphics">
+      <UniqueIdentifier>{D4819168-4098-8FFE-890F-1B20F5646086}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\RenderingEngine\Tools">
-      <UniqueIdentifier>{D0770C2C-3C3A-40B6-85EA-CE42F1EB1894}</UniqueIdentifier>
+    <Filter Include="src\sglr\Graphics\Renderer">
+      <UniqueIdentifier>{FA131EBE-E623-CA8E-4FDD-2EAD3B0CB927}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
@@ -37,94 +67,127 @@
     <Filter Include="vendor\imgui\backends">
       <UniqueIdentifier>{27CEAEAF-933A-6AAA-5C2E-0208C8598C12}</UniqueIdentifier>
     </Filter>
-    <Filter Include="vendor\stbimage">
-      <UniqueIdentifier>{EE3E4868-5ACA-B52C-63DB-3821CFE5112D}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\sglr\Core\Gui\guihandler.h">
+      <Filter>include\sglr\Core\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Core\Input\keyboard.h">
+      <Filter>include\sglr\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Core\Input\mouse.h">
+      <Filter>include\sglr\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Core\Logging\log.h">
+      <Filter>include\sglr\Core\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Core\Logging\loghandler.h">
+      <Filter>include\sglr\Core\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Core\Window\window.h">
+      <Filter>include\sglr\Core\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Graphics\Renderer\billboardrenderer.h">
+      <Filter>include\sglr\Graphics\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Graphics\Renderer\camera.h">
+      <Filter>include\sglr\Graphics\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Graphics\Renderer\light.h">
+      <Filter>include\sglr\Graphics\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Graphics\Renderer\mesh.h">
+      <Filter>include\sglr\Graphics\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Graphics\Renderer\postprocess.h">
+      <Filter>include\sglr\Graphics\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Graphics\Renderer\renderer3d.h">
+      <Filter>include\sglr\Graphics\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Graphics\Renderer\texture.h">
+      <Filter>include\sglr\Graphics\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Graphics\framebuffer.h">
+      <Filter>include\sglr\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Graphics\indexbuffer.h">
+      <Filter>include\sglr\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Graphics\shader.h">
+      <Filter>include\sglr\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Graphics\vertexarray.h">
+      <Filter>include\sglr\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Graphics\vertexbuffer.h">
+      <Filter>include\sglr\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Tools\clock.h">
+      <Filter>include\sglr\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\Tools\readfile.h">
+      <Filter>include\sglr\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\renderengine.h">
+      <Filter>include\sglr</Filter>
+    </ClInclude>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="src\RenderingEngine\Core\Gui\guihandler.h">
-      <Filter>src\RenderingEngine\Core\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Core\Input\keyboard.h">
-      <Filter>src\RenderingEngine\Core\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Core\Input\mouse.h">
-      <Filter>src\RenderingEngine\Core\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Core\Logging\log.h">
-      <Filter>src\RenderingEngine\Core\Logging</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Core\Logging\loghandler.h">
-      <Filter>src\RenderingEngine\Core\Logging</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Core\Window\window.h">
-      <Filter>src\RenderingEngine\Core\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Graphics\framebuffer.h">
-      <Filter>src\RenderingEngine\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Graphics\indexbuffer.h">
-      <Filter>src\RenderingEngine\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Graphics\shader.h">
-      <Filter>src\RenderingEngine\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Graphics\vertexarray.h">
-      <Filter>src\RenderingEngine\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Graphics\vertexbuffer.h">
-      <Filter>src\RenderingEngine\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Tools\clock.h">
-      <Filter>src\RenderingEngine\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Tools\readfile.h">
-      <Filter>src\RenderingEngine\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RenderingEngine\renderengine.h">
-      <Filter>src\RenderingEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\renderer3d.h" />
-    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\texture.h" />
-    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\camera.h" />
-    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\mesh.h" />
-    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\light.h" />
-    <ClInclude Include="src\RenderingEngine\Graphics\Renderer\billboardrenderer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\RenderingEngine\Core\Gui\guihandler.cpp">
-      <Filter>src\RenderingEngine\Core\Gui</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RenderingEngine\Core\Input\keyboard.cpp">
-      <Filter>src\RenderingEngine\Core\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RenderingEngine\Core\Input\mouse.cpp">
-      <Filter>src\RenderingEngine\Core\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RenderingEngine\Core\Logging\loghandler.cpp">
-      <Filter>src\RenderingEngine\Core\Logging</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RenderingEngine\Core\Window\window.cpp">
-      <Filter>src\RenderingEngine\Core\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RenderingEngine\Graphics\framebuffer.cpp">
-      <Filter>src\RenderingEngine\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RenderingEngine\Graphics\indexbuffer.cpp">
-      <Filter>src\RenderingEngine\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RenderingEngine\Graphics\shader.cpp">
-      <Filter>src\RenderingEngine\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RenderingEngine\Graphics\vertexarray.cpp">
-      <Filter>src\RenderingEngine\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RenderingEngine\Graphics\vertexbuffer.cpp">
-      <Filter>src\RenderingEngine\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\Core\Gui\guihandler.cpp">
+      <Filter>src\sglr\Core\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\Core\Input\keyboard.cpp">
+      <Filter>src\sglr\Core\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\Core\Input\mouse.cpp">
+      <Filter>src\sglr\Core\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\Core\Logging\loghandler.cpp">
+      <Filter>src\sglr\Core\Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\Core\Window\window.cpp">
+      <Filter>src\sglr\Core\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\Graphics\Renderer\billboardrenderer.cpp">
+      <Filter>src\sglr\Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\Graphics\Renderer\camera.cpp">
+      <Filter>src\sglr\Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\Graphics\Renderer\light.cpp">
+      <Filter>src\sglr\Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\Graphics\Renderer\mesh.cpp">
+      <Filter>src\sglr\Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\Graphics\Renderer\postprocess.cpp">
+      <Filter>src\sglr\Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\Graphics\Renderer\renderer3d.cpp">
+      <Filter>src\sglr\Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\Graphics\Renderer\texture.cpp">
+      <Filter>src\sglr\Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\Graphics\framebuffer.cpp">
+      <Filter>src\sglr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\Graphics\indexbuffer.cpp">
+      <Filter>src\sglr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\Graphics\shader.cpp">
+      <Filter>src\sglr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\Graphics\vertexarray.cpp">
+      <Filter>src\sglr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\Graphics\vertexbuffer.cpp">
+      <Filter>src\sglr\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="vendor\imgui\backends\imgui_impl_opengl3.cpp">
       <Filter>vendor\imgui\backends</Filter>
@@ -147,20 +210,11 @@
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp">
       <Filter>vendor\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\renderer3d.cpp" />
-    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\texture.cpp" />
-    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\camera.cpp" />
-    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\mesh.cpp" />
-    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\light.cpp" />
-    <ClCompile Include="src\RenderingEngine\Graphics\Renderer\billboardrenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\sglr.ico" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SimpleGLRenderer.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="assets\textures\sglr\t_missingtexture.png" />
   </ItemGroup>
 </Project>
