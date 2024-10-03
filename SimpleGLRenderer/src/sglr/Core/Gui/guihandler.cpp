@@ -1,4 +1,4 @@
-#include "sglr/Core/Gui/guihandler.h"
+#include "sglr/core/gui/guihandler.h"
 
 namespace sglr
 {

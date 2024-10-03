@@ -1,1 +1,1 @@
-#include "sglr/Graphics/Renderer/billboardrenderer.h"
+#include "sglr/graphics/renderer/billboardrenderer.h"

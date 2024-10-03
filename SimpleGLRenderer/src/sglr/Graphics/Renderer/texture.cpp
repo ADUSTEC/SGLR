@@ -1,7 +1,7 @@
-#include "sglr/Graphics/Renderer/texture.h"
+#include "sglr/graphics/renderer/texture.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
-#include "sglr/Core/Logging/log.h"
+#include "sglr/core/log/log.h"
 
 namespace sglr
 {

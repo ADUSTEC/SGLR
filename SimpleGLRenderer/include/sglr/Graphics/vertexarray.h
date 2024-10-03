@@ -4,7 +4,6 @@
 
 namespace sglr
 {
-
 	class vertexarray
 	{
 	public:

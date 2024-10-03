@@ -1,4 +1,4 @@
-#include "sglr/Graphics/Renderer/camera.h"
+#include "sglr/graphics/renderer/camera.h"
 
 namespace sglr
 {

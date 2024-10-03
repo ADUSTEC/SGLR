@@ -1,12 +1,12 @@
-#include "sglr/Core/Logging/loghandler.h"
-#include "sglr/Core/Logging/log.h"
+#include "sglr/core/log/loghandler.h"
+#include "sglr/core/log/log.h"
 #include <spdlog/sinks/stdout_color_sinks.h>
 
 namespace sglr {
 
-	std::shared_ptr<spdlog::logger> Log::m_sptrLogger; // define static variable to store logger
+	std::shared_ptr<spdlog::logger> log::m_sptrLogger; // define static variable to store logger
 
-	void Log::Init()
+	void log::init()
 	{
 		spdlog::set_pattern("%^(%n) [%Y-%m-%d %H:%M:%S]: %v%$"); // (NAME) [YEAR MONTH DAY - HOURS MINUTES SECONDS]: Logged message
 		// time is written in the 24-hour format
@@ -16,7 +16,7 @@ namespace sglr {
 
 	}
 
-	void Log::Shutdown() {
+	void log::shutdown() {
 		spdlog::shutdown();
 	}
 

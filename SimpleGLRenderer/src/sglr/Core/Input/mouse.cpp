@@ -1,4 +1,4 @@
-#include "sglr/Core/Input/mouse.h"
+#include "sglr/core/input/mouse.h"
 
 namespace sglr {
 

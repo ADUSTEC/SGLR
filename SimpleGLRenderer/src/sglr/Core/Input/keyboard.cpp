@@ -1,4 +1,4 @@
-#include "sglr/Core/Input/keyboard.h"
+#include "sglr/core/input/keyboard.h"
 
 namespace sglr {
 

@@ -1,1 +1,1 @@
-#include "sglr/Graphics/Renderer/renderer3d.h"
+#include "sglr/graphics/renderer/renderer3d.h"

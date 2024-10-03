@@ -1,9 +1,9 @@
-#include "sglr/Core/Window/window.h"
-#include "sglr/Core/Logging/log.h"
+#include "sglr/core/window/window.h"
+#include "sglr/core/log/log.h"
 
 #include "../imgui.h"
 
-#include "sglr/Core/Gui/guihandler.h"
+#include "sglr/core/gui/guihandler.h"
 
 namespace sglr
 {

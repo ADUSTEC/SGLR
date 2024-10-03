@@ -115,16 +115,16 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     <ClInclude Include="include\sglr\Core\Gui\guihandler.h" />
     <ClInclude Include="include\sglr\Core\Input\keyboard.h" />
     <ClInclude Include="include\sglr\Core\Input\mouse.h" />
-    <ClInclude Include="include\sglr\Core\Logging\log.h" />
-    <ClInclude Include="include\sglr\Core\Logging\loghandler.h" />
+    <ClInclude Include="include\sglr\core\log\log.h" />
+    <ClInclude Include="include\sglr\core\log\loghandler.h" />
     <ClInclude Include="include\sglr\Core\Window\window.h" />
-    <ClInclude Include="include\sglr\Graphics\Renderer\billboardrenderer.h" />
-    <ClInclude Include="include\sglr\Graphics\Renderer\camera.h" />
-    <ClInclude Include="include\sglr\Graphics\Renderer\light.h" />
-    <ClInclude Include="include\sglr\Graphics\Renderer\mesh.h" />
-    <ClInclude Include="include\sglr\Graphics\Renderer\postprocess.h" />
-    <ClInclude Include="include\sglr\Graphics\Renderer\renderer3d.h" />
-    <ClInclude Include="include\sglr\Graphics\Renderer\texture.h" />
+    <ClInclude Include="include\sglr\Graphics\renderer\billboardrenderer.h" />
+    <ClInclude Include="include\sglr\Graphics\renderer\camera.h" />
+    <ClInclude Include="include\sglr\Graphics\renderer\light.h" />
+    <ClInclude Include="include\sglr\Graphics\renderer\mesh.h" />
+    <ClInclude Include="include\sglr\Graphics\renderer\postprocess.h" />
+    <ClInclude Include="include\sglr\Graphics\renderer\renderer3d.h" />
+    <ClInclude Include="include\sglr\Graphics\renderer\texture.h" />
     <ClInclude Include="include\sglr\Graphics\framebuffer.h" />
     <ClInclude Include="include\sglr\Graphics\indexbuffer.h" />
     <ClInclude Include="include\sglr\Graphics\shader.h" />
@@ -132,7 +132,7 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     <ClInclude Include="include\sglr\Graphics\vertexbuffer.h" />
     <ClInclude Include="include\sglr\Tools\clock.h" />
     <ClInclude Include="include\sglr\Tools\readfile.h" />
-    <ClInclude Include="include\sglr\renderengine.h" />
+    <ClInclude Include="include\sglr\sglr.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -140,7 +140,7 @@ xcopy /Q /E /Y /I assets ..\bin\Release-windows-x86_64\SimpleGLRenderer</Command
     <ClCompile Include="src\sglr\Core\Gui\guihandler.cpp" />
     <ClCompile Include="src\sglr\Core\Input\keyboard.cpp" />
     <ClCompile Include="src\sglr\Core\Input\mouse.cpp" />
-    <ClCompile Include="src\sglr\Core\Logging\loghandler.cpp" />
+    <ClCompile Include="src\sglr\core\log\loghandler.cpp" />
     <ClCompile Include="src\sglr\Core\Window\window.cpp" />
     <ClCompile Include="src\sglr\Graphics\Renderer\billboardrenderer.cpp" />
     <ClCompile Include="src\sglr\Graphics\Renderer\camera.cpp" />

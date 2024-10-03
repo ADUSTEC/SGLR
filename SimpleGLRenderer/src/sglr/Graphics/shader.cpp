@@ -1,4 +1,4 @@
-#include "sglr/Graphics/shader.h"
+#include "sglr/graphics/shader.h"
 
 namespace sglr
 {

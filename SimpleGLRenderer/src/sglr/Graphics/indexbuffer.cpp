@@ -1,4 +1,4 @@
-#include "sglr/Graphics/indexbuffer.h"
+#include "sglr/graphics/indexbuffer.h"
 
 namespace sglr
 {

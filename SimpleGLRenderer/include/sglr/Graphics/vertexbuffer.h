@@ -3,7 +3,6 @@
 
 namespace sglr
 {
-
 	class vertexbuffer
 	{
 		public:

@@ -1,14 +1,13 @@
 #pragma once
 
-#include "../Core/Logging/log.h"
-#include "../Tools/readfile.h"
+#include "../core/log/log.h"
+#include "../tools/readfile.h"
 #include <glm.hpp>
 #include <ext.hpp>
 #include <GL/glew.h>
 
 namespace sglr
 {
-
 	class shader 
 	{
 	public:

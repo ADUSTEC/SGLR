@@ -10,11 +10,11 @@
 #include<gtx/rotate_vector.hpp>
 #include<gtx/vector_angle.hpp>
 
-#include "../../Core/Input/keyboard.h"
-#include "../../Core/Input/mouse.h"
+#include "../../core/input/keyboard.h"
+#include "../../core/input/mouse.h"
 #include "../shader.h"
 
-#include "../../Core/Window/window.h"
+#include "../../core/window/window.h"
 #include "../imgui.h"
 
 namespace sglr

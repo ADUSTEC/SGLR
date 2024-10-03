@@ -1,1 +1,1 @@
-#include "sglr/Graphics/Renderer/mesh.h"
+#include "sglr/graphics/renderer/mesh.h"

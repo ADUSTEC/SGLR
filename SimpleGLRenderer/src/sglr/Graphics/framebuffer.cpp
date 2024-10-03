@@ -1,5 +1,5 @@
-#include "sglr/Graphics/framebuffer.h"
-#include "sglr/Core/Logging/log.h"
+#include "sglr/graphics/framebuffer.h"
+#include "sglr/core/log/log.h"
 
 namespace sglr
 {

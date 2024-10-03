@@ -1,4 +1,4 @@
-#include "sglr/Graphics/vertexbuffer.h"
+#include "sglr/graphics/vertexbuffer.h"
 
 namespace sglr
 {

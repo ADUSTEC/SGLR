@@ -1,4 +1,4 @@
-#include "sglr/Graphics/vertexarray.h"
+#include "sglr/graphics/vertexarray.h"
 
 namespace sglr
 {
