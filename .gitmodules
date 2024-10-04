@@ -1,22 +1,22 @@
-[submodule "SimpleGLRenderer/vendor/spdlog"]
-	path = SimpleGLRenderer/vendor/spdlog
+[submodule "sglr/vendor/spdlog"]
+	path = sglr/vendor/spdlog
 	url = https://github.com/gabime/spdlog
-[submodule "SimpleGLRenderer/vendor/SDL"]
-	path = SimpleGLRenderer/vendor/SDL
+[submodule "sglr/vendor/SDL"]
+	path = sglr/vendor/SDL
 	url = https://github.com/libsdl-org/SDL
-[submodule "SimpleGLRenderer/vendor/imgui"]
-	path = SimpleGLRenderer/vendor/imgui
+[submodule "sglr/vendor/imgui"]
+	path = sglr/vendor/imgui
 	url = https://github.com/ADUSTEC/imgui
-[submodule "SimpleGLRenderer/vendor/glm"]
-	path = SimpleGLRenderer/vendor/glm
+[submodule "sglr/vendor/glm"]
+	path = sglr/vendor/glm
 	url = https://github.com/icaven/glm
-[submodule "SimpleGLRenderer/vendor/tinyxml2"]
-	path = SimpleGLRenderer/vendor/tinyxml2
+[submodule "sglr/vendor/tinyxml2"]
+	path = sglr/vendor/tinyxml2
 	url = https://github.com/ADUSTEC/tinyxml2
-[submodule "SimpleGLRenderer/vendor/assimp"]
-	path = SimpleGLRenderer/vendor/assimp
+[submodule "sglr/vendor/assimp"]
+	path = sglr/vendor/assimp
 	url = https://github.com/ADUSTEC/assimp
-[submodule "SimpleGLRenderer/vendor/mio"]
-	path = SimpleGLRenderer/vendor/mio
+[submodule "sglr/vendor/mio"]
+	path = sglr/vendor/mio
 	url = https://github.com/ADUSTEC/mio
 
