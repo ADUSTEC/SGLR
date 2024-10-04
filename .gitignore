@@ -1,10 +1,9 @@
 # Directories
 .vs/
 /sglr/.vs/
-/MyProject/.vs/
 README.md.backup
 .ProjectPlanner.md
 .ProjectPlanner.md.backup
 bin/
 bin-int/
-/sglr/assets/models/TESTING/
+/sglr/assets/models/TESTING

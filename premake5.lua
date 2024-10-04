@@ -21,6 +21,9 @@ project "sglr"
 		"%{prj.name}/resource.h",
 		"%{prj.name}/sglr.rc",
 		"%{prj.name}/sglr.ico",
+		
+		"%{prj.name}/main.cpp",
+		
 		-- src folder
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
@@ -92,7 +95,7 @@ project "sglr"
 		"{COPYFILE} vendor/glew/bin/Release/x64/glew32.dll %{cfg.targetdir}/",
 		"{COPYFILE} vendor/assimp/BUILD/bin/Release/assimp-vc143-mt.dll %{cfg.targetdir}/",
 		
-		"xcopy /Q /E /Y /I /S /D assets %{cfg.targetdir:gsub('%/', '\')}"
+		[[xcopy /Q /E /Y /I /S /D assets ]] .. [[..\bin\]] .. outputdir .. [[\%{prj.name}\]]
 	}
 
 	filter "system:windows"
