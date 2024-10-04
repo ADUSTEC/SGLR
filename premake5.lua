@@ -1,4 +1,4 @@
-workspace "SimpleGLRenderer"
+workspace "sglr"
 	architecture "x64"
 
 	configurations
@@ -9,8 +9,8 @@ workspace "SimpleGLRenderer"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
-project "SimpleGLRenderer"
-	location "SimpleGLRenderer"
+project "sglr"
+	location "sglr"
 	language "C++"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -19,8 +19,8 @@ project "SimpleGLRenderer"
 	files {
 		-- base
 		"%{prj.name}/resource.h",
-		"%{prj.name}/SimpleGLRenderer.rc",
-		"sglr.ico",
+		"%{prj.name}/sglr.rc",
+		"%{prj.name}/sglr.ico",
 		-- src folder
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
@@ -92,7 +92,7 @@ project "SimpleGLRenderer"
 		"{COPYFILE} vendor/glew/bin/Release/x64/glew32.dll %{cfg.targetdir}/",
 		"{COPYFILE} vendor/assimp/BUILD/bin/Release/assimp-vc143-mt.dll %{cfg.targetdir}/",
 		
-		"{COPYDIR} assets %{cfg.targetdir}/"
+		"xcopy /Q /E /Y /I /S /D assets %{cfg.targetdir:gsub('%/', '\')}"
 	}
 
 	filter "system:windows"

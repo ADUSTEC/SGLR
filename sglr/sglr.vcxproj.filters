@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sglr">
+      <UniqueIdentifier>{F020E269-DC83-710E-8509-AAC4714B3D91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sglr\core">
+      <UniqueIdentifier>{68E796BF-D4FD-9455-1D75-207789CA65DD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sglr\core\gui">
+      <UniqueIdentifier>{DCE627F6-4853-E3F0-1147-7B4E7D720559}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sglr\core\input">
+      <UniqueIdentifier>{8795DD1F-F3CC-25B7-FCD6-89DA688D4CB0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sglr\core\log">
+      <UniqueIdentifier>{59FB27F6-C567-E3F0-8E5B-7B4EFA860559}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sglr\core\window">
+      <UniqueIdentifier>{6FA3DC3B-5BC8-2BBC-8413-114C70972ADA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sglr\graphics">
+      <UniqueIdentifier>{50935C67-BCFF-1762-85F3-AFBFF11E3ACA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sglr\graphics\renderer">
+      <UniqueIdentifier>{162D45C2-0253-0F29-EB98-94F4D75D34F5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sglr\tools">
+      <UniqueIdentifier>{9069A7B3-7C4D-6809-E5AD-625CD1B0528B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sglr">
+      <UniqueIdentifier>{140337CF-00D0-91DA-29E9-7F821515C768}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sglr\core">
+      <UniqueIdentifier>{0CC0421B-7880-BE51-41BB-07CFAD3A032E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sglr\core\gui">
+      <UniqueIdentifier>{8071977F-EC87-9515-35FF-2037A154669D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sglr\core\input">
+      <UniqueIdentifier>{2B595AC3-97BA-37D1-2028-7E838C886E90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sglr\core\log">
+      <UniqueIdentifier>{FD85977F-699C-9515-B213-21371E69669D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sglr\core\window">
+      <UniqueIdentifier>{93DBF14E-7F6A-7B18-2889-8F1314F78BBE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sglr\graphics">
+      <UniqueIdentifier>{F41DCCF0-6034-CA86-A9AB-55A815019B0E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sglr\graphics\renderer">
+      <UniqueIdentifier>{3AF094A1-2600-4172-8FB9-A5907BE82F0B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor">
+      <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\imgui">
+      <UniqueIdentifier>{5D3BD0F0-499E-5F95-F223-984BDE652B18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\imgui\backends">
+      <UniqueIdentifier>{27CEAEAF-933A-6AAA-5C2E-0208C8598C12}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\sglr\core\gui\guihandler.h">
+      <Filter>include\sglr\core\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\core\input\keyboard.h">
+      <Filter>include\sglr\core\input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\core\input\mouse.h">
+      <Filter>include\sglr\core\input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\core\log\log.h">
+      <Filter>include\sglr\core\log</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\core\log\loghandler.h">
+      <Filter>include\sglr\core\log</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\core\window\window.h">
+      <Filter>include\sglr\core\window</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\graphics\framebuffer.h">
+      <Filter>include\sglr\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\graphics\indexbuffer.h">
+      <Filter>include\sglr\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\graphics\renderer\billboardrenderer.h">
+      <Filter>include\sglr\graphics\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\graphics\renderer\camera.h">
+      <Filter>include\sglr\graphics\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\graphics\renderer\light.h">
+      <Filter>include\sglr\graphics\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\graphics\renderer\mesh.h">
+      <Filter>include\sglr\graphics\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\graphics\renderer\postprocess.h">
+      <Filter>include\sglr\graphics\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\graphics\renderer\renderer3d.h">
+      <Filter>include\sglr\graphics\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\graphics\renderer\texture.h">
+      <Filter>include\sglr\graphics\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\graphics\shader.h">
+      <Filter>include\sglr\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\graphics\vertexarray.h">
+      <Filter>include\sglr\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\graphics\vertexbuffer.h">
+      <Filter>include\sglr\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\sglr.h">
+      <Filter>include\sglr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\tools\clock.h">
+      <Filter>include\sglr\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\tools\readfile.h">
+      <Filter>include\sglr\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\core\gui\guihandler.cpp">
+      <Filter>src\sglr\core\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\core\input\keyboard.cpp">
+      <Filter>src\sglr\core\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\core\input\mouse.cpp">
+      <Filter>src\sglr\core\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\core\log\loghandler.cpp">
+      <Filter>src\sglr\core\log</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\core\window\window.cpp">
+      <Filter>src\sglr\core\window</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\graphics\framebuffer.cpp">
+      <Filter>src\sglr\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\graphics\indexbuffer.cpp">
+      <Filter>src\sglr\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\graphics\renderer\billboardrenderer.cpp">
+      <Filter>src\sglr\graphics\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\graphics\renderer\camera.cpp">
+      <Filter>src\sglr\graphics\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\graphics\renderer\light.cpp">
+      <Filter>src\sglr\graphics\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\graphics\renderer\mesh.cpp">
+      <Filter>src\sglr\graphics\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\graphics\renderer\postprocess.cpp">
+      <Filter>src\sglr\graphics\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\graphics\renderer\renderer3d.cpp">
+      <Filter>src\sglr\graphics\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\graphics\renderer\texture.cpp">
+      <Filter>src\sglr\graphics\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\graphics\shader.cpp">
+      <Filter>src\sglr\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\graphics\vertexarray.cpp">
+      <Filter>src\sglr\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\graphics\vertexbuffer.cpp">
+      <Filter>src\sglr\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\backends\imgui_impl_opengl3.cpp">
+      <Filter>vendor\imgui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\backends\imgui_impl_sdl3.cpp">
+      <Filter>vendor\imgui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\imgui.cpp">
+      <Filter>vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\imgui_demo.cpp">
+      <Filter>vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\imgui_draw.cpp">
+      <Filter>vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\imgui_tables.cpp">
+      <Filter>vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\imgui_widgets.cpp">
+      <Filter>vendor\imgui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sglr.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="sglr.rc" />
+  </ItemGroup>
+</Project>
