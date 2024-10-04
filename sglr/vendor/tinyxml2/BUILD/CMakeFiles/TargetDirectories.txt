@@ -1,0 +1,10 @@
+D:/~DEV/--PROJECTS/SimpleGLRenderer/SimpleGLRenderer/vendor/tinyxml2/BUILD/CMakeFiles/Experimental.dir
+D:/~DEV/--PROJECTS/SimpleGLRenderer/SimpleGLRenderer/vendor/tinyxml2/BUILD/CMakeFiles/Nightly.dir
+D:/~DEV/--PROJECTS/SimpleGLRenderer/SimpleGLRenderer/vendor/tinyxml2/BUILD/CMakeFiles/Continuous.dir
+D:/~DEV/--PROJECTS/SimpleGLRenderer/SimpleGLRenderer/vendor/tinyxml2/BUILD/CMakeFiles/NightlyMemoryCheck.dir
+D:/~DEV/--PROJECTS/SimpleGLRenderer/SimpleGLRenderer/vendor/tinyxml2/BUILD/CMakeFiles/tinyxml2.dir
+D:/~DEV/--PROJECTS/SimpleGLRenderer/SimpleGLRenderer/vendor/tinyxml2/BUILD/CMakeFiles/xmltest.dir
+D:/~DEV/--PROJECTS/SimpleGLRenderer/SimpleGLRenderer/vendor/tinyxml2/BUILD/CMakeFiles/RUN_TESTS.dir
+D:/~DEV/--PROJECTS/SimpleGLRenderer/SimpleGLRenderer/vendor/tinyxml2/BUILD/CMakeFiles/INSTALL.dir
+D:/~DEV/--PROJECTS/SimpleGLRenderer/SimpleGLRenderer/vendor/tinyxml2/BUILD/CMakeFiles/ALL_BUILD.dir
+D:/~DEV/--PROJECTS/SimpleGLRenderer/SimpleGLRenderer/vendor/tinyxml2/BUILD/CMakeFiles/ZERO_CHECK.dir

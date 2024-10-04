@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\~DEV\--PROJECTS\SimpleGLRenderer\SimpleGLRenderer\vendor\tinyxml2\BUILD\CMakeFiles\6e1a425a7c074180311a9c021c5a4d51\Nightly.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\~DEV\--PROJECTS\SimpleGLRenderer\SimpleGLRenderer\vendor\tinyxml2\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\~DEV\--PROJECTS\SimpleGLRenderer\SimpleGLRenderer\vendor\tinyxml2\BUILD\CMakeFiles\Nightly" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{8AAD290C-3F07-311E-BC7C-5AE41728A538}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
