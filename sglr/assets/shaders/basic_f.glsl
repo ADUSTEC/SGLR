@@ -27,7 +27,7 @@ struct material
 	float shininess;
 };
 
-uniform vec3 u_globalambient;
+uniform vec3 u_globalambient = vec3(0.05);
 
 // point light
 struct pointlight 
@@ -35,7 +35,6 @@ struct pointlight
 	vec3 position;
   
     vec3 diffuse;
-    vec3 specular;
 
 	float constant;
     float quadratic;
@@ -50,7 +49,6 @@ struct spotlight
 	vec3 position;
   
     vec3 diffuse;
-    vec3 specular;
 
 	float constant;
     float quadratic;
@@ -66,7 +64,6 @@ struct spotlight
 struct sunlight 
 {
 	vec3 diffuse;
-    vec3 specular;
 
 	vec3 angle;
 };
@@ -74,6 +71,7 @@ struct sunlight
 // lighting type functions
 vec3 point(pointlight plight, material mat, vec3 camerapos, vec3 fnormal, vec3 fpos, vec2 uv)
 {
+
 	vec3 lightvec = plight.position - fpos;
 
 
@@ -95,28 +93,27 @@ vec3 point(pointlight plight, material mat, vec3 camerapos, vec3 fnormal, vec3 f
 
 	vec3 diffuse = plight.diffuse * diff * vec3(texture(mat.diffuse, uv));
 
-	// normalize the difference betweens the camera position and the current object position
-	vec3 viewdir = normalize(camerapos - fpos);
 
-	// find the direction of the reflection
-	// reflect() requires the direction of the light and the normal of the object
+	vec3 specular = vec3(0);
+	if (diff != 0) // prevent specular lighting under surfaces
+	{
+		// normalize the difference betweens the camera position and the current object position
+		vec3 viewdir = normalize(camerapos - fpos);
+		
+		// halfway vector from the view direction and light direction
+		vec3 halfway = normalize(viewdir + lightdir);
 
-	// first "flip" the light direction by negating it
-	// this is because the light direction is in the opposite direction of the normal
-	// doing this makes the light point towards the normal
+		// specular = the dot product to the power of shininess
+		float spec = 
+		  pow
+		( max // return the dot product if it is greater than 0
+		( dot(normal, halfway),						  0.0f), mat.shininess // <-- pow(dotproduct, shininess)
+		  // dot product of the view & reflection direction   ^ max(dotproduct, 0.0f)
+		);
 
-	vec3 reflectiondir = reflect(-lightdir, normal);
-
-	// specular = the dot product to the power of shininess
-	float spec = 
-	  pow
-	( max // return the dot product if it is greater than 0
-	( dot(viewdir, reflectiondir),						  0.0f), mat.shininess // <-- pow(dotproduct, shininess)
-	  // dot product of the view & reflection direction   ^ max(dotproduct, 0.0f)
-	);
-
-	// multiply the color of the light with the specular data
-	vec3 specular = plight.specular * (spec * vec3(texture(mat.specular, uv)));
+		// multiply the color of the light with the specular data
+		specular = plight.diffuse * (spec * vec3(texture(mat.specular, uv)));
+	}
 	
 	// do intensity
 	diffuse  *= plight.intensity;
@@ -150,10 +147,14 @@ vec3 spot(spotlight splight, material mat, vec3 camerapos, vec3 fnormal, vec3 fp
 	vec3 diffuse = splight.diffuse * diff * vec3(texture(mat.diffuse, uv));
 
 	// specular
-	vec3 viewdir = normalize(camerapos - fpos);
-	vec3 reflectiondir = reflect(-lightdir, normal);
-	float spec = pow(max(dot(viewdir, reflectiondir), 0.0f), mat.shininess);
-	vec3 specular = splight.specular * (spec * vec3(texture(mat.specular, uv)));
+	vec3 specular = vec3(0);
+	if (diff != 0)
+	{
+		vec3 viewdir = normalize(camerapos - fpos);
+		vec3 halfway = normalize(viewdir + lightdir);
+		float spec = pow(max(dot(normal, halfway), 0.0f), mat.shininess);
+		specular = splight.diffuse * (spec * vec3(texture(mat.specular, uv)));
+	}
 
 	// spotlight specific calculations
 	float theta = dot(lightdir, normalize(-splight.angle));
@@ -166,7 +167,7 @@ vec3 spot(spotlight splight, material mat, vec3 camerapos, vec3 fnormal, vec3 fp
 	float dist = length(lightvec);
 	float attenuation = 1.0 / (splight.constant + splight.linear * dist + splight.quadratic * (dist * dist)); 
 	diffuse  *= attenuation;
-	specular *= attenuation;  
+	specular *= attenuation;
 
 	// add everything together
 	vec3 spotlight = ambient + diffuse + specular;
@@ -184,11 +185,15 @@ vec3 sun(sunlight slight, material mat, vec3 camerapos, vec3 fnormal, vec3 fpos,
 	float diff = max(dot(normal, lightdir), 0.0f);
 	vec3 diffuse = slight.diffuse * diff * vec3(texture(mat.diffuse, uv));
 
-	// specular
-	vec3 viewdir = normalize(camerapos - fpos);
-	vec3 reflectiondir = reflect(-lightdir, normal);
-	float spec = pow(max(dot(viewdir, reflectiondir), 0.0f), mat.shininess);
-	vec3 specular = slight.specular * (spec * vec3(texture(mat.specular, uv)));
+	vec3 specular = vec3(0);
+	if (diff != 0)
+	{
+		// specular
+		vec3 viewdir = normalize(camerapos - fpos);
+		vec3 halfway = normalize(viewdir + lightdir);
+		float spec = pow(max(dot(normal, halfway), 0.0f), mat.shininess);
+		specular = slight.diffuse * (spec * vec3(texture(mat.specular, uv)));
+	}
 
 	// add everything together
 	vec3 sunlight = ambient + diffuse + specular;
@@ -196,7 +201,7 @@ vec3 sun(sunlight slight, material mat, vec3 camerapos, vec3 fnormal, vec3 fpos,
 	return sunlight;
 }
 
-#define MAXLIGHTS 53
+#define MAXLIGHTS 50
 
 // uniforms
 uniform material u_material;
@@ -214,19 +219,30 @@ void main()
 	// output
     vec3 outp;
 
-    for(int i = 0; i < pointlightnum; i++)
+	if (pointlightnum > 0)
 	{
-		outp += point(u_pointlight[i], u_material, u_camerapos, i_data.normal, i_data.fpos, i_data.uv);
+		for(int i = 0; i < pointlightnum; i++)
+		{
+			outp += point(u_pointlight[i], u_material, u_camerapos, i_data.normal, i_data.fpos, i_data.uv);
+		}
 	}
-
-	for(int i = 0; i < spotlightnum; i++) 
+	else if (spotlightnum > 0)
 	{
-		outp += spot(u_spotlight[i], u_material, u_camerapos, i_data.normal, i_data.fpos, i_data.uv);
+		for(int i = 0; i < spotlightnum; i++) 
+		{
+			outp += spot(u_spotlight[i], u_material, u_camerapos, i_data.normal, i_data.fpos, i_data.uv);
+		}
 	}
-
-	for(int i = 0; i < sunlightnum; i++)
+	else if (sunlightnum > 0)
 	{
-        outp += sun(u_sunlight[i], u_material, u_camerapos, i_data.normal, i_data.fpos, i_data.uv);
+		for(int i = 0; i < sunlightnum; i++)
+		{
+		    outp += sun(u_sunlight[i], u_material, u_camerapos, i_data.normal, i_data.fpos, i_data.uv);
+		}
+	}
+	else 
+	{
+		outp = u_globalambient * vec3(texture(u_material.diffuse, i_data.uv));
 	}
 
 	o_fragout = vec4(outp, 1.0f);

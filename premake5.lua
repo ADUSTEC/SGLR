@@ -31,6 +31,9 @@ project "sglr"
 		-- sglr folder
 		"%{prj.name}/include/sglr/**.h",
 		"%{prj.name}/src/sglr/**.cpp",
+		
+		-- shader basic
+		"%{prj.name}/assets/shaders/**.glsl",
 
 		-- imgui
 		"%{prj.name}/vendor/imgui/imgui.cpp",

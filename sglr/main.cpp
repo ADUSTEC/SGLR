@@ -1,5 +1,5 @@
 #include "sglr/sglr.h"
-
+#include "sglr/graphics/renderer/scenelight.h"
 
 class renderApp : public sglr::app
 {
@@ -68,15 +68,14 @@ class renderApp : public sglr::app
 
 		std::unique_ptr<sglr::camera> camera;
 
-		glm::vec3 lightposition = glm::vec3(3.0f, 4.0f, 2.0f);
-		glm::vec3 lightcolor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-		glm::vec3 angle = glm::vec3(0.0f, 1.0f, 0.0f);
+		std::unique_ptr<sglr::scenelight> scenelight;
 
-		glm::vec3 lightposition2 = glm::vec3(-3.0f, -4.0f, -2.0f);
-		glm::vec3 lightcolor2 = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-		glm::vec3 angle2 = glm::vec3(0.0f, 1.0f, 0.0f);
-
-		int lightmode = 1;
+		sglr::spotlightdata spotlight = sglr::spotlightdata(
+															glm::vec3(-2.900, 3.400, 2.350), 
+															glm::vec3(0.800, -1.000, -0.700), 
+															glm::vec3(255/255.0f, 151/255.0f, 27/255.0f),
+															0.995f,
+															0.964f);
 
 
 	public:
@@ -131,12 +130,15 @@ class renderApp : public sglr::app
 			camera->movementSettings(5.0f, 2.0f, 0.5f);
 
 			camera->setActivationKey(INPUT_KEY_LALT);
+
+			scenelight = std::make_unique<sglr::scenelight>(shader.get());
+
+			scenelight->newSpotLight();
 			
 		}
 
 		void onRender(float deltaTime) override
 		{
-			
 			shader->enable();
 
 			diffusetexture->bind();
@@ -153,58 +155,10 @@ class renderApp : public sglr::app
 
 			camera->updateAspect(glm::vec2(getViewportSize().x, getViewportSize().y));
 			camera->updateGCS();
-
-			
 			shader->setUniformFloat("u_material.shininess", 2.0f);
-
-			shader->setUniformInt("pointlightnum", 2);
-			shader->setUniformVec3("u_globalambient", glm::vec3(0.05f, 0.05f, 0.05f));
-
-			shader->setUniformVec3("u_pointlight[0].position", lightposition); 
-
-			shader->setUniformVec3("u_pointlight[0].diffuse", glm::vec3(lightcolor));
-			shader->setUniformVec3("u_pointlight[0].specular", glm::vec3(0.5f, 0.5f, 0.5f));
-
-			shader->setUniformFloat("u_pointlight[0].constant", 1.0f);
-			shader->setUniformFloat("u_pointlight[0].quadratic", 0.032f);
-			shader->setUniformFloat("u_pointlight[0].linear", 0.09f);
-
-			shader->setUniformFloat("u_pointlight[0].intensity", 1);
-
-			// light 2
-			shader->setUniformVec3("u_pointlight[1].position", lightposition2);
-
-			shader->setUniformVec3("u_pointlight[1].diffuse", glm::vec3(lightcolor2));
-			shader->setUniformVec3("u_pointlight[1].specular", glm::vec3(0.5f, 0.5f, 0.5f));
-
-			shader->setUniformFloat("u_pointlight[1].constant", 1.0f);
-			shader->setUniformFloat("u_pointlight[1].quadratic", 0.032f);
-			shader->setUniformFloat("u_pointlight[1].linear", 0.09f);
-
-			shader->setUniformFloat("u_pointlight[1].intensity", 1);
 			
-			// spotlight
-			/*
-			shader->setUniformVec3("u_spotlight[0].position", camera->getPosition());
-			shader->setUniformVec3("u_spotlight[0].angle", camera->getForwardVector());
-
-			shader->setUniformVec3("u_spotlight[0].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
-			shader->setUniformVec3("u_spotlight[0].specular", glm::vec3(0.5f, 0.5f, 0.5f));
-
-			shader->setUniformFloat("u_spotlight[0].constant", 1.0f);
-			shader->setUniformFloat("u_spotlight[0].quadratic", 0.032f);
-			shader->setUniformFloat("u_spotlight[0].linear", 0.09f);
-
-			shader->setUniformFloat("u_spotlight[0].innercone", glm::cos(glm::radians(5.5f)));
-			shader->setUniformFloat("u_spotlight[0].outercone", glm::cos(glm::radians(15.5f)));
-			shader->setUniformFloat("u_spotlight[0].intensity", 5);
-
-			// sunlight
-			shader->setUniformVec3("u_spotlight[0].angle", glm::vec3(0, 0, 0));
-
-			shader->setUniformVec3("u_spotlight[0].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
-			shader->setUniformVec3("u_spotlight[0].specular", glm::vec3(0.5f, 0.5f, 0.5f));
-			*/
+			scenelight->updateAllLights();
+			
 
 			vao->bind();
 			
@@ -230,14 +184,26 @@ class renderApp : public sglr::app
 		{
 			ImGui::SliderFloat("rotate cube", &rotationSpeed, 0.0f, 1.0f);
 
-			ImGui::SliderFloat3("XYZ_1", glm::value_ptr(lightposition), -10.0f, 10.0f);
-			ImGui::SliderFloat3("XYZ_2", glm::value_ptr(lightposition2), -10.0f, 10.0f);
+			ImGui::SeparatorText("CONFIGURE SPOTLIGHT");
+			ImGui::DragFloat3("Position", glm::value_ptr(spotlight.sp_position), 0.05f, -20.0f, 20.0f);
+			ImGui::DragFloat3("Angle", glm::value_ptr(spotlight.sp_angle), 0.05f, -1.0f, 1.0f);
 
-			ImGui::SliderFloat3("RPY_1", glm::value_ptr(angle), -1.0f, 1.0f);
-			ImGui::SliderFloat3("RPY_2", glm::value_ptr(angle2), -1.0f, 1.0f);
+			ImGui::DragFloat("Innercone Size", &spotlight.sp_innercone, 0.005f, glm::cos(glm::radians(0.0f)), glm::cos(glm::radians(50.0f)));
+			ImGui::DragFloat("Outercone Size", &spotlight.sp_outercone, 0.005f, glm::cos(glm::radians(0.0f)), glm::cos(glm::radians(50.0f)));
 
-			ImGui::ColorPicker3("COLOR_1", glm::value_ptr(lightcolor));
-			ImGui::ColorPicker3("COLOR_2", glm::value_ptr(lightcolor2));
+			ImGui::ColorEdit3("Diffuse Color", glm::value_ptr(spotlight.sp_diffuse));
+
+			ImGui::TextDisabled("-- ANISOTROPY");
+			ImGui::DragFloat("Constant", &spotlight.sp_constant, 0.05f, 0.0f, 10.0f);
+			ImGui::DragFloat("Quadratic", &spotlight.sp_quadratic, 0.05f, 0.0f, 10.0f);
+			ImGui::DragFloat("Linear", &spotlight.sp_linear, 0.05f, 0.0f, 10.0f);
+
+			ImGui::DragFloat("Intensity", &spotlight.sp_intensity, 0.05f, 0.0f, 10.0f);
+
+			ImGui::TextDisabled("intensity doesnt work as intended, will fix later");
+
+			scenelight->editSpotLight(0, spotlight);
+
 		}
 		
 		void materialWindow() override

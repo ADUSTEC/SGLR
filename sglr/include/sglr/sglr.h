@@ -98,6 +98,8 @@ namespace sglr {
 						SDL_Delay(10);
 						continue;
 					}
+					
+					gui::makeDockSpace();
 
 					if (m_clock.elapsed() - updateTimer > updateTick)
 					{
@@ -107,6 +109,10 @@ namespace sglr {
 						updateTimer += updateTick;
 						m_deltaUpdate.restart();
 					}
+
+					ImGui::Begin("FPSCOUNTER");
+					ImGui::Text("FPS: %d", m_fps);
+					ImGui::End();
 
 					frames++;
 					if (m_clock.elapsed() - timer > 1.0f)
@@ -121,7 +127,6 @@ namespace sglr {
 						m_deltaTick.restart();
 					}
 
-					gui::makeDockSpace();
 
 					ImGui::Begin("Outliner");
 					{

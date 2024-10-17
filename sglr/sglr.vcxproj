@@ -122,10 +122,9 @@ xcopy /Q /E /Y /I /S /D assets ..\bin\Release-windows-x86_64\$(ProjectName)\</Co
     <ClInclude Include="include\sglr\graphics\indexbuffer.h" />
     <ClInclude Include="include\sglr\graphics\renderer\billboardrenderer.h" />
     <ClInclude Include="include\sglr\graphics\renderer\camera.h" />
-    <ClInclude Include="include\sglr\graphics\renderer\light.h" />
     <ClInclude Include="include\sglr\graphics\renderer\mesh.h" />
     <ClInclude Include="include\sglr\graphics\renderer\postprocess.h" />
-    <ClInclude Include="include\sglr\graphics\renderer\renderer3d.h" />
+    <ClInclude Include="include\sglr\graphics\renderer\scenelight.h" />
     <ClInclude Include="include\sglr\graphics\renderer\texture.h" />
     <ClInclude Include="include\sglr\graphics\shader.h" />
     <ClInclude Include="include\sglr\graphics\vertexarray.h" />
@@ -146,10 +145,9 @@ xcopy /Q /E /Y /I /S /D assets ..\bin\Release-windows-x86_64\$(ProjectName)\</Co
     <ClCompile Include="src\sglr\graphics\indexbuffer.cpp" />
     <ClCompile Include="src\sglr\graphics\renderer\billboardrenderer.cpp" />
     <ClCompile Include="src\sglr\graphics\renderer\camera.cpp" />
-    <ClCompile Include="src\sglr\graphics\renderer\light.cpp" />
     <ClCompile Include="src\sglr\graphics\renderer\mesh.cpp" />
     <ClCompile Include="src\sglr\graphics\renderer\postprocess.cpp" />
-    <ClCompile Include="src\sglr\graphics\renderer\renderer3d.cpp" />
+    <ClCompile Include="src\sglr\graphics\renderer\scenelight.cpp" />
     <ClCompile Include="src\sglr\graphics\renderer\texture.cpp" />
     <ClCompile Include="src\sglr\graphics\shader.cpp" />
     <ClCompile Include="src\sglr\graphics\vertexarray.cpp" />
@@ -163,6 +161,8 @@ xcopy /Q /E /Y /I /S /D assets ..\bin\Release-windows-x86_64\$(ProjectName)\</Co
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\shaders\basic_f.glsl" />
+    <None Include="assets\shaders\basic_v.glsl" />
     <None Include="sglr.ico" />
   </ItemGroup>
   <ItemGroup>
