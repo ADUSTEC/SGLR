@@ -1,5 +1,4 @@
-# SimpleGLRenderer
-An OpenGL 3D Renderer written in C++
+# SimpleGLRenderer - An OpenGL 3D Renderer written in C++
 ======
 ### (in unfinished state, windows only)
 -- Screenshot of current program state
