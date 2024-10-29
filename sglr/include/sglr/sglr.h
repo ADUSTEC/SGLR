@@ -54,10 +54,10 @@ namespace sglr {
 
 			
 			// return func
-			const UINT getFPS() { return m_fps; }
-			const UINT getUPS() { return m_ups; }
+			 UINT getFPS() const { return m_fps; }
+			 UINT getUPS() const { return m_ups; }
 
-			const glm::vec2 getViewportSize() { return m_viewportSize; }
+			 glm::vec2 getViewportSize() const { return m_viewportSize; }
 
 			// window
 			std::unique_ptr<sglrwindow> window;
@@ -82,16 +82,14 @@ namespace sglr {
 				//std::unique_ptr<texture> outlinerIcon = std::make_unique<texture>("textures/sglr/t_outlinericon.png", GL_TEXTURE0);
 				//std::unique_ptr<texture> materialIcon = std::make_unique<texture>("textures/sglr/t_materialicon.png", GL_TEXTURE0);
 				//std::unique_ptr<texture> editIcon	  = std::make_unique<texture>("textures/sglr/t_editicon.png",     GL_TEXTURE0);
+				framebuffer viewport(window->returnSize());
 
 				// while the application is running; handle the update, tick and render functions.
 				while (true)
 				{
-					framebuffer viewport(window->returnSize());
 					window->update();
 					keyboard::update();
 					mouse::update();
-
-					glClear(GL_COLOR_BUFFER_BIT);
 
 					if (window->minimized())
 					{
@@ -219,13 +217,12 @@ namespace sglr {
 						ImGui::BeginChild("RenderView");
 						m_viewportSize = glm::vec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y);
 
-						viewport.bind(); // bind the frame buffer
 						viewport.rescale(glm::vec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y));
+						viewport.bind(); // bind the frame buffer
 
 						glViewport(0, 0, (GLsizei)ImGui::GetContentRegionAvail().x, (GLsizei)ImGui::GetContentRegionAvail().y);
 
-						// clearing the depth buffer must be done here otherwise nothing will render for some odd reason
-						// I assume its something related to how imgui renders the gui but im not entirely sure
+						glClear(GL_COLOR_BUFFER_BIT);
 						glClear(GL_DEPTH_BUFFER_BIT); 
 						onRender(deltaRenderTime); // do rendering
 
@@ -239,8 +236,6 @@ namespace sglr {
 							ImVec2(0, 1),
 							ImVec2(1, 0)
 						);
-
-						viewport.destroy();
 
 					}
 					ImGui::EndChild(); 
