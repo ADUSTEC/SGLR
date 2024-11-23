@@ -13,6 +13,7 @@
 #include "sglr/graphics/framebuffer.h"
 #include "sglr/graphics/Renderer/texture.h"
 #include "sglr/graphics/Renderer/camera.h"
+#include "sglr/graphics/renderer/scenelight.h"
 
 #include <iostream>
 #include <vec2.hpp>
@@ -91,11 +92,7 @@ namespace sglr {
 					keyboard::update();
 					mouse::update();
 
-					if (window->minimized())
-					{
-						SDL_Delay(10);
-						continue;
-					}
+					glClear(GL_COLOR_BUFFER_BIT);
 					
 					gui::makeDockSpace();
 
@@ -196,12 +193,6 @@ namespace sglr {
 					}
 
 					ImGui::EndChild();
-
-					ImGui::NewLine();
-					ImGui::Separator();
-					ImGui::Button("New Point Light");
-					ImGui::SameLine();
-					ImGui::Button("New Spot Light");
 					ImGui::End();
 
 					ImGui::Begin("Edit");
@@ -215,10 +206,15 @@ namespace sglr {
 					ImGui::Begin("Viewport");
 					{
 						ImGui::BeginChild("RenderView");
-						m_viewportSize = glm::vec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y);
-
-						viewport.rescale(glm::vec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y));
+						
 						viewport.bind(); // bind the frame buffer
+
+						// only rescale the viewport if the size has changed
+						if (m_viewportSize.x != ImGui::GetContentRegionAvail().x || m_viewportSize.y != ImGui::GetContentRegionAvail().y)
+						{
+							viewport.rescale(glm::vec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y));
+							m_viewportSize = glm::vec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y);
+						}
 
 						glViewport(0, 0, (GLsizei)ImGui::GetContentRegionAvail().x, (GLsizei)ImGui::GetContentRegionAvail().y);
 
@@ -247,6 +243,12 @@ namespace sglr {
 
 					deltaRenderTime = m_deltaRender.elapsed();
 					m_deltaRender.restart();
+
+					if (window->minimized())
+					{
+						SDL_Delay(500);
+						continue;
+					}
 				}
 			}
 
