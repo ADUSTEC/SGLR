@@ -32,13 +32,12 @@ namespace sglr
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 		SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 		SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
-		m_window = SDL_CreateWindow(m_title.c_str(), m_size.x, m_size.y, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIGH_PIXEL_DENSITY);
-
+		m_window = SDL_CreateWindow(m_title.c_str(), (int)m_size.x, (int)m_size.y, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIGH_PIXEL_DENSITY);
 		SDL_SetWindowPosition(m_window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 		SDL_GLContext gl_context = SDL_GL_CreateContext(m_window);
 		SDL_GL_MakeCurrent(m_window, gl_context);
 		SDL_ShowWindow(m_window);
-		glViewport(0, 0, m_size.x, m_size.y);
+		glViewport(0, 0, (GLsizei)m_size.x, (GLsizei)m_size.y);
 
 		GLint GlewInitResult = glewInit();
 		if (GLEW_OK != GlewInitResult)
@@ -49,12 +48,14 @@ namespace sglr
 
 		gui::init(m_window, gl_context);
 
+		
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_CULL_FACE);
 		glCullFace(GL_BACK);
 		glFrontFace(GL_CCW);
+		
 	}
 
 	void sglrwindow::update()
@@ -72,8 +73,8 @@ namespace sglr
 			if (event.type == SDL_EVENT_WINDOW_CLOSE_REQUESTED && event.window.windowID == SDL_GetWindowID(m_window))
 				exit(0);
 			if (event.type == SDL_EVENT_WINDOW_RESIZED)
-				m_size.x = width;
-				m_size.y = height;
+				m_size.x = (float)width;
+				m_size.y = (float)height;
 		}
 
 		gui::update();

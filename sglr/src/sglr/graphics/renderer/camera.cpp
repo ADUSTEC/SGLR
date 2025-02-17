@@ -100,7 +100,7 @@ namespace sglr
 				m_speed = m_setspeed * m_speedmultmin;
 				break;
 			}
-			switch (!keyboard::key(INPUT_KEY_LSHIFT) && !keyboard::key(INPUT_KEY_LCTRL))
+			switch (!keyboard::key(INPUT_KEY_LSHIFT) & !keyboard::key(INPUT_KEY_LCTRL))
 			{
 			case true:
 				m_speed = m_setspeed;
@@ -131,8 +131,11 @@ namespace sglr
 					m_forwardvector = newOrientation;
 				}
 
+
 				m_forwardvector = glm::rotate(m_forwardvector, glm::radians(-rotY), m_upvector);
 				m_rightvector = glm::normalize(glm::cross(m_forwardvector, m_upvector));
+				
+				m_orientation = newOrientation;
 
 			}
 			mouse::setPosInWindow(m_window->returnSDLWindow(), (m_window->returnSize().x / 2), (m_window->returnSize().y / 2));

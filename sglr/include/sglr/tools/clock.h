@@ -9,12 +9,11 @@ namespace sglr {
         public:
             clock() : m_start(std::chrono::high_resolution_clock::now()) {}
 
-            void restart() 
+            inline void restart() 
             {
                 m_start = std::chrono::high_resolution_clock::now();
             }
-
-            const float elapsed() 
+            inline float elapsed() 
             {
                 auto now = std::chrono::high_resolution_clock::now();
                 return std::chrono::duration_cast<std::chrono::duration<float>>(now - m_start).count();

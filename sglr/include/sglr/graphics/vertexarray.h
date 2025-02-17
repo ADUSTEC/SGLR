@@ -13,9 +13,18 @@ namespace sglr
 		void link(vertexbuffer& vbuffer, GLuint lindex, GLuint compnum, GLenum datatype, GLsizeiptr vattoffset, GLuint offset);
 
 		// binding and cleanup
-		void const bind();
-		void const unbind();
-		void const destroy();
+		inline void bind() const
+		{
+			glBindVertexArray(m_varrID); // bind vao
+		}
+		inline void unbind() const
+		{
+			glBindVertexArray(0); // unbind curently binded vao
+		}
+		inline void destroy() const
+		{
+			glDeleteVertexArrays(1, &m_varrID); // delete vao
+		}
 
 	private:
 		GLuint m_varrID{};

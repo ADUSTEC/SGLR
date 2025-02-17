@@ -1,0 +1,116 @@
+#include "sglr/graphics/renderer/renderer2d.h"
+#include <ext.hpp>
+
+namespace sglr
+{
+	renderer2d::renderer2d() 
+	{ 
+		m_ts.push_back(glm::mat4(1.0f)); 
+		m_tb = &m_ts.back();
+
+		m_init(); 
+	}
+
+	void renderer2d::begin() 
+	{
+		m_vbo->bind();
+		m_vdat = (vertexdata2d*)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+	}
+
+	void renderer2d::submit(const renderable2d* renderable) 
+	{
+		const glm::vec3& position = renderable->getPosition();
+		const glm::vec2& size = renderable->getSize();
+
+		m_vdat->vertexpos = *m_tb * glm::vec4(position, 1.0f);
+		m_vdat++;
+
+		m_vdat->vertexpos = *m_tb * glm::vec4(glm::vec3(position.x, position.y + size.y, position.z), 1.0f);
+		m_vdat++;
+
+		m_vdat->vertexpos = *m_tb * glm::vec4(glm::vec3(position.x + size.x, position.y + size.y, position.z), 1.0f);
+		m_vdat++;
+
+		m_vdat->vertexpos = *m_tb * glm::vec4(glm::vec3(position.x + size.x, position.y, position.z), 1.0f);
+		m_vdat++;
+
+		m_icount += 6;
+	}
+
+	void renderer2d::end() 
+	{
+		glUnmapBuffer(GL_ARRAY_BUFFER);
+		m_vbo->unbind();
+	}
+
+	void renderer2d::flush() 
+	{
+		m_vao->bind();
+		m_ibo->bind();
+
+		glDrawElements(GL_TRIANGLES, m_icount, GL_UNSIGNED_INT, NULL);
+
+		m_ibo->unbind();
+		m_vao->unbind();
+
+		m_icount = 0;
+	}
+	
+	void renderer2d::m_init() 
+	{
+		m_vao = new vertexarray();
+
+		m_vao->bind();
+
+		m_vbo = new vertexbuffer(glm::value_ptr(m_vdat->vertexpos), sizeof(vertexdata2d) * 4 * 60000);
+
+		GLuint* indices = new GLuint[60000 * 6]{};
+
+		int offset = 0;
+
+		for (int i = 0; i < 60000 * 6; i += 6) 
+		{
+
+			indices[i] = offset + 0;
+			indices[i + 1] = offset + 1;
+			indices[i + 2] = offset + 2;
+
+			indices[i + 3] = offset + 2;
+			indices[i + 4] = offset + 3;
+			indices[i + 5] = offset + 0;
+
+			offset += 4;
+		}
+
+		m_ibo = new indexbuffer(indices, 60000 * 6);
+
+		m_ibo->bind();
+
+		m_vbo->bind();
+		m_vao->link(*m_vbo, 0, 3, GL_FLOAT, sizeof(vertexdata2d), 0);
+		m_vbo->unbind();
+
+		m_vao->unbind();
+		m_ibo->unbind();
+	}
+
+	void renderer2d::push(const glm::mat4& matrix, bool override)
+	{
+		if (override) {
+			m_ts.push_back(matrix);
+		}
+		else {
+	
+			m_ts.push_back(m_ts.back() * matrix);
+		}
+		m_tb = &m_ts.back();
+	}
+	
+	void renderer2d::pop()
+	{
+		if (m_ts.size() > 1)
+			m_ts.pop_back();
+	
+		m_tb = &m_ts.back();
+	}
+}

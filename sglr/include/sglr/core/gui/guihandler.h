@@ -11,7 +11,7 @@ namespace sglr
 	class gui
 	{
 		public:
-			void static processEvents(SDL_Event event)
+			inline void static processEvents(SDL_Event event)
 			{
 				ImGui_ImplSDL3_ProcessEvent(&event);
 			}

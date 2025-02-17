@@ -5,7 +5,6 @@ in DATA
 {
 
 	vec3 pos;
-	vec3 rgb;
    	vec2 uv;
    	vec3 normal;
 
@@ -27,7 +26,7 @@ struct material
 	float shininess;
 };
 
-uniform vec3 u_globalambient = vec3(0.05);
+uniform vec3 u_globalambient = vec3(0.08);
 
 // point light
 struct pointlight 
@@ -79,9 +78,19 @@ vec3 point(pointlight plight, material mat, vec3 camerapos, vec3 fnormal, vec3 f
 	vec3 ambient = u_globalambient * vec3(texture(mat.diffuse, uv));
 
 
-	// normalize the given vertex normal data
+	// normalize the given texture normal data
 	// normalize forces the data to be between a value of 0 and 1
-	vec3 normal = normalize(fnormal);
+	vec3 normal = normalize(texture2D(mat.normal, uv).rgb)*2.0 - 1.0;
+	// compute tangent & bitangent
+	vec3 Q1 = dFdx(fpos);
+	vec3 Q2 = dFdy(fpos);
+	vec2 st1 = dFdx(uv);
+	vec2 st2 = dFdy(uv);
+	
+	vec3 T = normalize(Q1*st2.t - Q2*st1.t);
+	vec3 B = normalize(-Q1*st2.s + Q2*st1.s);
+	mat3 TBN = mat3(T, B, normalize(fnormal));
+	normal = TBN*normal;
 
 	// normalize the different between the light position and the current object position
 	vec3 lightdir = normalize(lightvec);
@@ -115,16 +124,14 @@ vec3 point(pointlight plight, material mat, vec3 camerapos, vec3 fnormal, vec3 f
 		specular = plight.diffuse * (spec * vec3(texture(mat.specular, uv)));
 	}
 	
-	// do intensity
-	diffuse  *= plight.intensity;
-	specular *= plight.intensity;
-
 	// do attenuation
 	float dist = length(lightvec); // get length of light position & object position
 	float attenuation = 1.0 / (plight.constant + plight.linear * dist + plight.quadratic * (dist * dist)); 
 	diffuse  *= attenuation;
 	specular *= attenuation;
 
+	diffuse  *= plight.intensity;
+	specular *= plight.intensity;
 
 	// add everything together
 	vec3 pointlight = ambient + diffuse + specular;
@@ -141,7 +148,17 @@ vec3 spot(spotlight splight, material mat, vec3 camerapos, vec3 fnormal, vec3 fp
 
 	vec3 ambient = u_globalambient * vec3(texture(mat.diffuse, uv));
 
-	vec3 normal = normalize(fnormal);
+	vec3 normal = normalize(texture2D(mat.normal, uv).rgb)*2.0 - 1.0;
+	vec3 Q1 = dFdx(fpos);
+	vec3 Q2 = dFdy(fpos);
+	vec2 st1 = dFdx(uv);
+	vec2 st2 = dFdy(uv);
+	
+	vec3 T = normalize(Q1*st2.t - Q2*st1.t);
+	vec3 B = normalize(-Q1*st2.s + Q2*st1.s);
+	mat3 TBN = mat3(T, B, normalize(fnormal));
+	normal = TBN*normal;
+
 	vec3 lightdir = normalize(lightvec);
 	float diff = max(dot(normal, lightdir), 0.0f);
 	vec3 diffuse = splight.diffuse * diff * vec3(texture(mat.diffuse, uv));
@@ -159,15 +176,18 @@ vec3 spot(spotlight splight, material mat, vec3 camerapos, vec3 fnormal, vec3 fp
 	// spotlight specific calculations
 	float theta = dot(lightdir, normalize(-splight.angle));
 	float epsilon = splight.innercone - splight.outercone;
-	float intensity = clamp((theta - splight.outercone) / epsilon, 0.0, splight.intensity); 
-	diffuse  *= intensity;
-	specular *= intensity;
+	float cintensity = clamp((theta - splight.outercone) / epsilon, 0.0, 1.0f); 
+	diffuse  *= cintensity;
+	specular *= cintensity;
 
 	// attenuation
 	float dist = length(lightvec);
 	float attenuation = 1.0 / (splight.constant + splight.linear * dist + splight.quadratic * (dist * dist)); 
 	diffuse  *= attenuation;
 	specular *= attenuation;
+
+	diffuse  *= splight.intensity;
+	specular *= splight.intensity;
 
 	// add everything together
 	vec3 spotlight = ambient + diffuse + specular;
@@ -180,7 +200,17 @@ vec3 sun(sunlight slight, material mat, vec3 camerapos, vec3 fnormal, vec3 fpos,
 	// diffuse
 	vec3 ambient = u_globalambient * vec3(texture(mat.diffuse, uv));
 
-	vec3 normal = normalize(fnormal);
+	vec3 normal = normalize(texture2D(mat.normal, uv).rgb)*2.0 - 1.0;
+	vec3 Q1 = dFdx(fpos);
+	vec3 Q2 = dFdy(fpos);
+	vec2 st1 = dFdx(uv);
+	vec2 st2 = dFdy(uv);
+	
+	vec3 T = normalize(Q1*st2.t - Q2*st1.t);
+	vec3 B = normalize(-Q1*st2.s + Q2*st1.s);
+	mat3 TBN = mat3(T, B, normalize(fnormal));
+	normal = TBN*normal;
+
 	vec3 lightdir = normalize(-slight.angle);
 	float diff = max(dot(normal, lightdir), 0.0f);
 	vec3 diffuse = slight.diffuse * diff * vec3(texture(mat.diffuse, uv));
@@ -217,7 +247,7 @@ uniform int sunlightnum = 0;
 void main()
 {	
 	// output
-    vec3 outp;
+    vec3 outp = vec3(0);
 
 	if (pointlightnum > 0)
 	{

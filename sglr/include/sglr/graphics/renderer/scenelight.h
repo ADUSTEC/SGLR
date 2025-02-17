@@ -3,7 +3,7 @@
 #include "camera.h"
 #include "../shader.h"
 
-// there is definitely a better way of doing this but this was an easy solution
+// THIS WILL EVENTUALLY BE REWRITTEN!!!!!!
 
 namespace sglr
 {
@@ -109,7 +109,7 @@ namespace sglr
 		void newSpotLight(const spotlightdata data = spotlightdata());
 		void createSunLight(const sunlightdata data = sunlightdata());
 
-		void setGlobalAmbientLight(glm::vec3 value)
+		inline void setGlobalAmbientLight(glm::vec3 value)
 		{
 			m_globalambient = value;
 		}

@@ -1,9 +1,8 @@
 #version 430 core
 
 layout (location = 0) in vec3 a_pos; // prefix a for attribute
-layout (location = 1) in vec3 a_rgb;
-layout (location = 2) in vec2 a_uv;
-layout (location = 3) in vec3 a_normal;
+layout (location = 1) in vec2 a_uv;
+layout (location = 2) in vec3 a_normal;
 
 uniform mat4 u_projection;
 uniform mat4 u_view;
@@ -12,7 +11,6 @@ uniform mat4 u_model;
 out DATA
 {
 	vec3 pos;
-	vec3 rgb;
 	vec2 uv;
 	vec3 normal;
 
@@ -27,7 +25,6 @@ out DATA
 void main()
 {
    o_data.pos = a_pos;
-   o_data.rgb = a_rgb;
    o_data.uv = a_uv;
 
    o_data.projection = u_projection;

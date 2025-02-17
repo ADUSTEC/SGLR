@@ -1,5 +1,8 @@
 #include "sglr/sglr.h"
-#include "sglr/graphics/renderer/scenelight.h"
+#include "sglr/graphics/renderer/renderer2d.h"
+#include <sstream>
+
+#include <assimp/Importer.hpp>
 
 class renderApp : public sglr::app
 {
@@ -9,32 +12,32 @@ class renderApp : public sglr::app
 
 		GLfloat vertices[24 * 11] =
 		{
-			//pos                // rgb			    // uv	    // normals
-			-1.0,  1.0,  1.0,	1.0f, 0.0f, 0.0f,	0.0, 1.0,	-1.0, -0.0, -0.0,
-			-1.0, -1.0, -1.0,	0.0f, 1.0f, 0.0f,	1.0, 0.0,	-1.0, -0.0, -0.0,
-			-1.0, -1.0,  1.0,	0.0f, 0.0f, 1.0f,	0.0, 0.0,	-1.0, -0.0, -0.0,
-			-1.0,  1.0, -1.0,	0.0f, 0.0f, 0.0f,	0.0, 1.0,	-0.0, -0.0, -1.0,
-			 1.0, -1.0, -1.0,	0.0f, 1.0f, 1.0f,	1.0, 0.0,	-0.0, -0.0, -1.0,
-			-1.0, -1.0, -1.0,	1.0f, 1.0f, 0.0f,	0.0, 0.0,	-0.0, -0.0, -1.0,
-			 1.0,  1.0, -1.0,	1.0f, 0.0f, 1.0f,	1.0, 1.0,	 1.0, -0.0, -0.0,
-			 1.0, -1.0,  1.0,	1.0f, 1.0f, 1.0f,	0.0, 0.0,	 1.0, -0.0, -0.0,
-			 1.0, -1.0, -1.0,	0.0f, 0.0f, 1.0f,	1.0, 0.0,	 1.0, -0.0, -0.0,
-			 1.0,  1.0,  1.0,	1.0f, 0.0f, 1.0f,	1.0, 1.0,	-0.0, -0.0,  1.0,
-			-1.0, -1.0,  1.0,	1.0f, 0.0f, 1.0f,	0.0, 0.0,	-0.0, -0.0,  1.0,
-			 1.0, -1.0,  1.0,	1.0f, 1.0f, 0.0f,	1.0, 0.0,	-0.0, -0.0,  1.0,
-			 1.0, -1.0, -1.0,	1.0f, 1.0f, 0.0f,	1.0, 1.0,	-0.0, -1.0, -0.0,
-			-1.0, -1.0,  1.0,	1.0f, 1.0f, 0.0f,	0.0, 0.0,	-0.0, -1.0, -0.0,
-			-1.0, -1.0, -1.0,	1.0f, 0.0f, 0.0f,	0.0, 1.0,	-0.0, -1.0, -0.0,
-			-1.0,  1.0, -1.0,	1.0f, 0.0f, 0.0f,	0.0, 1.0,	-0.0,  1.0, -0.0,
-			 1.0,  1.0,  1.0,	1.0f, 0.0f, 1.0f,	1.0, 0.0,	-0.0,  1.0, -0.0,
-			 1.0,  1.0, -1.0,	0.0f, 0.0f, 1.0f,	1.0, 1.0,	-0.0,  1.0, -0.0,
-			-1.0,  1.0, -1.0,	0.0f, 1.0f, 1.0f,	1.0, 1.0,	-1.0, -0.0, -0.0,
-			 1.0,  1.0, -1.0,	0.0f, 1.0f, 1.0f,	1.0, 1.0,	-0.0, -0.0, -1.0,
-			 1.0,  1.0,  1.0,	0.0f, 1.0f, 1.0f,	0.0, 1.0,	 1.0, -0.0, -0.0,
-			-1.0,  1.0,  1.0,	0.0f, 1.0f, 1.0f,	0.0, 1.0,	-0.0, -0.0,  1.0,
-			 1.0, -1.0,  1.0,	1.0f, 1.0f, 1.0f,	1.0, 0.0,	-0.0, -1.0, -0.0,
-			-1.0,  1.0,  1.0,	1.0f, 1.0f, 1.0f,	0.0, 0.0,	-0.0,  1.0, -0.0
-		
+			//pos               // uv	    // normals
+			-1.0,  1.0,  1.0,	0.0, 1.0,	-1.0, -0.0, -0.0,
+			-1.0, -1.0, -1.0,	1.0, 0.0,	-1.0, -0.0, -0.0,
+			-1.0, -1.0,  1.0,	0.0, 0.0,	-1.0, -0.0, -0.0,
+			-1.0,  1.0, -1.0,	0.0, 1.0,	-0.0, -0.0, -1.0,
+			 1.0, -1.0, -1.0,	1.0, 0.0,	-0.0, -0.0, -1.0,
+			-1.0, -1.0, -1.0,	0.0, 0.0,	-0.0, -0.0, -1.0,
+			 1.0,  1.0, -1.0,	1.0, 1.0,	 1.0, -0.0, -0.0,
+			 1.0, -1.0,  1.0,	0.0, 0.0,	 1.0, -0.0, -0.0,
+			 1.0, -1.0, -1.0,	1.0, 0.0,	 1.0, -0.0, -0.0,
+			 1.0,  1.0,  1.0,	1.0, 1.0,	-0.0, -0.0,  1.0,
+			-1.0, -1.0,  1.0,	0.0, 0.0,	-0.0, -0.0,  1.0,
+			 1.0, -1.0,  1.0,	1.0, 0.0,	-0.0, -0.0,  1.0,
+			 1.0, -1.0, -1.0,	1.0, 1.0,	-0.0, -1.0, -0.0,
+			-1.0, -1.0,  1.0,	0.0, 0.0,	-0.0, -1.0, -0.0,
+			-1.0, -1.0, -1.0,	0.0, 1.0,	-0.0, -1.0, -0.0,
+			-1.0,  1.0, -1.0,	0.0, 1.0,	-0.0,  1.0, -0.0,
+			 1.0,  1.0,  1.0,	1.0, 0.0,	-0.0,  1.0, -0.0,
+			 1.0,  1.0, -1.0,	1.0, 1.0,	-0.0,  1.0, -0.0,
+			-1.0,  1.0, -1.0,	1.0, 1.0,	-1.0, -0.0, -0.0,
+			 1.0,  1.0, -1.0,	1.0, 1.0,	-0.0, -0.0, -1.0,
+			 1.0,  1.0,  1.0,	0.0, 1.0,	 1.0, -0.0, -0.0,
+			-1.0,  1.0,  1.0,	0.0, 1.0,	-0.0, -0.0,  1.0,
+			 1.0, -1.0,  1.0,	1.0, 0.0,	-0.0, -1.0, -0.0,
+			-1.0,  1.0,  1.0,	0.0, 0.0,	-0.0,  1.0, -0.0
+
 		};
 
 		GLuint indices[12 * 3] =
@@ -53,18 +56,20 @@ class renderApp : public sglr::app
 			15, 23, 16
 		};
 
-		std::unique_ptr<sglr::shader> shader;
+		float rotation = 0;
+		float rotationSpeed = 0.0f;
+		
 
-		std::unique_ptr<sglr::vertexarray> vao;
+		std::unique_ptr<sglr::shader> shader;
+		std::unique_ptr<sglr::shader> quadshader;
+
+		std::unique_ptr<sglr::vertexarray>  vao;
 		std::unique_ptr<sglr::vertexbuffer> vbo;
-		std::unique_ptr<sglr::indexbuffer> ibo;
+		std::unique_ptr<sglr::indexbuffer>  ibo;
 
 		std::unique_ptr<sglr::texture> diffusetexture;
 		std::unique_ptr<sglr::texture> speculartexture;
 		std::unique_ptr<sglr::texture> normaltexture;
-
-		float rotation = 0;
-		float rotationSpeed = 0.0f;
 
 		std::unique_ptr<sglr::camera> camera;
 
@@ -73,11 +78,24 @@ class renderApp : public sglr::app
 		sglr::spotlightdata spotlight = sglr::spotlightdata(
 															glm::vec3(-2.900, 3.400, 2.350), 
 															glm::vec3(0.800, -1.000, -0.700), 
-															glm::vec3(255/255.0f, 151/255.0f, 27/255.0f),
+															glm::vec3(1.0f, 1.0f, 1.0f),
 															0.995f,
-															0.964f);
+															0.950f,
+															1.0f,
+															0.032f,
+															0.090f,
+															2.50f);	
+		
+		//std::unique_ptr<sglr::billboard> test;
+
+		glm::vec3 ambientlight = glm::vec3(0, 0, 0);
+
+		//std::unique_ptr<sglr::mesh> meshtest;
+
+		sglr::renderer2d* renderer;
 
 
+		
 	public:
 		renderApp() {}
 		~renderApp() 
@@ -86,14 +104,17 @@ class renderApp : public sglr::app
 			vbo->destroy();
 			ibo->destroy();
 			shader->destroy();
+			quadshader->destroy();
 			diffusetexture->destroy();
 			speculartexture->destroy();
 			normaltexture->destroy();
+			delete renderer;
 		}
 
 		void onInit() override
 		{
 			shader = std::make_unique<sglr::shader>("shaders/basic_v.glsl", "shaders/basic_f.glsl");
+			quadshader = std::make_unique<sglr::shader>("shaders/quad_v.glsl", "shaders/quad_f.glsl");
 
 			vao = std::make_unique<sglr::vertexarray>();
 
@@ -104,22 +125,21 @@ class renderApp : public sglr::app
 
 			ibo->bind();
 
-			vao->link(*vbo, 0, 3, GL_FLOAT, 11, 0);
-			vao->link(*vbo, 1, 3, GL_FLOAT, 11, 3);
-			vao->link(*vbo, 2, 2, GL_FLOAT, 11, 6);
-			vao->link(*vbo, 3, 3, GL_FLOAT, 11, 8);
+			vao->link(*vbo, 0, 3, GL_FLOAT, 8 * sizeof(GLfloat), 0);
+			vao->link(*vbo, 1, 2, GL_FLOAT, 8 * sizeof(GLfloat), 3);
+			vao->link(*vbo, 2, 3, GL_FLOAT, 8 * sizeof(GLfloat), 5);
 
 			vao->unbind();
 			vbo->unbind();
 			ibo->unbind();
 
-			diffusetexture = std::make_unique<sglr::texture>("textures/brick/t_brickDiffuse.jpg", 0);
+			diffusetexture = std::make_unique<sglr::texture>("textures/brick/t_brickDiffuse.jpg", SGLR_TEXTURETYPE_DIFFUSE, 0);
 			diffusetexture->textureIndex(shader.get(), "u_material.diffuse", 0);
 
-			speculartexture = std::make_unique<sglr::texture>("textures/brick/t_brickRoughness.jpg", 1);
+			speculartexture = std::make_unique<sglr::texture>("textures/brick/t_brickRoughness.jpg", SGLR_TEXTURETYPE_SPECULAR, 1);
 			speculartexture->textureIndex(shader.get(), "u_material.specular", 1);
 
-			normaltexture = std::make_unique<sglr::texture>("textures/brick/t_brickNormal.jpg", 2);
+			normaltexture = std::make_unique<sglr::texture>("textures/brick/t_brickNormal.jpg", SGLR_TEXTURETYPE_NORMAL, 2);
 			normaltexture->textureIndex(shader.get(), "u_material.normal", 2);
 
 			camera = std::make_unique<sglr::camera>(window.get(), shader.get());
@@ -134,17 +154,43 @@ class renderApp : public sglr::app
 			scenelight = std::make_unique<sglr::scenelight>(shader.get());
 
 			scenelight->newSpotLight();
-			
+
+			//test = std::make_unique<sglr::billboard>(bbshader.get(), camera.get());
+
+			//meshtest = std::make_unique<sglr::mesh>(verts, ind, tex);
+
+			renderer = new sglr::renderer2d(quadshader.get());
 		}
+
+		std::string int_array_to_string(float int_array[], float size_of_array) {
+			std::ostringstream oss("");
+			for (int temp = 0; temp < size_of_array; temp++)
+				oss << int_array[temp] << ", ";
+			return oss.str();
+		}
+
+
 
 		void onRender(float deltaTime) override
 		{
+			glDisable(GL_CULL_FACE);
+			quadshader->enable();
+			glm::mat4 ortho = glm::mat4(1.0f);
+			ortho = glm::ortho(-getViewportSize().x, getViewportSize().x, -getViewportSize().y, getViewportSize().y, -1.0f, 1.0f);
+			quadshader->setUniformMat4("ortho", ortho);
+
+
+			renderer->begin();
+			renderer->draw(glm::vec3(0.0f, 0.0f, 1.0f), glm::vec2(100), glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+			renderer->draw(glm::vec3(-110.0f, 0.0f, 1.0f), glm::vec2(100), glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
+			renderer->draw(glm::vec3(105.0f, 0.0f, 1.0f), glm::vec2(100), glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
+			renderer->end();
+			renderer->flush();
+
+
+			quadshader->disable();
+			glEnable(GL_CULL_FACE);
 			shader->enable();
-
-			diffusetexture->bind();
-			speculartexture->bind();
-			normaltexture->bind();
-
 			glm::mat4 model = glm::mat4(1.0f);
 
 			rotation += rotationSpeed;
@@ -158,7 +204,16 @@ class renderApp : public sglr::app
 			shader->setUniformFloat("u_material.shininess", 2.0f);
 			
 			scenelight->updateAllLights();
+
 			
+			//meshtest->draw(shader.get());
+
+			//glCheckError();
+
+			
+			diffusetexture->bind();
+			speculartexture->bind();
+			normaltexture->bind();
 
 			vao->bind();
 			
@@ -167,9 +222,11 @@ class renderApp : public sglr::app
 			vao->unbind();
 			normaltexture->unbind();
 			speculartexture->unbind();
-			diffusetexture->bind();
-			shader->disable();
+			diffusetexture->unbind();
 
+			shader->disable();
+			
+			
 		}
 
 		void onUpdate(float deltaTime) override
@@ -183,6 +240,11 @@ class renderApp : public sglr::app
 		void editWindow() override
 		{
 			ImGui::SliderFloat("rotate cube", &rotationSpeed, 0.0f, 1.0f);
+
+			ImGui::NewLine();
+
+			ImGui::ColorEdit3("Ambient", glm::value_ptr(ambientlight));
+
 
 			ImGui::SeparatorText("CONFIGURE SPOTLIGHT");
 			ImGui::DragFloat3("Position", glm::value_ptr(spotlight.sp_position), 0.05f, -20.0f, 20.0f);
@@ -200,9 +262,16 @@ class renderApp : public sglr::app
 
 			ImGui::DragFloat("Intensity", &spotlight.sp_intensity, 0.05f, 0.0f, 10.0f);
 
-			ImGui::TextDisabled("intensity doesnt work as intended, will fix later");
-
 			scenelight->editSpotLight(0, spotlight);
+			scenelight->setGlobalAmbientLight(ambientlight);
+
+			ImGui::NewLine();
+			ImGui::NewLine();
+
+			if (ImGui::Button("Add Light"))
+			{
+				scenelight->newSpotLight();
+			}
 
 		}
 		

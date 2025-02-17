@@ -9,7 +9,6 @@ namespace sglr
 			return false;
 
 		m_shader = shader;
-		m_shader->setUniformVec3("u_globalambient", m_globalambient);
 		return true;
 	}
 
@@ -132,6 +131,8 @@ namespace sglr
 				m_shader->setUniformFloat(pl_uintname.c_str(), m_pl[i].pl_intensity);
 			}
 		}
+
+		m_shader->setUniformVec3("u_globalambient", m_globalambient);
 	}
 	void scenelight::updateSceneSpotLights() 
 	{
@@ -152,6 +153,8 @@ namespace sglr
 				m_shader->setUniformFloat(sp_uintname.c_str(), m_sp[i].sp_intensity);
 			}
 		}
+
+		m_shader->setUniformVec3("u_globalambient", m_globalambient);
 	}
 	void scenelight::updateSceneSunLight() 
 	{
@@ -165,6 +168,8 @@ namespace sglr
 				m_shader->setUniformVec3( s_udifname.c_str(), m_s.s_diffuse);
 			}
 		}
+
+		m_shader->setUniformVec3("u_globalambient", m_globalambient);
 	}
 		 
 }

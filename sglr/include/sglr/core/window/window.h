@@ -15,7 +15,7 @@ namespace sglr
 
 			void createWindow();
 			void update();
-			void swap()
+			inline void swap()
 			{
 				SDL_GL_SwapWindow(m_window); // swap gl buffers
 			}
@@ -27,12 +27,12 @@ namespace sglr
 					return false;
 			}
 
-			SDL_Window* returnSDLWindow()
+			inline SDL_Window* returnSDLWindow()
 			{
 				return m_window;
 			}
 
-			glm::vec2 returnSize()
+			inline glm::vec2 returnSize()
 			{
 				return m_size;
 			}

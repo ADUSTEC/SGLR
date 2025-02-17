@@ -22,7 +22,8 @@
 #include "../../vendor/imgui/imgui_internal.h"
 
 // Application will be used by main by creating a custom class that inherits from Application
-namespace sglr {
+namespace sglr 
+{
 	class app
 	{
 		public:
@@ -55,10 +56,10 @@ namespace sglr {
 
 			
 			// return func
-			 UINT getFPS() const { return m_fps; }
-			 UINT getUPS() const { return m_ups; }
+			inline UINT getFPS() const { return m_fps; }
+			inline UINT getUPS() const { return m_ups; }
 
-			 glm::vec2 getViewportSize() const { return m_viewportSize; }
+			inline glm::vec2 getViewportSize() const { return m_viewportSize; }
 
 			// window
 			std::unique_ptr<sglrwindow> window;

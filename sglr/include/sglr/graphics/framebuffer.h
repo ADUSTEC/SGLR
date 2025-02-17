@@ -10,15 +10,30 @@ namespace sglr
 	public:
 		framebuffer(glm::vec2 size);
 		~framebuffer();
-		void bind() const;
-		void unbind() const;
-		void destroy() const;
-		GLuint returnFrame();
-		void rescale(glm::vec2 size);
+		
+		void rescale(glm::vec2 size) const;
+
+		inline GLuint returnFrame() const
+		{
+			return m_texture;
+		}
+		inline void bind() const
+		{
+			glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
+		}
+		inline void unbind() const
+		{
+			glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		}
+		inline void destroy() const
+		{
+			glDeleteFramebuffers(1, &m_fbo);
+		}
+		
 	private:
-		GLuint fbo = NULL;
-		GLuint texture = NULL;
-		GLuint rbo = NULL;
+		GLuint m_fbo;
+		GLuint m_texture;
+		GLuint m_rbo;
 	};
 
 }

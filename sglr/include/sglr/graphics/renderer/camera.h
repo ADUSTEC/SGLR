@@ -51,19 +51,20 @@ namespace sglr
 		void updateMovement(float deltatime);
 		
 		// set
-		void setActivationKey(KEYINPUTCODES inputcode = INPUT_KEY_LALT) { m_activationkey = inputcode; }
+		inline void setActivationKey(KEYINPUTCODES inputcode = INPUT_KEY_LALT) { m_activationkey = inputcode; }
 
 		// getters
-		glm::mat4 getProjection() { return m_projection; }
-		glm::mat4 getView() { return m_view; }
+		inline glm::mat4 getProjection() { return m_projection; }
+		inline glm::mat4 getView() { return m_view; }
 
-		glm::vec3 getPosition() { return m_position; }
+		inline glm::vec3 getPosition() { return m_position; }
 
-		glm::vec3 getForwardVector() { return m_forwardvector; }
-		glm::vec3 getUpVector() { return m_upvector; }
-		glm::vec3 getRightVector() { return m_rightvector; }
+		inline glm::vec3 getForwardVector() { return m_forwardvector; }
+		inline glm::vec3 getUpVector() { return m_upvector; }
+		inline glm::vec3 getRightVector() { return m_rightvector; }
+		inline glm::vec3 getOrientation() { return m_orientation; }
 
-		glm::vec2 getAspect() { return m_aspect; }
+		inline glm::vec2 getAspect() { return m_aspect; }
 
 	private:
 		sglrwindow* m_window{};
@@ -80,6 +81,7 @@ namespace sglr
 		glm::vec3 m_forwardvector = glm::vec3(0.0f, 0.0f, -1.0f);
 		glm::vec3 m_upvector = glm::vec3(0.0f, 1.0f, 0.0f);
 		glm::vec3 m_rightvector = glm::normalize(glm::cross(m_forwardvector, m_upvector));
+		glm::vec3 m_orientation = glm::vec3(0.0f, 0.0f, 0.0f);
 
 		glm::mat4 m_projection = glm::mat4(1.0f);
 		glm::mat4 m_view = glm::mat4(1.0f);

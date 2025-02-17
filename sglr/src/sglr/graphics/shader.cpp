@@ -86,60 +86,15 @@ namespace sglr
 		return program;
 	}
 
-	void const shader::enable()
+	GLint shader::getUniformLocation(const GLchar* name) const
 	{
-		glUseProgram(m_shaderID); // enable shader for use
-	}
-
-	void const shader::disable()
-	{
-		glUseProgram(0); // disable shader
-	}
-
-	void const shader::destroy()
-	{
-		glDeleteProgram(m_shaderID); // delete shader program
-	}
-
-	// UNIFORMS
-	void shader::setUniformFloat(const GLchar* name, float value)
-	{
-		glUniform1f(getUniformLocation(name), value);
-	}
-
-	void shader::setUniformFloatV(const GLchar* name, float* value, int count)
-	{
-		glUniform1fv(getUniformLocation(name), count, value);
-	}
-
-	void shader::setUniformVec2(const GLchar* name, const glm::vec2& vector)
-	{
-		glUniform2f(getUniformLocation(name), vector.x, vector.y);
-	}
-
-	void shader::setUniformVec3(const GLchar* name, const glm::vec3& vector)
-	{
-		glUniform3f(getUniformLocation(name), vector.x, vector.y, vector.z);
-	}
-
-	void shader::setUniformVec4(const GLchar* name, const glm::vec4& vector)
-	{
-		glUniform4f(getUniformLocation(name), vector.x, vector.y, vector.z, vector.w);
-	}
-
-	void shader::setUniformInt(const GLchar* name, int value)
-	{
-		glUniform1i(getUniformLocation(name), value);
-	}
-
-	void shader::setUniformIntV(const GLchar* name, int* value, int count)
-	{
-		glUniform1iv(getUniformLocation(name), count, value);
-	}
-
-	void shader::setUniformMat4(const GLchar* name, const glm::mat4& matrix)
-	{
-		glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, glm::value_ptr(matrix));
+		auto it = m_uniformloc.find(name);
+		if (it != m_uniformloc.end()) return it->second;
+		GLint location = glGetUniformLocation(m_shaderID, name);
+		if (location == -1) {
+			LOG_ERROR("OPENGL ERROR: UNIFORM {} NOT FOUND", name);
+		}
+		return m_uniformloc[name] = location;
 	}
 
 }

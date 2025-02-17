@@ -136,6 +136,12 @@
       <Filter>include\sglr\tools</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="include\sglr\graphics\renderer\renderable2d.h">
+      <Filter>include\sglr\graphics\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sglr\graphics\renderer\renderer2d.h">
+      <Filter>include\sglr\graphics\renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -161,9 +167,6 @@
       <Filter>src\sglr\graphics</Filter>
     </ClCompile>
     <ClCompile Include="src\sglr\graphics\renderer\billboardrenderer.cpp">
-      <Filter>src\sglr\graphics\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\sglr\graphics\renderer\camera.cpp">
       <Filter>src\sglr\graphics\renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\sglr\graphics\renderer\mesh.cpp">
@@ -207,6 +210,12 @@
     </ClCompile>
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp">
       <Filter>vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\graphics\renderer\renderer2d.cpp">
+      <Filter>src\sglr\graphics\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sglr\graphics\renderer\camera.cpp">
+      <Filter>src\sglr\graphics\renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

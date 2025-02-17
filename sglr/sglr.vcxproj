@@ -92,6 +92,11 @@ xcopy /Q /E /Y /I /S /D assets ..\bin\Debug-windows-x86_64\$(ProjectName)\</Comm
       <StringPooling>true</StringPooling>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <ResourceCompile>
       <AdditionalIncludeDirectories>include;vendor\spdlog\include;vendor\tinyxml2;vendor\glm\glm;vendor\SDL\include;vendor\glew\include;vendor\mio\include;vendor\stbimage;vendor\assimp\include;vendor\assimp\BUILD\include;vendor\imgui\imconfig.h;vendor\imgui\imgui.h;vendor\imgui\imgui_internal.h;vendor\imgui\imstb_rectpack.h;vendor\imgui\imstb_textedit.h;vendor\imgui\imstb_truetype.h;vendor\imgui\backends\imgui_impl_opengl3.h;vendor\imgui\backends\imgui_impl_sdl3.h;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -124,6 +129,7 @@ xcopy /Q /E /Y /I /S /D assets ..\bin\Release-windows-x86_64\$(ProjectName)\</Co
     <ClInclude Include="include\sglr\graphics\renderer\camera.h" />
     <ClInclude Include="include\sglr\graphics\renderer\mesh.h" />
     <ClInclude Include="include\sglr\graphics\renderer\postprocess.h" />
+    <ClInclude Include="include\sglr\graphics\renderer\renderer2d.h" />
     <ClInclude Include="include\sglr\graphics\renderer\scenelight.h" />
     <ClInclude Include="include\sglr\graphics\renderer\texture.h" />
     <ClInclude Include="include\sglr\graphics\shader.h" />
@@ -132,6 +138,7 @@ xcopy /Q /E /Y /I /S /D assets ..\bin\Release-windows-x86_64\$(ProjectName)\</Co
     <ClInclude Include="include\sglr\sglr.h" />
     <ClInclude Include="include\sglr\tools\clock.h" />
     <ClInclude Include="include\sglr\tools\readfile.h" />
+    <ClInclude Include="include\sglr\graphics\renderer\renderable2d.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -147,6 +154,7 @@ xcopy /Q /E /Y /I /S /D assets ..\bin\Release-windows-x86_64\$(ProjectName)\</Co
     <ClCompile Include="src\sglr\graphics\renderer\camera.cpp" />
     <ClCompile Include="src\sglr\graphics\renderer\mesh.cpp" />
     <ClCompile Include="src\sglr\graphics\renderer\postprocess.cpp" />
+    <ClCompile Include="src\sglr\graphics\renderer\renderer2d.cpp" />
     <ClCompile Include="src\sglr\graphics\renderer\scenelight.cpp" />
     <ClCompile Include="src\sglr\graphics\renderer\texture.cpp" />
     <ClCompile Include="src\sglr\graphics\shader.cpp" />

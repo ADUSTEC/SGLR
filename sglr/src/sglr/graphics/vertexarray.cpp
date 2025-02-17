@@ -12,11 +12,7 @@ namespace sglr
 		destroy();
 	}
 
-	void vertexarray::link(vertexbuffer& vbuffer, GLuint lindex, GLuint compnum, GLenum datatype, GLsizeiptr vattoffset, GLuint offset)
-	{
-		vbuffer.bind(); // bind vbo
-
-		//// vertex attribute - used mainly for the "layout" in a shader
+	//// vertex attribute - used mainly for the "layout" in a shader
 		// 
 		// index      : specifies the desired attribute location index of which is defined in the shader
 		//
@@ -33,27 +29,11 @@ namespace sglr
 		// (etc..)    :	(if first attribute has the size set to 3, then the second attribute will start at an offset of 3 * the size of its datatype)
 		// (etc..)    : (i.e. attribute1(size = 3, offset = 0) -> attribute2(size = 2, offset = 3) -> attribute3(size = 1, offset = 5))
 		// 
-		/////////////// easy to understand explaination of how glVertexAttribPointer() parameters are used ////////////////
-		
-		glVertexAttribPointer(lindex, compnum, datatype, GL_FALSE, vattoffset * sizeof(datatype), (void*)(offset * sizeof(datatype)));
+	/////////////// easy to understand explaination of how glVertexAttribPointer() parameters are used ////////////////
+	void vertexarray::link(vertexbuffer& vbuffer, GLuint lindex, GLuint compnum, GLenum datatype, GLsizeiptr vattoffset, GLuint offset)
+	{
+		glVertexAttribPointer(lindex, compnum, datatype, GL_FALSE, vattoffset, (const GLvoid*)(offset * sizeof(datatype)));
 		glEnableVertexAttribArray(lindex); // enable attribute at defined index
-
-		vbuffer.unbind(); // unbind vbo
 	}
-
-	void const vertexarray::bind()
-	{
-		glBindVertexArray(m_varrID); // bind vao
-	}
-	void const vertexarray::unbind()
-	{
-		glBindVertexArray(0); // unbind curently binded vao
-	}
-
-	void const vertexarray::destroy()
-	{
-		glDeleteVertexArrays(1, &m_varrID); // delete vao
-	}
-
 
 }

@@ -6,8 +6,9 @@
 namespace sglr
 {
 
-	texture::texture(const char* file, int index, int filtermode)
+	texture::texture(const char* file, int desc, uint16_t index, int filtermode)
 	{
+		m_texturedesc = desc;
 		stbi_set_flip_vertically_on_load(true);
 
 		m_bytes = stbi_load(file, &m_imgw, &m_imgh, &m_imgcolch, 0);
@@ -20,7 +21,7 @@ namespace sglr
 
 		glGenTextures(1, &m_textureid);
 		glActiveTexture(GL_TEXTURE + index);
-		m_unit = index;
+		m_index = index;
 		glBindTexture(GL_TEXTURE_2D, m_textureid);
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filtermode);
@@ -55,24 +56,10 @@ namespace sglr
 		destroy();
 	}
 
-	void const texture::bind()
-	{
-		glActiveTexture(GL_TEXTURE0 + m_unit);
-		glBindTexture(GL_TEXTURE_2D, m_textureid);
-	}
-	void const texture::unbind()
-	{
-		glBindTexture(GL_TEXTURE_2D, 0);
-	}
-	void const texture::destroy()
-	{
-		glDeleteTextures(1, &m_textureid);
-	}
-
-	void const texture::textureIndex(shader* shader, const char* name, int unit)
+	void texture::textureIndex(shader* shader, const char* name, uint16_t index) const
 	{
 		shader->enable();
-		shader->setUniformInt(name, unit);
+		shader->setUniformInt(name, index);
 		shader->disable();
 	}
 
