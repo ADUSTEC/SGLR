@@ -138,7 +138,6 @@ xcopy /Q /E /Y /I /S /D assets ..\bin\Release-windows-x86_64\$(ProjectName)\</Co
     <ClInclude Include="include\sglr\sglr.h" />
     <ClInclude Include="include\sglr\tools\clock.h" />
     <ClInclude Include="include\sglr\tools\readfile.h" />
-    <ClInclude Include="include\sglr\graphics\renderer\renderable2d.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

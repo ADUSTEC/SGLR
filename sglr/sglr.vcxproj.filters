@@ -136,9 +136,6 @@
       <Filter>include\sglr\tools</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="include\sglr\graphics\renderer\renderable2d.h">
-      <Filter>include\sglr\graphics\renderer</Filter>
-    </ClInclude>
     <ClInclude Include="include\sglr\graphics\renderer\renderer2d.h">
       <Filter>include\sglr\graphics\renderer</Filter>
     </ClInclude>

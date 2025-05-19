@@ -3,7 +3,6 @@
 // 2d batch renderer, intended use for the billboard class and postprocessing class
 // could potentially be used in scene, but is not intended.
 
-#include "renderable2d.h"
 #include "../indexbuffer.h"
 #include "../vertexbuffer.h"
 #include "../vertexarray.h"
