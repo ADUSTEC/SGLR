@@ -173,23 +173,25 @@ class renderApp : public sglr::app
 
 		void onRender(float deltaTime) override
 		{
-			glDisable(GL_CULL_FACE);
-			quadshader->enable();
+			// test 2d renderer
+			renderer->begin();
+
 			glm::mat4 ortho = glm::mat4(1.0f);
 			ortho = glm::ortho(-getViewportSize().x, getViewportSize().x, -getViewportSize().y, getViewportSize().y, -1.0f, 1.0f);
 			quadshader->setUniformMat4("ortho", ortho);
 
+			// color quads
+			renderer->drawQuadRGBA(glm::vec3(0.0f, 0.0f, 1.0f), glm::vec2(100), glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+			renderer->drawQuadRGBA(glm::vec3(-110.0f, 0.0f, 1.0f), glm::vec2(100), glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
+			renderer->drawQuadRGBA(glm::vec3(105.0f, 0.0f, 1.0f), glm::vec2(100), glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
 
-			renderer->begin();
-			renderer->draw(glm::vec3(0.0f, 0.0f, 1.0f), glm::vec2(100), glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
-			renderer->draw(glm::vec3(-110.0f, 0.0f, 1.0f), glm::vec2(100), glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
-			renderer->draw(glm::vec3(105.0f, 0.0f, 1.0f), glm::vec2(100), glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
+			// textured
+			renderer->drawQuadTEX(glm::vec3(0.0f, -110.0f, 1.0f), glm::vec2(100), diffusetexture->getTexture());
+			
 			renderer->end();
 			renderer->flush();
 
-
-			quadshader->disable();
-			glEnable(GL_CULL_FACE);
+			// CUBE
 			shader->enable();
 			glm::mat4 model = glm::mat4(1.0f);
 
@@ -205,12 +207,6 @@ class renderApp : public sglr::app
 			
 			scenelight->updateAllLights();
 
-			
-			//meshtest->draw(shader.get());
-
-			//glCheckError();
-
-			
 			diffusetexture->bind();
 			speculartexture->bind();
 			normaltexture->bind();

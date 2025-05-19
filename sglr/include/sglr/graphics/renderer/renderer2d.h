@@ -19,7 +19,8 @@ namespace sglr
 		
 		void begin();
 
-		void draw(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color);
+		void drawQuadRGBA(const glm::vec3& positionxyz, const glm::vec2& sizexy, const glm::vec4& rgba);
+		void drawQuadTEX(const glm::vec3& positionxyz, const glm::vec2& sizexy, uint32_t texture);
 
 		void end();
 		void flush();

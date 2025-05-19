@@ -169,8 +169,6 @@ xcopy /Q /E /Y /I /S /D assets ..\bin\Release-windows-x86_64\$(ProjectName)\</Co
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="assets\shaders\basic_f.glsl" />
-    <None Include="assets\shaders\basic_v.glsl" />
     <None Include="sglr.ico" />
   </ItemGroup>
   <ItemGroup>
