@@ -9,7 +9,8 @@ next commit will be once these additions are made
 
 ### (in unfinished state, windows only)
 -- Screenshot of current program state
-![image](https://github.com/user-attachments/assets/840cdebd-0144-418c-9343-b27f15c7179f)
+![image](https://github.com/user-attachments/assets/4b50a07a-22b7-4c8e-b596-3d86b2671e95)
+
 
 
 ### building instructions and other details will be added later
